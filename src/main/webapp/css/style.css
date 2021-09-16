@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.header {
+	height: 70px;
+}
+.header .header_logo{
+	width : 20%;
+}
+.header_logo > a{
+	margin-left : 15px;
+}
+.head_empty{
+	width : 40%;
+}
+.header .menuItem{
+	width : 40%;
+	font-size : 14px;
+}
+
+.header .menuItem ul {
+	display: flex;
+	height : 100%;
+	justify-content: space-around;
+	align-items: center;
+}
+.head_main{
+	font-size : 24px;
+	font-weight: bold;
+	margin-left : 15px;
+}
+.head_sub{
+	font-size : 17px;
+	margin-left : 28px;
+}
+.header ul li{
+	transition : all 0.4s;
+}
+.header ul li:hover{
+	background-color : #dfdfdf;
+}
