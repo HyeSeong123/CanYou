@@ -1,40 +1,170 @@
 @charset "UTF-8";
 
+/* 헤더 시작 */
 .header {
 	height: 70px;
 }
-.header .header_logo{
-	width : 20%;
+
+.header .header_logo {
+	width: 20%;
 }
-.header_logo > a{
-	margin-left : 15px;
+
+.header_logo>a {
+	margin-left: 15px;
 }
-.head_empty{
-	width : 40%;
+
+.head_empty {
+	width: 40%;
 }
-.header .menuItem{
-	width : 40%;
-	font-size : 14px;
+
+.header .menuItem {
+	width: 40%;
+	font-size: 14px;
+}
+
+.head_main {
+	transition: opacity 0.3s;
 }
 
 .header .menuItem ul {
 	display: flex;
-	height : 100%;
+	height: 100%;
 	justify-content: space-around;
 	align-items: center;
 }
-.head_main{
-	font-size : 24px;
+
+.head_main {
+	font-size: 24px;
 	font-weight: bold;
-	margin-left : 15px;
+	margin-left: 15px;
 }
-.head_sub{
-	font-size : 17px;
-	margin-left : 28px;
+
+.head_sub {
+	font-size: 17px;
+	margin-left: 28px;
 }
-.header ul li{
-	transition : all 0.4s;
+
+.header_btn-member .login_btn_cover {
+	margin-bottom: 3px;
 }
-.header ul li:hover{
-	background-color : #dfdfdf;
+
+.header_btn-member div {
+	width: 100%;
 }
+
+.header_btn-member div a {
+	width: 50%;
+	padding: 5px 10px;
+	border-radius: 15px;
+	display: block;
+	margin: 0 auto;
+	transition: all 0.4s;
+}
+
+.header_btn-member div a:hover {
+	background-color: rgba(1, 1, 1, 0.2);
+}
+
+.header_btn-member .join_btn_cover {
+	margin-top: 3px;
+}
+
+.header ul li {
+	transition: all 0.4s;
+}
+
+.header ul li:not(:last-child ):hover {
+	background-color: rgba(1, 1, 1, 0.2);
+}
+
+.header_logo:hover .head_main {
+	opacity: 0;
+}
+/* 헤더 끝 */
+
+/* 메인 시작 */
+.join_box{
+	margin : 0 auto;
+	background-color : #606669;
+	width : 700px;
+	padding : 25px 0;
+}
+label {
+  display: block;
+  letter-spacing: 4px;
+  padding-top: 30px;
+  text-align: center;
+}
+label .label-text {
+  color: #9B9B9B;
+  cursor: text;
+  font-size: 15px;
+  line-height: 20px;
+  text-transform: uppercase;
+  -moz-transform: translateY(-34px);
+  -ms-transform: translateY(-34px);
+  -webkit-transform: translateY(-34px);
+  transform: translateY(-34px);
+  transition: all 0.3s;
+}
+/* animation for the text to float up and turn white */
+label input:focus + .label-text {
+  color: yellow;
+  font-size: 13px;
+  margin-top: 10px;
+  -moz-transform: translateY(-60x);
+  -ms-transform: translateY(-60px);
+  -webkit-transform: translateY(-60px);
+  transform: translateY(-60px);
+}
+label input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid #4A4A4A;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 1px;
+  outline: 0;
+  padding: 5px 20px;
+  text-align: center;
+  transition: all 0.3s;
+  width: 200px;
+}
+/* once you click in the input the input width box animates */
+label input:focus {
+  max-width: 100%;
+  width: 400px;
+}
+label input:valid + .label-text {
+  font-size: 13px;
+  -moz-transform: translateY(-74px);
+  -ms-transform: translateY(-74px);
+  -webkit-transform: translateY(-74px);
+  transform: translateY(-74px);
+}
+.join_box button {
+  background: transparent;
+  color: #F0F0F0;
+  border: 2px solid #F0F0F0;
+  font-size: 15px;
+  letter-spacing: 2px;
+  padding: 20px 75px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+  margin: 15px 30px;
+  -webkit-transition: all 0.4s;
+ -moz-transition: all 0.4s;
+ transition: all 0.4s;
+}
+.join_box button:hover,.join_box button:focus {
+  background-color: white;
+  color: #333333;
+}
+.join_box > form > label:last-child {
+	margin-bottom : 20px;
+}
+.btn_join-box{
+	text-align : center;
+}
+/* 메인 끝 */

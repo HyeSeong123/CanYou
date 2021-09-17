@@ -11,7 +11,11 @@
 			<div class="header_logo height-100p">
 				<a class="flex flex-ai-c width-100p height-100p" href="/index.do">
 					<span class="head_main">캔 류</span>
-					<span class="head_sub">Can You keep the plan?</span>
+					<span class="head_sub">
+						<span id="txt_can">Can</span>
+						<span id="txt_you">You</span>
+						<span id="txt_etc">keep the plan?</span>
+					</span>
 				</a>
 			</div>
 			
@@ -24,12 +28,12 @@
 							<a href="#">${board.boardName}</a>
 						</li>
 					</c:forEach>
-					
-					<li>
-						<a href="#">로그인</a>
+
+					<li class="flex flex-column header_btn-member">
+						<div class="login_btn_cover"><a class="login_btn" href="/member/login.do">로그인</a></div>
+						<div class="join_btn_cover"><a class="join_btn" href="/member/join.do">회원가입</a></div>
 					</li>
 				</ul>
-				
 			</div>
 		</div>
 	</div>

@@ -11,6 +11,10 @@
 	
 	<link rel="stylesheet" href="/css/default.css">
 	<link rel="stylesheet" href="/css/style.css">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+	
 </head>
 <body>
 	<tiles:insertAttribute name="header" ></tiles:insertAttribute>
@@ -20,5 +24,6 @@
 	</section>
 	
 	<tiles:insertAttribute name="footer" ></tiles:insertAttribute>
+	<script src="/js/main.js"></script>
 </body>
 </html>

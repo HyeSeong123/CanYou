@@ -74,3 +74,11 @@ ul > li > a{
 .width-100p{
 	width : 100%;
 }
+#txt_can,#txt_you, #txt_etc{
+	display: inline-block;
+}
+
+
+main{
+	min-height : 80vh;
+}
