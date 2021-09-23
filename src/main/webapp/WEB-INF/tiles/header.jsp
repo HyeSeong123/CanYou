@@ -14,14 +14,16 @@
 					<span class="head_sub">
 						<span id="txt_can">Can</span>
 						<span id="txt_you">You</span>
-						<span id="txt_etc">keep the plan?</span>
+						<span id="txt_etc">keep your plan</span>
+						<span id="txt_que">?</span>
+						<span id="txt_exclam">!</span>
 					</span>
 				</a>
 			</div>
 			
 			<div class="head_empty"></div>
 			
-			<div class="menuItem">
+			<div class="menuItem menuItem-PC">
 				<ul>
 					<c:forEach items="${boards}" var="board">
 						<li>
@@ -35,6 +37,32 @@
 					</li>
 				</ul>
 			</div>
+			
+			<div class="btn_hamburger flex height-100p width-100p flex-jc-end flex-ai-c">
+				<div class="flex height-100p width-100p flex-column flex-jc-c flex-ai-end">
+					<span></span>
+					<span></span>
+				</div>
+			</div>
 		</div>
+	</div>
+	
+	<div class="menuItem menuItem-mobile">
+		<ul>
+			<c:forEach items="${boards}" var="board">
+				<li>
+					<a href="#">${board.boardName}</a>
+				</li>
+				
+			</c:forEach>
+
+			<li>
+				<a class="login_btn" href="/member/login.do">로그인</a>
+			</li>
+			
+			<li>
+				<a class="join_btn" href="/member/join.do">회원가입</a>
+			</li>
+		</ul>
 	</div>
 </header>
