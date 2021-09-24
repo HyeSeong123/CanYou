@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="egovframework.example.dao.MemberDAO">
+
+	<select id="getMemberByMemberId" resultType="Map">
+		SELECT id,
+		regDate,
+		updateDate,
+		member_name,
+		member_id,
+		member_pw,
+		member_nickname,
+		member_email,
+		member_phNum,
+		member_level
+		FROM `member`
+		WHERE member_id = #{member_id}
+	</select>
+
+	<select id="getMemberByMemberName" resultType="Map">
+		SELECT id,
+		regDate,
+		updateDate,
+		member_name,
+		member_id,
+		member_pw,
+		member_nickname,
+		member_email,
+		member_phNum,
+		member_level
+		FROM `member`
+		WHERE member_name = #{member_name}
+	</select>
+	
+	<select id="getMemberByMemberNickname" resultType="Map">
+		SELECT id,
+		regDate,
+		updateDate,
+		member_name,
+		member_id,
+		member_pw,
+		member_nickname,
+		member_email,
+		member_phNum,
+		member_level
+		FROM `member`
+		WHERE member_nickname = #{member_nickname}
+	</select>
+	
+	<select id="getMemberByMemberEmailCount" resultType="int">
+		SELECT COUNT(*)
+		FROM `member`
+		WHERE member_email = #{member_name}
+	</select>
+	
+	<insert id="doJoin" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		INSERT INTO `member`
+		<set>
+			regDate = NOW(),
+			updateDate = NOW(),
+			member_name = #{member_name},
+			member_id = #{member_id},
+			member_pw = HEX(AES_ENCRYPT(#{member_pw}, #{member_id})),
+			member_nickname = #{member_nickname},
+			member_email = #{member_email},
+			member_phNum = #{member_phNum},
+			<if test="member_level != null">
+				member_level = #{member_level},
+			</if>
+		</set>
+	</insert>
+	
+	<select id="doLoginCheck" resultType="member">
+		SELECT id,
+		regDate,
+		updateDate,
+		member_name,
+		member_id,
+		AES_DECRYPT(UNHEX(#{member_pw}), #{member_id}) AS member_pw,
+		member_nickname,
+		member_email,
+		member_phNum,
+		member_level
+		FROM `member`
+		WHERE member_id = #{member_id}
+	</select>
+	
+</mapper>
