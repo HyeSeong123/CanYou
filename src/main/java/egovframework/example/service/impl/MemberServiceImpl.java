@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import egovframework.example.dao.MemberDAO;
@@ -39,6 +40,17 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void doJoin(Map<String, Object> param) {
+		
+		String memberPw = (String) param.get("member_pw");
+		
+		BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
+		
+		String securityPassword = pwEncoder.encode(memberPw);
+		
+		System.out.println("securityPassword= " + securityPassword);
+		
+		param.put("member_pw", securityPassword);
+		
 		memberDAO.doJoin(param);
 	}
 

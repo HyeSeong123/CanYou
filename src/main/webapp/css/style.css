@@ -254,30 +254,47 @@ label input:valid + .label-text {
 	text-align : center;
 }
 .login_input_box{
-	height : 220px;
+	height : 200px;
 }
 .login_btn_box{
 	width : 600px;
 	height : 50px;
 }
 .login_btn_box > div{
-	width : 40%;
+	width : 30%;
 	text-align : center;
 	height : 100%;
 	border-radius: 20px;
+	transition : background-color 0.4s;
 }
-.login_btn_box > .btn_login-box > button{
+.login_btn_box > div > button{
 	color : white;
-}
-.login_btn_box > .btn_join-box > button{
-	color : white;
+	transition : 0.3;
 }
 .btn_login-box{
 	background-color : #2d2d2d;
 }
-.btn_join-box{
+.btn_login-box:hover{
+	background-color : #6d6d6d;
+}
+.login_btn_join-box{
 	background-color : #4f4f4f;
 	color : black;
+}
+.login_btn_join-box:hover{
+	background-color : #afafaf;
+}
+.login_btn_join-box:hover button{
+	color : black;
+}
+.btn_find-box {
+    background-color: #5e5e44;
+}
+.btn_find-box:hover {
+    background-color: #9f9f44;
+}
+.btn_find-box button {
+    color: white;
 }
 .login_btn_box button{
 	background-color : transparent;
@@ -287,6 +304,11 @@ label input:valid + .label-text {
 	height : 100%;
 	width : 100%;
 	cursor : pointer;
+}
+section.login_alert {
+    margin-bottom: 40px;
+    text-align: center;
+    color: red;
 }
 /* 메인 모바일 시작 */
 @media (max-width:800px){

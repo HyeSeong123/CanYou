@@ -2,8 +2,6 @@ package egovframework.example.util;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.servlet.ModelAndView;
-
 public class Util {
 
 	public static String msgAndBack(HttpServletRequest req, String msg) {
@@ -16,5 +14,13 @@ public class Util {
 		req.setAttribute("redirectUrl", redirectUrl);
 		req.setAttribute("msg", msg);
 		return "common/redirect";
+	}
+	
+	public static <T> T ifNull(T data, T defaultValue) {
+		return data != null ? data : defaultValue;
+	}
+
+	public static <T> T reqAttr(HttpServletRequest req, String attrName, T defaultValue) {
+		return (T) ifNull(req.getAttribute(attrName), defaultValue);
 	}
 }

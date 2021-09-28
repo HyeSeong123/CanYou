@@ -7,7 +7,7 @@
 <main class="flex flex-jc-c flex-ai-c width-100p" style="margin-top:30px;ss">
 <div class="main_container">
 	<div class="join_box">
-		<form action="doJoin.do" method="POST">
+		<form action="/member/doJoin.do" method="POST">
 			
 			<label>
 				<input name="member_name" id="member_name" type="text" required />

@@ -14,7 +14,6 @@ function logo_movePosition(){
 		y: -3,
 		scale : 1.5,
 		duration : 0.5
-		
 	});
 	gsap.to(logo2,{
 		x: -32,
@@ -24,13 +23,16 @@ function logo_movePosition(){
 	});
 	gsap.to(logo3,{
 		x: -60,
-		duration : 0.7
+		duration : 0.6
 	});
-	logo4_1.fadeIn(400);
+	if (logo4_1.is(":animated")){
+		logo4_1.fadeIn(400);
+	}
 	logo4_1.css('display', 'inline-block');
 	gsap.to(logo4_1,{
 		x: -75,
-		duration : 0.8
+		duration : 0.7,
+		opacity : 1
 	});
 }
 function logo_zeroPosition(){
@@ -38,7 +40,7 @@ function logo_zeroPosition(){
 		x: 0,
 		y: 0,
 		scale : 1,
-		duration : 0.7
+		duration : 0.5
 	});
 	
 	gsap.to(logo2,{
@@ -52,26 +54,22 @@ function logo_zeroPosition(){
 		x: 0,
 		duration : 0.6
 	});
-	logo4_1.fadeOut(400);
+	if (logo4_1.is(":animated")){
+		logo4_1.fadeOut(400);
+	}
 	gsap.to(logo4_1,{
 		x: 0,
-		duration : 0.8
+		duration : 0.7,
+		opacity : 0
 	});
 }
 
-$('.header_logo').mouseenter(function(){
+$('.header_logo').hover(function(){
 	logo_movePosition();
-});
-
-$('.header_logo').mouseleave(function(){
-	logo_zeroPosition();
-});
-$(window).bind(function(){
-	logo_zeroPosition();
-});
-$(window).blur(function(){
-	logo_zeroPosition();
-});
+}, function(){
+		logo_zeroPosition();
+	}
+);
 
 function logo_init(){
 	var windowWidth = $(window).width();

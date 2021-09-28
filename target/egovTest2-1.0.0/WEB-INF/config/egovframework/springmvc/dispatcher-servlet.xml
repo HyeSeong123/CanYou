@@ -23,18 +23,21 @@
             <list>
                 <ref bean="localeChangeInterceptor" />
                 <ref bean="beforeActionInterceptor" />
+                <ref bean="needToLoginInterceptor" />
             </list>
         </property>
     </bean>
     
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
     <bean id="beforeActionInterceptor" class="egovframework.example.interceptor.BeforeActionInterceptor" />
+    <bean id="needToLoginInterceptor" class="egovframework.example.interceptor.NeedToLoginInterceptor" />
     
     <!-- 쿠키를 이용한 Locale 이용시 <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/> -->
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="language" />
     </bean>
 
+	<!-- 기본 에러 페이지 
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="cmmn/egovError"/>
         <property name="exceptionMappings">
@@ -46,6 +49,8 @@
             </props>
         </property>
     </bean>
+     -->
+     
 	<!-- tiles 설정 -->
 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />

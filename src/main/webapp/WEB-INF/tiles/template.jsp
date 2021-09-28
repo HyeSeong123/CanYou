@@ -8,6 +8,8 @@
 	<meta charset="utf-8">
 	<title>캔류</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<meta name="_csrf" th:content="${_csrf.token}">
+	<meta name="_csrf_header" th:content="${_csrf.headerName}">
 	
 	<link rel="stylesheet" href="/css/default.css">
 	<link rel="stylesheet" href="/css/style.css">

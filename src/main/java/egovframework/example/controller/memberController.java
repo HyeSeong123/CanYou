@@ -4,7 +4,10 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,25 +19,30 @@ import egovframework.example.util.Util;
 
 @Controller
 public class memberController {
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(memberController.class);
+	
 	@Resource(name="memberService")
 	private MemberService memberService;
 	
 	@RequestMapping("/member/join.do")
     public ModelAndView showJoin(ModelAndView mav) throws Exception {
         
-        mav.setViewName("member/join");
+        mav.setViewName("/member/join");
         return mav;
     }
+	
 	@RequestMapping("/member/doJoin.do")
     public String doJoin(HttpServletRequest req, @RequestParam Map<String,Object> param) throws Exception {
-        
+		System.out.println("memberPw=asdd" );
 		String memberEmail = (String) param.get("member_email");
 		String memberNickname = (String) param.get("member_nickname");
 		String memberId = (String) param.get("member_id");
 		String memberPw = (String) param.get("member_pw");
 		String pwConfirm = (String) param.get("confirm_pw");
 		String memberPhNum = (String) param.get("member_phNum");
+		
+		System.out.println("memberPw= " + memberPw);
 		
 		Map<String,Object> checkId = memberService.getMemberByMemberId(memberId);
 		Map<String,Object> checkNickname = memberService.getMemberByMemberNickname(memberNickname);
@@ -89,13 +97,21 @@ public class memberController {
     }
 	
 	@RequestMapping("/member/doLogin.do")
-    public String doLogin(HttpServletRequest req, @RequestParam Map<String,Object> param) throws Exception {
+    public String doLogin(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
         
 		String memberId = (String) param.get("member_id");
 		String memberPw = (String) param.get("member_pw");
 		
 		Member member = memberService.doLoginCheck(param);
-
+		
+		if(memberId == null) {
+			return Util.msgAndBack(req, "아이디를 입력해주세요");
+		}
+		
+		if(memberPw == null) {
+			return Util.msgAndBack(req, "패스워드를 입력해주세요");
+		}
+		
 		if(member == null) {
 			return Util.msgAndBack(req, "존재하지 않는 아이디 입니다.");
 		}
@@ -108,6 +124,17 @@ public class memberController {
 		
         String msg = String.format("%s님의 로그인을 환영합니다.", member.getMember_nickname() );
         
-        return Util.msgAndReplace(req, msg, "/index.do");
+        if(afterLoginURI.contains("member")) {
+        	afterLoginURI = null;
+        }
+        
+        if(afterLoginURI == null) {
+        	afterLoginURI = "/index.do";
+        }
+        
+        session.setAttribute("loginedMember", member);
+        
+        return Util.msgAndReplace(req, msg, afterLoginURI);
     }
+	
 }
