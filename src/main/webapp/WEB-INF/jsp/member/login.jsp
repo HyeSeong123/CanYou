@@ -8,15 +8,15 @@
 <main class="flex flex-jc-c flex-ai-c width-100p" style="margin-top:30px;">
 	<div class="main_container">
 		<div class="login_box">
-			<form action="/login.do" method="POST">
+			<form action="/member/doLogin.do" method="POST">
 				<input type="hidden" name="afterLoginURI" value="${param.afterLoginURI}" />
 				<div class="login_input_box"> 
 					<label>
-						<input name="userid" id="member_id" type="text" required />
+						<input name="member_id" id="member_id" type="text" required />
 						<div class="label-text">아이디</div>
 					</label>
 					<label>
-						<input name="userpw" id="member_pw" type="password" required />
+						<input name="member_pw" id="member_pw" type="password" required />
 						<div class="label-text">패스워드</div>
 					</label>
 				</div>

@@ -1,5 +1,6 @@
 package egovframework.example.interceptor;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import egovframework.example.dto.Member;
 import egovframework.example.service.BoardService;
+import egovframework.example.util.Util;
 
 @Component("beforeActionInterceptor")
 public class BeforeActionInterceptor extends HandlerInterceptorAdapter{
@@ -23,16 +25,35 @@ public class BeforeActionInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object Handler) throws Exception{
 		
-		boolean isLogined = false;
-		boolean isAjax = false;
-		
 		String requestURI = req.getRequestURI();
+		boolean isLogined = false;
+		boolean isAjax = requestURI.endsWith("Ajax");
+		Map<String, Object> param = Util.getParamMap(req);
+		Enumeration<String> parameterNames = req.getParameterNames();
+
+		if (isAjax == false) {
+			if (param.containsKey("ajax") && param.get("ajax").equals("Y")) {
+				isAjax = true;
+			}
+		}
+		
+		System.out.println("ajax= " + isAjax);
+		
+		while (parameterNames.hasMoreElements()) {
+			String paramName = parameterNames.nextElement();
+			Object paramValue = req.getParameter(paramName);
+
+			param.put(paramName, paramValue);
+		}
 		
 		List<Map> boards1 = boardService.getBoardsByDepth(1);
 		
 		HttpSession session = req.getSession();
-		
 		Member loginedMember = (Member) session.getAttribute("loginedMember");
+		
+		if(loginedMember != null) {
+			isLogined = true;
+		}
 		
 		req.setAttribute("boards", boards1);
 		req.setAttribute("isLogined", isLogined);

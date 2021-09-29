@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +35,6 @@ public class memberController {
 	
 	@RequestMapping("/member/doJoin.do")
     public String doJoin(HttpServletRequest req, @RequestParam Map<String,Object> param) throws Exception {
-		System.out.println("memberPw=asdd" );
 		String memberEmail = (String) param.get("member_email");
 		String memberNickname = (String) param.get("member_nickname");
 		String memberId = (String) param.get("member_id");
@@ -96,6 +96,16 @@ public class memberController {
         return mav;
     }
 	
+	@RequestMapping("/member/logout.do")
+    public String showLogout(HttpServletRequest req,HttpSession session, String redirectURI) throws Exception {
+        
+		session.removeAttribute("loginedMember");
+		
+		redirectURI =  Util.ifNull(redirectURI, "/index.do");
+		
+        return Util.msgAndReplace(req, "로그아웃 되었습니다.", redirectURI);
+    }
+	
 	@RequestMapping("/member/doLogin.do")
     public String doLogin(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
         
@@ -116,9 +126,11 @@ public class memberController {
 			return Util.msgAndBack(req, "존재하지 않는 아이디 입니다.");
 		}
 		
-		System.out.println("memberPw= " + member.getMember_pw());
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
-		if( ! member.getMember_pw().equals(memberPw) ) {
+		boolean loginPwCheck = encoder.matches(memberPw, member.getMember_pw());
+		
+		if( loginPwCheck == false ) {
 			return Util.msgAndBack(req, "패스워드가 일치하지 않습니다."); 
 		}
 		
@@ -136,5 +148,4 @@ public class memberController {
         
         return Util.msgAndReplace(req, msg, afterLoginURI);
     }
-	
 }

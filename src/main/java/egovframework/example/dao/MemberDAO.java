@@ -20,5 +20,4 @@ public interface MemberDAO {
 	void doJoin(Map<String, Object> param);
 
 	Member doLoginCheck(Map<String, Object> param);
-	
 }

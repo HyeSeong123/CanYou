@@ -13,13 +13,13 @@ import egovframework.example.dto.Member;
 import egovframework.example.service.MemberService;
 
 @Service("memberService")
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 
-	@Resource(name="memberDAO")
+	@Resource(name = "memberDAO")
 	private MemberDAO memberDAO;
 
 	@Override
-	public Map<String,Object> getMemberByMemberId(String memberId) {
+	public Map<String, Object> getMemberByMemberId(String memberId) {
 		return memberDAO.getMemberByMemberId(memberId);
 	}
 
@@ -40,17 +40,15 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void doJoin(Map<String, Object> param) {
-		
+
 		String memberPw = (String) param.get("member_pw");
-		
+
 		BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
-		
+
 		String securityPassword = pwEncoder.encode(memberPw);
-		
-		System.out.println("securityPassword= " + securityPassword);
-		
+
 		param.put("member_pw", securityPassword);
-		
+
 		memberDAO.doJoin(param);
 	}
 
@@ -58,5 +56,4 @@ public class MemberServiceImpl implements MemberService{
 	public Member doLoginCheck(Map<String, Object> param) {
 		return memberDAO.doLoginCheck(param);
 	}
-	
 }

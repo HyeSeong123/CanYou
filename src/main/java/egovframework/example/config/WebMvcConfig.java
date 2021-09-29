@@ -25,6 +25,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 	@Qualifier("needToLoginInterceptor")
 	HandlerInterceptor needToLoginInterceptor;
 	
+	@Autowired
+	@Qualifier("needToLogoutInterceptor")
+	HandlerInterceptor needToLogoutInterceptor;
+	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(beforeActionInterceptor).addPathPatterns("/**").excludePathPatterns("/resource/**")
@@ -36,11 +40,18 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 		.excludePathPatterns("/index.do")
 		.excludePathPatterns("/member/join.do")
 		.excludePathPatterns("/member/doJoin.do")
-		.excludePathPatterns("/login.do")
+		.excludePathPatterns("/member/doLogin.do")
+		.excludePathPatterns("/member/login.do")
 		.excludePathPatterns("/login/accessDenine.do")
-		.excludePathPatterns("/login/loginPage.do")
 		.excludePathPatterns("/member/find.do")
 		.excludePathPatterns("/member/doFind.do");
 		
+		registry.addInterceptor(needToLogoutInterceptor)
+		.addPathPatterns("/member/login.do")
+		.addPathPatterns("/member/doLogin.do")
+		.addPathPatterns("/member/join.do")
+		.addPathPatterns("/member/doJoin.do")
+		.addPathPatterns("/member/find.do")
+		.addPathPatterns("/member/doFind.do");
 	}
 }

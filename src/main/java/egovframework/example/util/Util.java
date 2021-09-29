@@ -1,5 +1,9 @@
 package egovframework.example.util;
 
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 public class Util {
@@ -23,4 +27,20 @@ public class Util {
 	public static <T> T reqAttr(HttpServletRequest req, String attrName, T defaultValue) {
 		return (T) ifNull(req.getAttribute(attrName), defaultValue);
 	}
+	
+	public static Map<String, Object> getParamMap(HttpServletRequest request) {
+		Map<String, Object> param = new HashMap<>();
+
+		Enumeration<String> parameterNames = request.getParameterNames();
+
+		while (parameterNames.hasMoreElements()) {
+			String paramName = parameterNames.nextElement();
+			Object paramValue = request.getParameter(paramName);
+
+			param.put(paramName, paramValue);
+		}
+
+		return param;
+	}
+	
 }

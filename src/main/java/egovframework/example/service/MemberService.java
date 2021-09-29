@@ -18,5 +18,4 @@ public interface MemberService {
 	void doJoin(Map<String, Object> param);
 
 	Member doLoginCheck(Map<String, Object> param);
-
 }

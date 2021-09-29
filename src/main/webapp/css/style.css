@@ -121,6 +121,22 @@
 	font-size : 30px;
 	display : none;
 }
+@media (min-width : 240px) and (max-width : 1175px){
+	.menuItem-mobile_bar{
+		display : flex;
+		width : 100%;
+		align-items: end;
+    	height: 40%;
+	}
+	.menuItem-mobile_bar div{
+		width : 50%;
+		text-align: center;
+	}
+	.menuItem-mobile_bar div a{
+		color : #ffffff;
+	}
+	
+}
 @media (max-width: 1175px){
 	.menuItem-mobile{
 		display : block;
@@ -143,11 +159,11 @@
 		position : relative;
 	}
 	.btn_hamburger div.active span:first-child{
-		transform : rotate(45deg) translateY(7px);
+		transform : rotate(45deg) translateY(12px) translateX(3.5px);
 		
 	}
 	.btn_hamburger div.active span:last-child{
-		transform : rotate(-45deg) translateY(-7px);
+		transform : rotate(-45deg) translateY(-7px) translateX(-1px);
 	}
 	.btn_hamburger{
 		display : flex;
