@@ -47,6 +47,7 @@ public class BeforeActionInterceptor extends HandlerInterceptorAdapter{
 		}
 		
 		List<Map> boards1 = boardService.getBoardsByDepth(1);
+		List<Map> boards2 = boardService.getBoardsByDepth(2);
 		
 		HttpSession session = req.getSession();
 		Member loginedMember = (Member) session.getAttribute("loginedMember");
@@ -56,6 +57,7 @@ public class BeforeActionInterceptor extends HandlerInterceptorAdapter{
 		}
 		
 		req.setAttribute("boards", boards1);
+		req.setAttribute("boards2", boards2);
 		req.setAttribute("isLogined", isLogined);
 		req.setAttribute("isAjax", isAjax);
 		req.setAttribute("requestURI", requestURI);

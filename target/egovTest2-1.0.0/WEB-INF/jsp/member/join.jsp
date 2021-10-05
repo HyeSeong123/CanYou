@@ -8,7 +8,6 @@
 <div class="main_container">
 	<div class="join_box">
 		<form action="/member/doJoin.do" method="POST">
-			
 			<label>
 				<input name="member_name" id="member_name" type="text" required />
 				<div class="label-text">이름</div>

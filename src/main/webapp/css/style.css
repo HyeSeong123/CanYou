@@ -26,7 +26,7 @@
 	transition: opacity 0.3s;
 }
 
-.header .menuItem ul {
+.header .menuItem > ul {
 	display: flex;
 	height: 100%;
 	justify-content: space-around;
@@ -71,9 +71,15 @@
 
 .header .menuItem-PC ul li {
 	transition: all 0.4s;
+	position : relative;
 }
-
-.header .menuItem-PC ul li:not(:last-child ):hover {
+li.menu_line {
+    width: 1px;
+    height: 30%;
+    background-color: black;
+    transition : height 0.4s;
+}
+.header .menuItem-PC .depth_1 li:not(:last-child ):hover {
 	background-color: rgba(1, 1, 1, 0.2);
 }
 
@@ -93,16 +99,96 @@
 
 /* 헤더 모바일 시작 */
 @media (max-width: 1150px){
-	
+	.menuItem-mobile_btn{
+		margin-top : 30px;
+	}
+	.menuItem-mobile_btn div{
+		width : 40%;
+		text-align : center;
+		height : 50px;
+		border-radius: 20px;
+		margin : 0 5%;
+		display : flex;
+		align-items: center;
+		font-size : 17px;
+		justify-content: center;
+	}
+	.menuItem-mobile_btn div:first-child{
+		background-color : #bfd9c5;
+	}
+	.menuItem-mobile_btn div:last-child{
+		background-color : #bfd0d9;
+	}
+	.menuItem-mobile_btn a {
+		width : 100%;
+		padding : 15px 0;
+		color : white;
+		display : block;
+	}
 }
 @media (max-width: 850px){
 	.header_logo:hover .head_main {
 		opacity: 1;
 	}
 }
+@media (max-width: 560px){
+	.menuItem-mobile_btn{
+		flex-direction: column;
+	}
+	.menuItem-mobile_btn div{
+		width : 70%;
+		margin : 20px auto;
+		text-align : center;
+		height : 60px;
+		font-size : 20px;
+		border-radius: 20px;
+		display : flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
 /* 헤더 모바일 끝 */
-
 /* 헤더 끝 */
+
+/* 2차 메뉴 시작 */
+.depth_2{
+	background-color : #dfdfdf;
+	z-index : 999;
+	position : relative;
+	height : 200px;
+	display : none;
+}
+.depth_2 > ul {
+	width : 100%;
+	position : relative;
+	transition : background-color 0.4s;
+}
+.depth_2 > ul:after{
+	content : "";
+	height : 70%;
+	width : 1px;
+	background-color : black;
+	position : absolute;
+	right : 0;
+	top: 50%;
+	transform : translateY(-50%);
+}
+.depth_2 > ul > li {
+	height : 25%;
+}
+.depth_2 > ul > li > a {
+	transition : background-color 0.4s, color 0.4s, opacity 0.2s;
+	box-sizing: border-box;
+	padding : 15px 0;
+}
+.depth_2 > ul:hover{
+	background-color : rgba(1,1,1,0.2);
+}
+.depth_2 > ul > li:hover a{
+	background-color : rgba(1,1,1,0.5);
+	color : #efefef;
+}
+/* 2차 메뉴 끝 */
 
 /* 라이트 바 시작 */
 .menuItem-mobile{
@@ -159,11 +245,11 @@
 		position : relative;
 	}
 	.btn_hamburger div.active span:first-child{
-		transform : rotate(45deg) translateY(12px) translateX(3.5px);
+		transform : rotate(45deg) translateY(10px) translateX(2px);
 		
 	}
 	.btn_hamburger div.active span:last-child{
-		transform : rotate(-45deg) translateY(-7px) translateX(-1px);
+		transform : rotate(-45deg) translateY(-6px) translateX(-3px);
 	}
 	.btn_hamburger{
 		display : flex;

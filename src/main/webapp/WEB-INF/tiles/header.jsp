@@ -24,11 +24,12 @@
 			<div class="head_empty"></div>
 			
 			<div class="menuItem menuItem-PC">
-				<ul>
-					<c:forEach items="${boards}" var="board">
-						<li>
+				<ul class="depth_1">
+					<c:forEach items="${boards}" var="board" varStatus="status">
+						<li class="menu${status.count}">
 							<a href="#">${board.boardName}</a>
 						</li>
+						<li class="menu_line menu_line${status.count}"></li>
 					</c:forEach>
 					<c:if test="${loginedMember == null}">
 						<li class="flex flex-column header_btn-member">
@@ -44,6 +45,40 @@
 						</li>
 					</c:if>
 				</ul>
+				
+				<div class="depth_2 flex flex-jc-ar flex-ai-c">
+					<c:forEach items="${boards}" var="board" varStatus="status">
+						<ul class="flex flex-column height-100p flex-jc-start menu2_${status.count}">
+							<c:forEach items="${boards2}" var="board2">
+								<c:if test="${board.boardCode == board2.parentCode}">
+									<li>
+										<a href="#">${board2.boardName}</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</ul>
+					</c:forEach>
+					
+					<ul class="flex flex-column height-100p flex-jc-start">
+						<c:if test="${loginedMember == null}">
+							<li class="flex flex-column">
+								<a class="login_btn" href="/member/login.do?afterLoginURI=${requestURI}">로그인</a>
+							</li>
+							<li>
+								<a class="join_btn" href="/member/join.do">회원가입</a>
+							</li>
+						</c:if>
+							
+						<c:if test="${loginedMember != null}">
+							<li>
+								<a class="login_btn" href="/member/logout.do?afterLoginURI=${requestURI}">로그아웃</a>
+							</li>
+							<li>
+								<a class="join_btn" href="/member/login.do?afterLoginURI=${requestURI}">내정보</a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 			</div>
 			
 			<div class="btn_hamburger flex height-100p width-100p flex-jc-end flex-ai-c">
@@ -63,7 +98,7 @@
 				</li>
 			</c:forEach>
 		</ul>
-		<section class="menuItem-mobile_btn">
+		<section class="menuItem-mobile_btn flex flex-jc-c">
 			<c:if test="${loginedMember == null}">
 					<div>
 						<a class="login_btn" href="/member/login.do">로그인</a>

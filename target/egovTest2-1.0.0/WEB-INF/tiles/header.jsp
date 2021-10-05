@@ -30,12 +30,36 @@
 							<a href="#">${board.boardName}</a>
 						</li>
 					</c:forEach>
+					<c:if test="${loginedMember == null}">
+						<li class="flex flex-column header_btn-member">
+							<div class="login_btn_cover"><a class="login_btn" href="/member/login.do?afterLoginURI=${requestURI}">로그인</a></div>
+							<div class="join_btn_cover"><a class="join_btn" href="/member/join.do">회원가입</a></div>
+						</li>
+					</c:if>
 					
-					<li class="flex flex-column header_btn-member">
-						<div class="login_btn_cover"><a class="login_btn" href="/login/loginPage.do?afterLoginURI=${requestURI}">로그인</a></div>
-						<div class="join_btn_cover"><a class="join_btn" href="/member/join.do">회원가입</a></div>
-					</li>
+					<c:if test="${loginedMember != null}">
+						<li class="flex flex-column header_btn-member">
+							<div class="login_btn_cover"><a class="login_btn" href="/member/logout.do?afterLoginURI=${requestURI}">로그아웃</a></div>
+							<div class="login_btn_cover"><a class="join_btn" href="/member/login.do?afterLoginURI=${requestURI}">내정보</a></div>
+						</li>
+					</c:if>
 				</ul>
+				
+				<div class="depth_2 flex flex-jc-ar">
+					<c:forEach items="${boards}" var="board">
+						<ul class="flex flex-column">
+							<c:forEach items="${boards2}" var="board2">
+								<c:if test="${board.boardCode == board2.parentCode}">
+									<li>
+										<a href="#">${board2.boardName}</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</ul>
+					</c:forEach>
+					
+					<ul></ul>
+				</div>
 			</div>
 			
 			<div class="btn_hamburger flex height-100p width-100p flex-jc-end flex-ai-c">
@@ -54,17 +78,25 @@
 					<a href="#">${board.boardName}</a>
 				</li>
 			</c:forEach>
-			
-			<c:if test="${loginedMember == null}">
-				<li>
-					<a class="login_btn" href="/member/login.do">로그인</a>
-				</li>
-				
-				<li>
-					<a class="join_btn" href="/member/join.do">회원가입</a>
-				</li>
-			</c:if>
-			
 		</ul>
+		<section class="menuItem-mobile_btn">
+			<c:if test="${loginedMember == null}">
+					<div>
+						<a class="login_btn" href="/member/login.do">로그인</a>
+					</div>
+					<div>
+						<a class="join_btn" href="/member/join.do">회원가입</a>
+					</div>
+				</c:if>
+				
+				<c:if test="${loginedMember != null}">
+					<div>
+						<a class="login_btn" href="/member/login.do">로그인</a>
+					</div>
+					<div>
+						<a class="join_btn" href="/member/join.do">회원가입</a>
+					</div>
+				</c:if>
+		</section>
 	</div>
 </header>

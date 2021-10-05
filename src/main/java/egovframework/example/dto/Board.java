@@ -7,7 +7,7 @@ public class Board {
 	private String boardName;
 	private String boardCode;
 	private int depth;
-	private String parent_code;
+	private String parentCode;
 	private String boardUrl;
 	private String menu_order;
 	
@@ -47,11 +47,11 @@ public class Board {
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
-	public String getParent_code() {
-		return parent_code;
+	public String getParentCode() {
+		return parentCode;
 	}
-	public void setParent_code(String parent_code) {
-		this.parent_code = parent_code;
+	public void setParenCode(String parentCode) {
+		this.parentCode = parentCode;
 	}
 	public String getBoardUrl() {
 		return boardUrl;

@@ -26,7 +26,7 @@
 	transition: opacity 0.3s;
 }
 
-.header .menuItem ul {
+.header .menuItem > ul {
 	display: flex;
 	height: 100%;
 	justify-content: space-around;
@@ -101,8 +101,19 @@
 	}
 }
 /* 헤더 모바일 끝 */
-
 /* 헤더 끝 */
+
+/* 2차 메뉴 시작 */
+.depth_2{
+	position : relative;
+	margin-top : 20px;
+	background-color : rgba(0,0,0,0.6);
+	z-index : 999;
+}
+.depth_2 > ul {
+	width : 100%;
+}
+/* 2차 메뉴 끝 */
 
 /* 라이트 바 시작 */
 .menuItem-mobile{
@@ -120,6 +131,22 @@
 	margin-right : 10px;
 	font-size : 30px;
 	display : none;
+}
+@media (min-width : 240px) and (max-width : 1175px){
+	.menuItem-mobile_bar{
+		display : flex;
+		width : 100%;
+		align-items: end;
+    	height: 40%;
+	}
+	.menuItem-mobile_bar div{
+		width : 50%;
+		text-align: center;
+	}
+	.menuItem-mobile_bar div a{
+		color : #ffffff;
+	}
+	
 }
 @media (max-width: 1175px){
 	.menuItem-mobile{
@@ -143,11 +170,11 @@
 		position : relative;
 	}
 	.btn_hamburger div.active span:first-child{
-		transform : rotate(45deg) translateY(7px);
+		transform : rotate(45deg) translateY(12px) translateX(3.5px);
 		
 	}
 	.btn_hamburger div.active span:last-child{
-		transform : rotate(-45deg) translateY(-7px);
+		transform : rotate(-45deg) translateY(-7px) translateX(-1px);
 	}
 	.btn_hamburger{
 		display : flex;
@@ -254,7 +281,7 @@ label input:valid + .label-text {
 	text-align : center;
 }
 .login_input_box{
-	height : 220px;
+	height : 200px;
 }
 .login_btn_box{
 	width : 600px;
@@ -304,6 +331,11 @@ label input:valid + .label-text {
 	height : 100%;
 	width : 100%;
 	cursor : pointer;
+}
+section.login_alert {
+    margin-bottom: 40px;
+    text-align: center;
+    color: red;
 }
 /* 메인 모바일 시작 */
 @media (max-width:800px){

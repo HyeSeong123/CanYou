@@ -11,7 +11,6 @@ C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\exam
 C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\example\util\Util.java
 C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\example\service\impl\MemberServiceImpl.java
 C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\example\config\WebMvcConfig.java
-C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\example\controller\LoginController.java
 C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\example\dto\Member.java
 C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\example\dao\MemberDAO.java
 C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\example\controller\erroController.java
@@ -20,3 +19,4 @@ C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\exam
 C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\example\service\impl\BoardServiceImpl.java
 C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\example\service\MemberService.java
 C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\example\dao\impl\BoardDAOImpl.java
+C:\eGovFrameDev-3.9.0-64bit\workspace\egovTest2\src\main\java\egovframework\example\interceptor\NeedToLogoutInterceptor.java
