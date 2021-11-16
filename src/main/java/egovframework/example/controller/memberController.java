@@ -148,4 +148,15 @@ public class memberController {
         
         return Util.msgAndReplace(req, msg, afterLoginURI);
     }
+	
+	@RequestMapping("/member/myInforBeforePage.do")
+    public ModelAndView showMyInforBeforePage(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/member/myInforBeforePage");
+		
+		return mav; 
+    }
+	
 }

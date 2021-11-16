@@ -41,7 +41,7 @@
 					<c:if test="${loginedMember != null}">
 						<li class="flex flex-column header_btn-member">
 							<div class="login_btn_cover"><a class="login_btn" href="/member/logout.do?afterLoginURI=${requestURI}">로그아웃</a></div>
-							<div class="login_btn_cover"><a class="join_btn" href="/member/login.do?afterLoginURI=${requestURI}">내정보</a></div>
+							<div class="login_btn_cover"><a class="join_btn" href="/member/myInforBeforePage.do?afterLoginURI=${requestURI}">내정보</a></div>
 						</li>
 					</c:if>
 				</ul>
@@ -74,7 +74,7 @@
 								<a class="login_btn" href="/member/logout.do?afterLoginURI=${requestURI}">로그아웃</a>
 							</li>
 							<li>
-								<a class="join_btn" href="/member/login.do?afterLoginURI=${requestURI}">내정보</a>
+								<a class="join_btn" href="/member/myInforBeforePage.do?afterLoginURI=${requestURI}">내정보</a>
 							</li>
 						</c:if>
 					</ul>

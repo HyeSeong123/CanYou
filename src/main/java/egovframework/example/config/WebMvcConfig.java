@@ -44,7 +44,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 		.excludePathPatterns("/member/login.do")
 		.excludePathPatterns("/login/accessDenine.do")
 		.excludePathPatterns("/member/find.do")
-		.excludePathPatterns("/member/doFind.do");
+		.excludePathPatterns("/member/doFind.do")
+		.excludePathPatterns("/member/myInfor.do");
 		
 		registry.addInterceptor(needToLogoutInterceptor)
 		.addPathPatterns("/member/login.do")
