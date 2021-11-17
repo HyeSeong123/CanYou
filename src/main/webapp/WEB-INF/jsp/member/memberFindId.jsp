@@ -7,17 +7,19 @@
 
 <main class="flex flex-jc-c flex-ai-c width-100p" style="margin-top:30px;">
 	<div class="main_container">
+		<div class="t_center">
+			<div class="h3_big"><h3>아이디 찾기</h3></div>
+		</div>
 		<div class="login_box">
-			<form action="/member/doLogin.do" method="POST">
-				<input type="hidden" name="afterLoginURI" value="${param.afterLoginURI}" />
+			<form action="/member/doFindId.do" method="POST">
 				<div class="login_input_box"> 
 					<label>
-						<input name="member_id" id="member_id" type="text" required />
-						<div class="label-text">아이디</div>
+						<input name="member_name" id="member_name" type="text" required />
+						<div class="label-text">이름</div>
 					</label>
 					<label>
-						<input name="member_pw" id="member_pw" type="password" required />
-						<div class="label-text">패스워드</div>
+						<input name="member_email" id="member_email" type="email" required />
+						<div class="label-text">이메일</div>
 					</label>
 				</div>
 				
@@ -27,15 +29,15 @@
 				
 				<section class="login_btn_box flex height-100p flex-jc-ar">
 					<div class="btn_login-box">
-						<button type="submit" value="Submit">로그인</button>
+						<button onclick="movePage('/member/login.do')">돌아가기</button>
 					</div>
 					
 					<div class="login_btn_join-box">
-						<button onclick="movePage('/member/join.do'); return false;">회원가입</button>
+						<button onclick="movePage('/member/memberFindPw.do'); return false;">패스워드 찾기</button>
 					</div>
 					
 					<div class="btn_find-box">
-						<button onclick="movePage('/member/memberFindId.do'); return false;">ID/PW 찾기</button>
+						<button type="submit">확인</button>
 					</div>
 				</section>
 			</form>

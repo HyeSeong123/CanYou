@@ -159,4 +159,60 @@ public class memberController {
 		return mav; 
     }
 	
+	@RequestMapping("/member/memberFindId.do")
+    public ModelAndView showMemberFindId(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/member/memberFindId");
+		
+		return mav; 
+    }
+	
+	@RequestMapping("/member/memberFindPw.do")
+    public ModelAndView showMemberFindPw(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/member/memberFindPw");
+		
+		return mav; 
+    }
+	@RequestMapping("/member/doFindId.do")
+	public String doFindId(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param) {
+		
+		String memberName = (String) param.get("member_name");
+		String inputMemberEmail = (String) param.get("member_email");
+		
+		Map<String, Object> member = memberService.getMemberByMemberName(memberName);
+		
+		String memberEmail = (String) member.get("member_email");
+		
+		System.out.println("inputMemberEmail= " + inputMemberEmail);
+		System.out.println("memberEmail= " + memberEmail);
+		
+		if(memberEmail.equals(inputMemberEmail) == false) {
+			Util.msgAndBack(req, "입력하신 정보와 일치하는 계정이 없습니다.");
+		}
+		
+		System.out.println("member= " + member);
+		
+		return Util.replace(req, "/member/resultFindId.do?memberName=" + memberName);
+	}
+	
+	@RequestMapping("/member/resultFindId.do")
+    public ModelAndView resuldFindId(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String memberName = (String) req.getAttribute("memberName");
+		
+		Map<String, Object> member = memberService.getMemberByMemberName(memberName);
+		
+		mav.addObject("member", member);
+		
+		mav.setViewName("/member/resultFindId");
+		
+		return mav; 
+    }
 }

@@ -25,8 +25,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public List<Map> getMemberByMemberName(String memberName) {
-		return query.selectList("getMemberByMemberName", memberName);
+	public List<Map> getMemberByMemberNames(String memberName) {
+		return query.selectList("getMemberByMemberNames", memberName);
 	}
 
 	@Override
@@ -47,5 +47,10 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public Member doLoginCheck(Map<String, Object> param) {
 		return query.selectOne("doLoginCheck", param);
+	}
+
+	@Override
+	public Map<String, Object> getMemberByMemberName(String memberName) {
+		return query.selectOne("getMemberByMemberName", memberName);
 	}
 }

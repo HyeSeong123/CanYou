@@ -17,7 +17,7 @@
 					</label>
 					<label>
 						<input name="member_pw" id="member_pw" type="password" required />
-						<div class="label-text">패스워드</div>
+						<div class="label-text">이메일</div>
 					</label>
 				</div>
 				
@@ -27,15 +27,15 @@
 				
 				<section class="login_btn_box flex height-100p flex-jc-ar">
 					<div class="btn_login-box">
-						<button type="submit" value="Submit">로그인</button>
+						<button onclick="movePage('/member/login.do')">돌아가기</button>
 					</div>
 					
 					<div class="login_btn_join-box">
-						<button onclick="movePage('/member/join.do'); return false;">회원가입</button>
+						<button onclick="movePage('/member/findId.do'); return false;">아이디 찾기</button>
 					</div>
 					
 					<div class="btn_find-box">
-						<button onclick="movePage('/member/memberFindId.do'); return false;">ID/PW 찾기</button>
+						<button onclick="/member/doFindPw.do">확인</button>
 					</div>
 				</section>
 			</form>

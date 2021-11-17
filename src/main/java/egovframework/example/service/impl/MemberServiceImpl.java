@@ -24,8 +24,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<Map> getMemberByMemberName(String memberName) {
-		return memberDAO.getMemberByMemberName(memberName);
+	public List<Map> getMemberByMemberNames(String memberName) {
+		return memberDAO.getMemberByMemberNames(memberName);
 	}
 
 	@Override
@@ -55,5 +55,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member doLoginCheck(Map<String, Object> param) {
 		return memberDAO.doLoginCheck(param);
+	}
+
+	@Override
+	public Map<String, Object> getMemberByMemberName(String memberName) {
+		return memberDAO.getMemberByMemberName(memberName);
 	}
 }

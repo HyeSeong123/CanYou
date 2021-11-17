@@ -22,8 +22,12 @@ public class HomeController {
         mav.setViewName("index");
         return mav;
     }
-	@GetMapping("/")
-	public String home() {
-		return "index.do";
+	@RequestMapping
+	public ModelAndView goIndex() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("index");
+		
+		return mav;
 	}
 }

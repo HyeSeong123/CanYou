@@ -31,7 +31,7 @@ public class NeedToLoginInterceptor extends HandlerInterceptorAdapter{
 				resp.setContentType("text/html; charset=UTF-8");
 				resp.getWriter().append("<script>");
 				resp.getWriter().append("alert('" + resultMsg +"');");
-				resp.getWriter().append("location.replace('/login/loginPage.do?afterLoginUrl=" + Util.reqAttr(req, "encodedAfterLoginUrl", "") + "');");
+				resp.getWriter().append("location.replace('/member/login.do?afterLoginUrl=" + Util.reqAttr(req, "afterLoginURI", "index.do") + "');");
 				resp.getWriter().append("</script>");
 			} else {
 				resp.setContentType("application/json; charset=UTF-8");

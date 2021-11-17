@@ -17,7 +17,22 @@
 		WHERE member_id = #{member_id}
 	</select>
 
-	<select id="getMemberByMemberName" resultType="Map">
+	<select id="getMemberByMemberNames" resultType="Map">
+		SELECT id,
+		regDate,
+		updateDate,
+		member_name,
+		member_id,
+		member_pw,
+		member_nickname,
+		member_email,
+		member_phNum,
+		member_level
+		FROM `member`
+		WHERE member_name = #{member_name}
+	</select>
+	
+	<select id="getMemberByMemberName" resultType="Map" parameterType="String">
 		SELECT id,
 		regDate,
 		updateDate,

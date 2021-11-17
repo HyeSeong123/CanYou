@@ -9,7 +9,7 @@ public interface MemberService {
 
 	Map<String,Object> getMemberByMemberId(String memberId);
 
-	List<Map> getMemberByMemberName(String memberName);
+	List<Map> getMemberByMemberNames(String memberName);
 
 	int getMemberByMemberEmailCount(String memberEmail);
 
@@ -18,4 +18,6 @@ public interface MemberService {
 	void doJoin(Map<String, Object> param);
 
 	Member doLoginCheck(Map<String, Object> param);
+
+	Map<String, Object> getMemberByMemberName(String memberName);
 }

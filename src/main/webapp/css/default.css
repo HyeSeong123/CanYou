@@ -77,8 +77,24 @@ ul > li > a{
 #txt_can,#txt_you, #txt_etc{
 	display: inline-block;
 }
-
-
+.t_center{
+	text-align : center;
+}
+.h3_big{
+	font-size : 22px;
+}
+.border_1_box{
+	border : 1px solid;
+}
+.box_black{
+	border-color : black;
+}
+.box_lightGrey{
+	border-color : #afafaf;
+}
+.box_rad_20{
+	border-radius: 20%;
+}
 main{
 	min-height : 80vh;
 }

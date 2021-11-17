@@ -26,6 +26,13 @@ public class BeforeActionInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object Handler) throws Exception{
 		
 		String requestURI = req.getRequestURI();
+		
+		System.out.println("requestURI= " + requestURI);
+		
+		if ( requestURI == null ) {
+			Util.replace(req, "/index.do");
+		}
+		
 		boolean isLogined = false;
 		boolean isAjax = requestURI.endsWith("Ajax");
 		Map<String, Object> param = Util.getParamMap(req);

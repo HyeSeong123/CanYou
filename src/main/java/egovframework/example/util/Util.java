@@ -42,5 +42,10 @@ public class Util {
 
 		return param;
 	}
+
+	public static String replace(HttpServletRequest req, String redirectUrl) {
+		req.setAttribute("redirectUrl", redirectUrl);
+		return "common/redirect";
+	}
 	
 }
