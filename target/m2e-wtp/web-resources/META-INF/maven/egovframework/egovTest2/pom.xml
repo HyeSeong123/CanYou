@@ -20,6 +20,7 @@
 	<properties>
 		<spring.maven.artifact.version>4.3.22.RELEASE</spring.maven.artifact.version>
 		<egovframework.rte.version>3.9.0</egovframework.rte.version>
+		<maven.jackson.version>2.8.9</maven.jackson.version>
 	</properties>
 
 	<repositories>
@@ -116,17 +117,17 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>com.googlecode.log4jdbc</groupId>
-			<artifactId>log4jdbc</artifactId>
-			<version>1.2</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>slf4j-api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.googlecode.log4jdbc</groupId> -->
+<!-- 			<artifactId>log4jdbc</artifactId> -->
+<!-- 			<version>1.2</version> -->
+<!-- 			<exclusions> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>slf4j-api</artifactId> -->
+<!-- 					<groupId>org.slf4j</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 			</exclusions> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>commons-dbcp</groupId>
@@ -181,12 +182,48 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>4.2.20.RELEASE</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<version>4.2.20.RELEASE</version>
 		</dependency>
-
+		
+		<dependency> 
+			<groupId>org.codehaus.jackson</groupId> 
+			<artifactId>jackson-mapper-asl</artifactId> 
+			<version>1.9.13</version> 
+		</dependency>
+		
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${maven.jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${maven.jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${maven.jackson.version}</version>
+		</dependency>
+		
+		<dependency> 
+			<groupId>org.lazyluke</groupId> 
+			<artifactId>log4jdbc-remix</artifactId> 
+			<version>0.2.7</version> 
+		</dependency>
 	</dependencies>
 
 	<build>

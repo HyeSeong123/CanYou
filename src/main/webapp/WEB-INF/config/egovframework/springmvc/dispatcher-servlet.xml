@@ -14,9 +14,24 @@
     </context:component-scan>
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-        <property name="webBindingInitializer">
-            <bean class="egovframework.example.cmmn.web.EgovBindingInitializer"/>
-        </property>
+        <property name="messageConverters">
+		<list>	
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>
+						<value>text/plain;charset=UTF-8</value>
+						<value>application/download;charset=utf-8</value>
+						<value>application/vnd.ms-excel;charset=utf-8</value>
+						<value>application/vnd.ms-excel;charset=utf-8</value>
+						<value>application/octet-stream;charset=utf-8</value>
+					</list>
+				</property>
+			</bean>			
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+		</list>
+		</property>			
     </bean>
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
         <property name="interceptors">
@@ -50,12 +65,19 @@
         </property>
     </bean>
      -->
-     
+    <!-- 빈 이름(jsonView)을 View로 해석하기 위해서 BeanNameViewResolver를 등록해 주어야 한다 -->
+	<!-- 	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" /> -->
+	<!-- 	<bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView" /> -->
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"> 
+		<property name="contentType" value="text/plain;charset=UTF-8"/> 
+	</bean>
+	
 	<!-- tiles 설정 -->
 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<property name="order" value="1"/>
 	</bean>
+	
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>

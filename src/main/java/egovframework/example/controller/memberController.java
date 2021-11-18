@@ -8,11 +8,13 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import egovframework.example.dto.Member;
 import egovframework.example.service.MemberService;
@@ -22,6 +24,9 @@ import egovframework.example.util.Util;
 public class memberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(memberController.class);
+	
+	@Autowired
+	MappingJackson2JsonView jsonView;
 	
 	@Resource(name="memberService")
 	private MemberService memberService;
