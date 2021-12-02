@@ -386,8 +386,30 @@ label input:valid + .label-text {
 .login_btn_join-box:hover{
 	background-color : #afafaf;
 }
+
+.btn_return_box{
+	text-align : center;
+}
+.btn_return_box .btn_return{
+	background: #2d2d2d;
+    color: white;
+    border: 3px solid #5F5F5F;
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 20px 75px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+    margin: 15px 30px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
 .login_btn_join-box:hover button{
 	color : black;
+}
+.btn_return_box:hover .btn_return{
+	background-color : #6d6d6d;
 }
 .btn_find-box {
     background-color: #5e5e44;

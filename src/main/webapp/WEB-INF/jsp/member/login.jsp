@@ -9,7 +9,7 @@
 	<div class="main_container">
 		<div class="login_box">
 			<form action="/member/doLogin.do" method="POST">
-				<input type="hidden" name="afterLoginURI" value="${param.afterLoginURI}" />
+				<input type="hidden" name="afterLoginURI" value="${afterLoginURI}" />
 				<div class="login_input_box"> 
 					<label>
 						<input name="member_id" id="member_id" type="text" required />
@@ -31,7 +31,7 @@
 					</div>
 					
 					<div class="login_btn_join-box">
-						<button onclick="movePage('/member/join.do'); return false;">회원가입</button>
+						<button onclick="fn_pageMove('/member/join.do'); return false;">회원가입</button>
 					</div>
 					
 					<div class="btn_find-box">

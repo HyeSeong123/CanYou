@@ -61,4 +61,9 @@ public class MemberServiceImpl implements MemberService {
 	public Map<String, Object> getMemberByMemberName(String memberName) {
 		return memberDAO.getMemberByMemberName(memberName);
 	}
+
+	@Override
+	public Map<String, Object> getMemberById(Integer changeMemberId) {
+		return memberDAO.getMemberById(changeMemberId);
+	}
 }

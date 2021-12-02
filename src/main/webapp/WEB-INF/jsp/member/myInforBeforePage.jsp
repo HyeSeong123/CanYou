@@ -8,8 +8,9 @@
 <main class="flex flex-jc-c flex-ai-c width-100p" style="margin-top:30px;">
 	<div class="main_container">
 		<div class="login_box">
-			<form action="/member/doLogin.do" method="POST">
+			<form action="/member/myInfor.do" method="POST">
 				<input type="hidden" name="afterLoginURI" value="${param.afterLoginURI}" />
+				<input type="hidden" name="memberId" value="${loginedMember.id}">
 				<div class="login_input_box"> 
 					<label>
 						<input name="member_pw" id="member_pw" type="password" required />

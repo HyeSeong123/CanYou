@@ -1,11 +1,14 @@
 package egovframework.example.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Member {
 	private int id;
 	private String regDate;
 	private String updateDate;
 	private String member_name;
 	private String member_id;
+	@JsonIgnore
 	private String member_pw;
 	private String member_nickname;
 	private String member_email;

@@ -32,8 +32,11 @@ public class memberController {
 	private MemberService memberService;
 	
 	@RequestMapping("/member/join.do")
-    public ModelAndView showJoin(ModelAndView mav) throws Exception {
-        
+    public ModelAndView showJoin(ModelAndView mav, @RequestParam Map<String, Object> param) throws Exception {
+		String afterLoginURI = (String) param.get("requestURI");
+		
+		mav.addObject("afterLoginURI", afterLoginURI);
+		
         mav.setViewName("/member/join");
         return mav;
     }
@@ -95,8 +98,12 @@ public class memberController {
     }
 	
 	@RequestMapping("/member/login.do")
-    public ModelAndView showLogin(ModelAndView mav) throws Exception {
+    public ModelAndView showLogin(ModelAndView mav, @RequestParam Map<String, Object> param) throws Exception {
         
+		String afterLoginURI = (String) param.get("requestURI");
+		if(afterLoginURI != null) {
+			mav.addObject("afterLoginURI", afterLoginURI);
+		}
         mav.setViewName("member/login");
         return mav;
     }
@@ -118,6 +125,8 @@ public class memberController {
 		String memberPw = (String) param.get("member_pw");
 		
 		Member member = memberService.doLoginCheck(param);
+		
+		System.out.println("afterLogin = " + afterLoginURI);
 		
 		if(memberId == null) {
 			return Util.msgAndBack(req, "아이디를 입력해주세요");
@@ -154,16 +163,6 @@ public class memberController {
         return Util.msgAndReplace(req, msg, afterLoginURI);
     }
 	
-	@RequestMapping("/member/myInforBeforePage.do")
-    public ModelAndView showMyInforBeforePage(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		mav.setViewName("/member/myInforBeforePage");
-		
-		return mav; 
-    }
-	
 	@RequestMapping("/member/memberFindId.do")
     public ModelAndView showMemberFindId(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
 		
@@ -193,9 +192,6 @@ public class memberController {
 		
 		String memberEmail = (String) member.get("member_email");
 		
-		System.out.println("inputMemberEmail= " + inputMemberEmail);
-		System.out.println("memberEmail= " + memberEmail);
-		
 		if(memberEmail.equals(inputMemberEmail) == false) {
 			Util.msgAndBack(req, "입력하신 정보와 일치하는 계정이 없습니다.");
 		}
@@ -220,4 +216,38 @@ public class memberController {
 		
 		return mav; 
     }
+	
+	@RequestMapping("/member/myInforBeforePage.do")
+    public ModelAndView showMyInforBeforePage(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/member/myInforBeforePage");
+		
+		return mav; 
+    }
+	
+	@RequestMapping("/member/myInfor.do")
+    public ModelAndView myInfor(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String memberId = (String) param.get("memberId");
+		Integer changeMemberId = Integer.parseInt(memberId);
+		
+		if(memberId != null) {
+			Map<String,Object> member = memberService.getMemberById(changeMemberId);
+			
+			if ( member != null ) {
+				mav.addObject("member", member);
+			}
+		}
+		
+		mav.setView(jsonView);
+		
+		mav.setViewName("/member/myInfor");
+		
+		return mav; 
+    }
+	
 }

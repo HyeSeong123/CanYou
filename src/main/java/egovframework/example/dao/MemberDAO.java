@@ -22,4 +22,6 @@ public interface MemberDAO {
 	Member doLoginCheck(Map<String, Object> param);
 
 	Map<String, Object> getMemberByMemberName(String memberName);
+
+	Map<String, Object> getMemberById(Integer changeMemberId);
 }

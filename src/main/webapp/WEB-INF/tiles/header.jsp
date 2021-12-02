@@ -5,6 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<form name="uriForm" method="POST">
+	<input type="hidden" name="requestURI" value="${requestURI}">
+</form>
+
 <header>
 	<div class="container">
 		<div class="header flex height-100p">
@@ -33,15 +37,15 @@
 					</c:forEach>
 					<c:if test="${loginedMember == null}">
 						<li class="flex flex-column header_btn-member">
-							<div class="login_btn_cover"><a class="login_btn" href="/member/login.do?afterLoginURI=${requestURI}">로그인</a></div>
-							<div class="join_btn_cover"><a class="join_btn" href="/member/join.do">회원가입</a></div>
+							<div class="login_btn_cover"><a class="login_btn" href="javascript:fn_pageMove('/member/login.do')">로그인</a></div>
+							<div class="join_btn_cover"><a class="join_btn" href="javascript:fn_pageMove('/member/join.do')">회원가입</a></div>
 						</li>
 					</c:if>
 					
 					<c:if test="${loginedMember != null}">
 						<li class="flex flex-column header_btn-member">
-							<div class="login_btn_cover"><a class="login_btn" href="/member/logout.do?afterLoginURI=${requestURI}">로그아웃</a></div>
-							<div class="login_btn_cover"><a class="join_btn" href="/member/myInforBeforePage.do?afterLoginURI=${requestURI}">내정보</a></div>
+							<div class="login_btn_cover"><a class="login_btn" href="javascript:fn_pageMove('/member/logout.do')">로그아웃</a></div>
+							<div class="login_btn_cover"><a class="join_btn" href="javascript:fn_pageMove('/member/myInforBeforePage.do')">내정보</a></div>
 						</li>
 					</c:if>
 				</ul>
@@ -62,19 +66,19 @@
 					<ul class="flex flex-column height-100p flex-jc-start">
 						<c:if test="${loginedMember == null}">
 							<li class="flex flex-column">
-								<a class="login_btn" href="/member/login.do?afterLoginURI=${requestURI}">로그인</a>
+								<a class="login_btn" href="javascript:fn_pageMove('/member/login.do')">로그인</a>
 							</li>
 							<li>
-								<a class="join_btn" href="/member/join.do">회원가입</a>
+								<a class="join_btn" href="javascript:fn_pageMove('/member/join.do')">회원가입</a>
 							</li>
 						</c:if>
 							
 						<c:if test="${loginedMember != null}">
 							<li>
-								<a class="login_btn" href="/member/logout.do?afterLoginURI=${requestURI}">로그아웃</a>
+								<a class="login_btn" href="javascript:fn_pageMove('/member/logout.do')">로그아웃</a>
 							</li>
 							<li>
-								<a class="join_btn" href="/member/myInforBeforePage.do?afterLoginURI=${requestURI}">내정보</a>
+								<a class="join_btn" href="javascript:fn_pageMove('/member/myInforBeforePage.do')">내정보</a>
 							</li>
 						</c:if>
 					</ul>
@@ -101,19 +105,19 @@
 		<section class="menuItem-mobile_btn flex flex-jc-c">
 			<c:if test="${loginedMember == null}">
 					<div>
-						<a class="login_btn" href="/member/login.do">로그인</a>
+						<a class="login_btn" href="javascript:fn_pageMove('/member/login.do')">로그인</a>
 					</div>
 					<div>
-						<a class="join_btn" href="/member/join.do">회원가입</a>
+						<a class="join_btn" href="javascript:fn_pageMove('/member/join.do')">회원가입</a>
 					</div>
 				</c:if>
 				
 				<c:if test="${loginedMember != null}">
 					<div>
-						<a class="login_btn" href="/member/login.do">로그인</a>
+						<a class="login_btn" href="javascript:fn_pageMove('/member/logout.do')">로그아웃</a>
 					</div>
 					<div>
-						<a class="join_btn" href="/member/join.do">회원가입</a>
+						<a class="join_btn" href="javascript:fn_pageMove('/member/myInforBeforePage.do')">내정보</a>
 					</div>
 				</c:if>
 		</section>
