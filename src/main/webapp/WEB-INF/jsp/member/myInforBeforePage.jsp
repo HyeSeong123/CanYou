@@ -5,6 +5,18 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
+<script>
+	function changeActive(){
+		$('#member_pw').toggleClass('active');
+		if( $('#member_pw').hasClass('active') ){
+			$('#member_pw').attr('type' , 'text');
+			
+		} else {
+			$('#member_pw').attr('type', 'password');
+		}
+	}
+</script>
+
 <main class="flex flex-jc-c flex-ai-c width-100p" style="margin-top:30px;">
 	<div class="main_container">
 		<div class="login_box">
@@ -14,7 +26,7 @@
 				<div class="login_input_box"> 
 					<label>
 						<input name="member_pw" id="member_pw" type="password" required />
-						<div class="label-text">패스워드</div>
+						<div class="label-text">패스워드 <a class="showPassword" href="javascript:changeActive();"> <i class="far fa-eye"></i></button></a></div>
 					</label>
 				</div>
 				
@@ -24,7 +36,7 @@
 				
 				<section class="login_btn_box flex height-100p flex-jc-ar">
 					<div class="btn_login-box">
-						<button type="submit" value="Submit">확인</button>
+						<button type="submit" value="Submit">내 정보 확인</button>
 					</div>
 				</section>
 			</form>

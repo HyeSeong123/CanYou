@@ -104,7 +104,23 @@ ul > li > a{
 main{
 	min-height : 80vh;
 }
-
+.main_container{
+	
+}
+.main_container2{
+	width : 100%;
+}
+.page_title_l{
+	text-align: left;
+	margin-left : 20%;
+}
+.page_title_c{
+	text-align: center;
+	margin-top : 60px;
+}
+.page_title_r{
+	text-align: right;
+}
 .width50{
 	width : 50px;
 }

@@ -10,6 +10,7 @@ public class Member {
 	private String member_id;
 	@JsonIgnore
 	private String member_pw;
+	private String member_birth;
 	private String member_nickname;
 	private String member_email;
 	private String member_phNum;
@@ -74,5 +75,11 @@ public class Member {
 	}
 	public void setMember_level(String member_level) {
 		this.member_level = member_level;
+	}
+	public String getMember_birth() {
+		return member_birth;
+	}
+	public void setMember_birth(String member_birth) {
+		this.member_birth = member_birth;
 	}
 }
