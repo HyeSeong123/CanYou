@@ -185,32 +185,41 @@ public class memberController {
 	@RequestMapping("/member/doFindId.do")
 	public String doFindId(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param) {
 		
-		String memberName = (String) param.get("member_name");
-		String inputMemberEmail = (String) param.get("member_email");
+		Map<String, Object> member = memberService.getMemberByMemberNameAndEmail(param);
 		
-		Map<String, Object> member = memberService.getMemberByMemberName(memberName);
-		
-		String memberEmail = (String) member.get("member_email");
-		
-		if(memberEmail.equals(inputMemberEmail) == false) {
+		if(member== null) {
 			Util.msgAndBack(req, "입력하신 정보와 일치하는 계정이 없습니다.");
 		}
 		
-		System.out.println("member= " + member);
+		String memberName = (String) member.get("memberName");
+		String memberEmail = (String) member.get("memberEmail");
 		
-		return Util.replace(req, "/member/resultFindId.do?memberName=" + memberName);
+		return Util.replace(req, "/member/resultFindId.do?memberName=" + memberName + "&memberEmail=" + memberEmail);
 	}
 	
 	@RequestMapping("/member/resultFindId.do")
-    public ModelAndView resuldFindId(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
+    public ModelAndView resuldFindId(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String memberName, String memberEmail) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String memberName = (String) req.getAttribute("memberName");
+		param.put("member_name", memberName);
+		param.put("member_email", memberEmail);
 		
-		Map<String, Object> member = memberService.getMemberByMemberName(memberName);
+		Map<String, Object> member = memberService.getMemberByMemberNameAndEmail(param);
 		
-		mav.addObject("member", member);
+		if(member != null) {
+			String mName = (String) member.get("memberName");
+			String mEmail = (String) member.get("memberEmail");
+			String mId = (String) member.get("memberId");
+			
+			mav.addObject("memberName", mName);
+			mav.addObject("memberEmail", mEmail);
+			mav.addObject("memberId", mId);
+		}
+		
+		else if ( member == null ) {
+			mav.addObject("error", true);
+		}
 		
 		mav.setViewName("/member/resultFindId");
 		

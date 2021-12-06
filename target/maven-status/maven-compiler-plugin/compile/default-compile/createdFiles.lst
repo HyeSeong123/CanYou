@@ -15,6 +15,7 @@ egovframework\example\controller\memberController.class
 egovframework\example\cmmn\EgovSampleOthersExcepHndlr.class
 egovframework\example\dao\impl\BoardDAOImpl.class
 egovframework\example\cmmn\web\EgovImgPaginationRenderer.class
+egovframework\example\interceptor\NeedToLogoutInterceptor.class
 egovframework\example\service\MemberService.class
 egovframework\example\dto\Board.class
 egovframework\example\config\WebMvcConfig.class

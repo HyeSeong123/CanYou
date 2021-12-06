@@ -22,4 +22,6 @@ public interface MemberService {
 	Map<String, Object> getMemberByMemberName(String memberName);
 
 	Map<String, Object> getMemberById(Integer changeMemberId);
+
+	Map<String, Object> getMemberByMemberNameAndEmail(Map<String, Object> param);
 }

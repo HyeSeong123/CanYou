@@ -58,4 +58,9 @@ public class MemberDAOImpl implements MemberDAO {
 	public Map<String, Object> getMemberById(Integer changeMemberId) {
 		return query.selectOne("getMemberById", changeMemberId);
 	}
+
+	@Override
+	public Map<String, Object> getMemberByMemberNameAndEmail(Map<String, Object> param) {
+		return query.selectOne("getMemberByMemberNameAndEmail", param);
+	}
 }

@@ -50,6 +50,23 @@
 		WHERE member_name = #{member_name}
 	</select>
 	
+	<select id="getMemberByMemberNameAndEmail" resultType="egovMap">
+		SELECT id,
+		regDate,
+		updateDate,
+		member_name,
+		member_id,
+		member_pw,
+		DATE_FORMAT(member_birth, '%Y-%m-%d') AS member_birth,
+		member_nickname,
+		member_email,
+		member_phNum,
+		member_level
+		FROM `member`
+		WHERE member_name = #{member_name}
+		AND member_email = #{member_email}
+	</select>
+	
 	<select id="getMemberByMemberNickname" resultType="egovMap">
 		SELECT id,
 		regDate,

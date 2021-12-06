@@ -71,9 +71,15 @@
 
 .header .menuItem-PC ul li {
 	transition: all 0.4s;
+	position : relative;
 }
-
-.header .menuItem-PC ul li:not(:last-child ):hover {
+li.menu_line {
+    width: 1px;
+    height: 30%;
+    background-color: black;
+    transition : height 0.4s;
+}
+.header .menuItem-PC .depth_1 li:not(:last-child ):hover {
 	background-color: rgba(1, 1, 1, 0.2);
 }
 
@@ -93,11 +99,52 @@
 
 /* 헤더 모바일 시작 */
 @media (max-width: 1150px){
-	
+	.menuItem-mobile_btn{
+		margin-top : 30px;
+	}
+	.menuItem-mobile_btn div{
+		width : 40%;
+		text-align : center;
+		height : 50px;
+		border-radius: 20px;
+		margin : 0 5%;
+		display : flex;
+		align-items: center;
+		font-size : 17px;
+		justify-content: center;
+	}
+	.menuItem-mobile_btn div:first-child{
+		background-color : #bfd9c5;
+	}
+	.menuItem-mobile_btn div:last-child{
+		background-color : #bfd0d9;
+	}
+	.menuItem-mobile_btn a {
+		width : 100%;
+		padding : 15px 0;
+		color : white;
+		display : block;
+	}
 }
 @media (max-width: 850px){
 	.header_logo:hover .head_main {
 		opacity: 1;
+	}
+}
+@media (max-width: 560px){
+	.menuItem-mobile_btn{
+		flex-direction: column;
+	}
+	.menuItem-mobile_btn div{
+		width : 70%;
+		margin : 20px auto;
+		text-align : center;
+		height : 60px;
+		font-size : 20px;
+		border-radius: 20px;
+		display : flex;
+		align-items: center;
+		justify-content: center;
 	}
 }
 /* 헤더 모바일 끝 */
@@ -105,13 +152,41 @@
 
 /* 2차 메뉴 시작 */
 .depth_2{
-	position : relative;
-	margin-top : 20px;
-	background-color : rgba(0,0,0,0.6);
+	background-color : #dfdfdf;
 	z-index : 999;
+	position : relative;
+	height : 200px;
+	display : none;
 }
 .depth_2 > ul {
 	width : 100%;
+	position : relative;
+	transition : background-color 0.4s;
+}
+.depth_2 > ul:after{
+	content : "";
+	height : 70%;
+	width : 1px;
+	background-color : black;
+	position : absolute;
+	right : 0;
+	top: 50%;
+	transform : translateY(-50%);
+}
+.depth_2 > ul > li {
+	height : 25%;
+}
+.depth_2 > ul > li > a {
+	transition : background-color 0.4s, color 0.4s, opacity 0.2s;
+	box-sizing: border-box;
+	padding : 15px 0;
+}
+.depth_2 > ul:hover{
+	background-color : rgba(1,1,1,0.2);
+}
+.depth_2 > ul > li:hover a{
+	background-color : rgba(1,1,1,0.5);
+	color : #efefef;
 }
 /* 2차 메뉴 끝 */
 
@@ -170,11 +245,11 @@
 		position : relative;
 	}
 	.btn_hamburger div.active span:first-child{
-		transform : rotate(45deg) translateY(12px) translateX(3.5px);
+		transform : rotate(45deg) translateY(10px) translateX(2px);
 		
 	}
 	.btn_hamburger div.active span:last-child{
-		transform : rotate(-45deg) translateY(-7px) translateX(-1px);
+		transform : rotate(-45deg) translateY(-6px) translateX(-3px);
 	}
 	.btn_hamburger{
 		display : flex;
@@ -311,8 +386,30 @@ label input:valid + .label-text {
 .login_btn_join-box:hover{
 	background-color : #afafaf;
 }
+
+.btn_return_box{
+	text-align : center;
+}
+.btn_return_box .btn_return{
+	background: #2d2d2d;
+    color: white;
+    border: 3px solid #5F5F5F;
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 20px 75px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+    margin: 15px 30px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
 .login_btn_join-box:hover button{
 	color : black;
+}
+.btn_return_box:hover .btn_return{
+	background-color : #6d6d6d;
 }
 .btn_find-box {
     background-color: #5e5e44;
@@ -332,6 +429,18 @@ label input:valid + .label-text {
 	width : 100%;
 	cursor : pointer;
 }
+.showPassword{
+	z-index : 1;
+	width : 20px;
+	height : 30px;
+	position : absolute;
+}
+#member_pw.active + div > .showPassword {
+	color : black;
+}
+#member_pw + div > .showPassword {
+	color : #9B9B9B;
+}
 section.login_alert {
     margin-bottom: 40px;
     text-align: center;
@@ -345,6 +454,31 @@ section.login_alert {
 	label input:focus {
 	  max-width: 100%;
 	  width: 300px;
+	}
+	.login_btn_box{
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-top : 35px;
+	}
+	.fBox_2{
+		flex-direction: column;
+		width : 100%;
+	}
+	.fBox_2 > div{
+		width : 100%;
+	}
+	.login_btn_box > div{
+		padding : 10px 0;
+	}
+	.login_btn_box > div:not(:last-child){
+		margin-bottom : 25px;
+	}
+	.profile_img{
+		display : none;
+	}
+	.emailNameBox{
+		margin-left : 0 !important;
 	}
 }
 @media (max-width:500px){
@@ -377,3 +511,85 @@ section.login_alert {
 /* 메인 모바일 끝 */
 
 /* 메인 끝 */
+
+/* 마이페이지 시작 */
+.profile_box{
+	width : 60%;
+	border : 1px solid #368f79;
+	border-radius: 10px;
+	margin : 0 auto; 
+	margin-bottom : 15px;
+}
+.profile_box > div {
+	margin-left : 10px;
+}
+.profile_box .profile_title{
+	font-size: 23px;
+	border-bottom : 1px solid #368f79;
+	margin-left : 0;
+	padding : 10px 0;
+}
+.profile_box .profile_title span{
+	margin-left : 10px;
+}
+.profile_content {
+	padding: 15px;
+}
+.profile_box .profile_img{
+	width : 25%;
+	height : 100%;
+}
+.img_box img{
+	display: block;
+	width : 100%;
+	border-radius: 50%;
+}
+.emailNameBox{
+	margin-left : 100px;
+}
+.profile_name{
+	font-size : 20px;
+	font-weight: bold;
+}
+.emailNameBox > div {
+	padding : 10px 0;
+}
+.profile_opt{
+	width : 100%;
+}
+.profile_opt span{
+	width: 20%;
+	display : inline-block;
+}
+.profile_changBtn{
+	margin-bottom : 30px;
+	margin-right : 15px;
+	text-align : right;	
+}
+.btn_2{
+	display : flex;
+	justify-content: flex-end;
+}
+.btn_2 > button{
+	width : 80px;
+	padding : 15px 0;
+	margin : 0 15px;
+	border : none;
+	background-color : #dfdfdf;
+	border-radius: 10px;
+	transition : all 0.3s;
+}
+.btn_2 > button:last-child{
+	background-color : #7589eb;
+	color : white;
+	transition : all 0.3s;
+}
+.btn_2 > button:first-child:hover {
+	background-color : #5f5f5f;
+	color : white;
+}
+.btn_2 > button:last-child:hover {
+	background-color : #3547eb;
+	color : white;
+}
+/* 마이페이지 끝 */
