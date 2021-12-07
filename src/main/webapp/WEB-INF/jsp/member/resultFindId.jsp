@@ -8,27 +8,27 @@
 <main class="flex flex-jc-c flex-ai-c width-100p" style="margin-top:30px;">
 	<div class="main_container">
 		<c:if test="${memberName ne null and error eq null}">
-			<div class="t_center">
-				<div class="h3_big"><h3>아이디 정보</h3></div>
+			<div class="">
+				<div class=""><h3>아이디 정보</h3></div>
 			</div>
-			<div class="bd_afafaf width-100p height70 paddingW20 flex flex-ai-c flex-jc-c result_box">
+			<div class="">
 				<span>회원님의 아이디는<strong>${memberId}</strong> 입니다.</span>
 			</div>
 			
-			<div class="flex fBox_2 flex-ai-c flex-jc-c mt50 height-100p">
-				<div class="btn_login-box t_center">
-					<a class="btn_login color_white paddingH20 inline-block" href="/member/memberLogin.do">로그인</a>
+			<div class="">
+				<div class="">
+					<a class="">로그인</a>
 				</div>
 				
-				<div class="btn_pw_findBox t_center">
-					<a class="btn_findPw color_white paddingH20 bg_4f4f4f inline-block" href="/member/memberFindPw.do">패스워드 찾기</a>
+				<div class="">
+					<a class="">패스워드 찾기</a>
 				</div>
 			</div>
 		</c:if>
 		
 		<c:if test="${error eq true}">
-			<div class="t_center">
-				<h1 class="color-red"><i class="fas fa-exclamation-circle"></i></h1>
+			<div class="">
+				<h1 class=""><i class=""></i></h1>
 				<p>
 					<h3>잘못된 접근입니다.</h3>
 				</p>
@@ -41,26 +41,5 @@
 </main>
 
 <script>
-let width = $(window).width();
-if ( width < 480 ) {
-	$('.result_box').removeClass('paddingW20');
-	$('.result_box').removeClass('paddingH20');
-}
-else if ( width > 480 ) {
-	$('.result_box').addClass('paddingW20');
-	$('.result_box').addClass('paddingH20');
-}
-
-$( window ).resize(function() {
-	width = $(window).width();
-	if ( width < 480 ) {
-		$('.result_box').removeClass('paddingW20');
-		$('.result_box').removeClass('paddingH20');
-	}
-	else if ( width > 480 ) {
-		$('.result_box').addClass('paddingW20');
-		$('.result_box').addClass('paddingH20');
-	}
-});
 
 </script>
