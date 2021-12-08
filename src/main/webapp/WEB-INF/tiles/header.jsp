@@ -15,10 +15,10 @@
 		
 			<div class="header height-100p flex">
 				<div class="header_logo_title height-100p flex flex-ai-c">
-					<a class="logo" href="/index.do"> <h2>Eyelac_Brow</h2> </a>
+					<a class="logo" href="/index.do"> <h2>Eyelac Brow</h2> </a>
 				</div>
 				
-				<div class="header_menu height-100p flex flex-ai-c">
+				<div class="header_menu height-100p flex flex-ai-c header_pc">
 					<ul class="flex">
 						<c:forEach items="${boards}" var="board">
 							<li>
@@ -28,7 +28,7 @@
 					</ul>
 				</div>
 				
-				<div class="header_sns height-100p flex flex-ai-c">
+				<div class="header_sns height-100p flex flex-ai-c header_pc">
 					<ul class="flex">
 						<li>
 							<a href="#"><i class="far fa-comment"></i></a>
@@ -40,6 +40,17 @@
 						
 					</ul>
 				</div>
+				
+				<div class="header_mobile flex-grow-1"></div>
+				
+				<div class="header_hamburger header_mobile height-100p">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+			
+			<div class="header_mobile">
 			</div>
 		</section>
 	</section>

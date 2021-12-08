@@ -4,6 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<main style="height : 80vh;">
-
+<main>
+	<section class="main_wrapper">
+		<div class="center_title">
+			<h1>EYELAC</h2>
+			<h1>BROW</h2>
+			<h3>- Beauty Salon -</h3>
+		</div>
+	</section>
 </main>
