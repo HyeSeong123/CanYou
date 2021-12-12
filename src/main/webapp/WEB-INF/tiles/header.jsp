@@ -15,7 +15,7 @@
 		
 			<div class="header height-100p flex">
 				<div class="header_logo_title height-100p flex flex-ai-c">
-					<a class="logo" href="/index.do"> <h2>Eyelac Brow</h2> </a>
+					<a class="logo" href="/index.do"> <h2 class="" style="margin-bottom:0"><span>Eyelac</span> <span class="logo_pc">Brow</span></h2> </a>
 				</div>
 				
 				<div class="header_menu height-100p flex flex-ai-c header_pc">

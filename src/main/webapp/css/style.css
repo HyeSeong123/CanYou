@@ -13,6 +13,24 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+  font-family: 'LotteMartHappy';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff') format('woff');
+}
+@font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GowunBatang-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /* 폰트 끝 */
 
 /* 헤더 시작 */
@@ -93,6 +111,7 @@ header{
 	flex-direction: column;
 	justify-content: center;
 	cursor : pointer;
+	bottom : 6px;
 }
 .header_hamburger > div{
 	width : 30px;
@@ -116,6 +135,11 @@ header{
 		display : flex;
 	}
 }
+@media (max-width : 700px){
+	.logo_pc{
+		display : none;
+	}	
+}
 /* 헤더 반응형 끝 */
 
 /* 헤더 끝 */
@@ -124,14 +148,14 @@ header{
 .main_wrapper{
 	background-image : url("/images/eyebrow1.jpg");
 	background-position: center center;
-	background-size: 100%;
+	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	height : calc(100vh - 60px);
+	height : calc(110vh - 60px);
 }
 
 .center_title{
-	font-family: 'yg-jalnan';
+	font-family: 'LotteMartHappy';
 	height : 70%;
 	display : flex;
 	justify-content: center;
@@ -152,9 +176,14 @@ header{
 }
 
 /* 메인 반응형 시작 */
+@media (min-width : 250px) and (max-width : 1200px){
+	.main_wrapper{
+		background-attachment : scroll; 
+	}
+}
 @media (max-width : 1200px){
 	.main_wrapper{
-		background-position : top center;
+		height: 80vh;
 	}
 	.center_title{
 		height : 62%;
@@ -168,6 +197,9 @@ header{
 	}
 }
 @media (max-width : 1000px){
+	.main_wrapper{
+		height: 60vh;
+	}
 	.center_title{
 		height : 48%;
 	}
@@ -202,6 +234,125 @@ header{
 		display : none;
 	}
 }
+
+/* 메인2 */
+.main_wrapper_2{
+	padding : 80px 0;
+	position: relative;
+	background-color : #efefef;
+}
+.wrap{
+	display : flex;
+	justify-content : center;
+	width : 100%;
+	height : 100%;
+}
+.wrap .main_wrapper2_logoBox{
+	font-size : 85px;
+}
+.main_wrapper_2 > .wrap > h1{
+	font-family: 'BMJUA';
+	position : relative;
+	left : 695px;
+	top : 260px;
+	opacity : 0;
+	z-index : 1;
+}
+.main_wrapper2_left_imgBox{
+	width : 540px;
+	height : 100%;
+	position: relative;
+	right : 73px;
+	min-width: 500px;
+	top : 100px;
+	opacity : 0;
+}
+.main_wrapper2_manual {
+    position: relative;
+    top: 400px;
+    right : 0;
+    opacity: 0;
+}
+.main_wrapper2_manual > p{
+	margin-bottom: 10px;
+	font-family: 'GowunBatang-Regular';
+	font-size : 17px;
+	font-weight: 700;
+}
+@media (max-width:1280px){
+	.main_wrapper_2 > .wrap > h1{
+		left : 567px;
+	}
+	.main_wrapper2_left_imgBox{
+		right : 163px;
+	}
+	.main_wrapper2_manual {
+		right : 90px;
+	}
+}
+@media (max-width:1150px){
+	.main_wrapper_2 > .wrap > h1{
+		left : 467px;
+	}
+	.main_wrapper2_left_imgBox{
+		right : 203px;
+	}
+	.main_wrapper2_manual {
+		right : 130px;
+	}
+}
+@media (max-width:1150px){
+	.main_wrapper_2 > .wrap > h1{
+		left : 466px;
+	}
+	.main_wrapper2_left_imgBox{
+		right : 263px;
+	}
+	.main_wrapper2_manual {
+		right : 190px;
+	}
+}
+@media (max-width:1000px){
+	
+	.main_wrapper_2{
+		padding-top : 15px;
+	}
+	.wrap{
+		flex-direction: column;
+		align-items: center;
+	}
+	.main_wrapper_2 > .wrap > h1{
+		left : 0;
+		top : 0;
+		opacity : 1;
+		justify-content: center;
+	}
+	.main_wrapper2_left_imgBox{
+		right : 0;
+		top : 0;
+		opacity : 1;
+		height: 100%;
+	}
+	.main_wrapper2_manual {
+		right : 0;
+		top : 30px;
+		opacity : 1;
+		padding : 0 10px;
+	}
+}
+@media (max-width:570px){
+	.main_wrapper2_left_imgBox{
+		width : 100%;
+		min-width : 0;
+	}
+}
+@media (max-width:480px){
+	.main_wrapper_2 > .wrap > h1{
+		font-size : 55px;
+	}
+}
+/* 메인2 */
+
 /* 메인 반응형 끝 */
 
 /* 메인 끝 */
