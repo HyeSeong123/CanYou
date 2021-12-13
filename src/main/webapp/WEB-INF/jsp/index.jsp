@@ -11,10 +11,13 @@
 			<h1>BROW</h2>
 			<h3>- Beauty Salon -</h3>
 		</div>
+		
+		<div class="main_wrapper_arrow">
+			<a href="javascript:smooth_scroll(main_section2)"><i class="fas fa-chevron-down"></i></a>
+		</div>
 	</section>
 	
-	<section class="main_wrapper_2">
-	
+	<section class="main_wrapper_2" id="main_section2">
 		<div class="wrap">
 			<h1 class="main_wrapper2_logoBox">
 				<span class="main_wrapper2_logo1">ABOUT.</span>
@@ -52,4 +55,42 @@
 		</div>
 		
 	</section>
+	
+	<section class="main_wrapper_3" id="main_section3">
+		<section class="main_background flex flex-column flex-jc-c height-100p">
+			<div class="section3_logo ">
+				<h1>SERVICE</h1>
+				<div class="price_infor">
+					<ul>
+						<li>
+							<span class="pro_tit">눈썹문신</span>
+							<span class="pro_pri">150,000</span>
+							<span class="pro_eve">100,000(이벤트)</span>
+						</li>
+						<li>
+							<span class="pro_tit">헤어라인</span>
+							<span class="pro_pri">180,000</span>
+							<span class="pro_eve"></span>
+						</li>
+						<li>
+							<span class="pro_tit">미인점</span>
+							<span class="pro_pri">30,000</span>
+							<span class="pro_eve"></span>
+						</li>
+						<li>
+							<span class="pro_tit">속눈썹펌</span>
+							<span class="pro_pri">25,000</span>
+							<span class="pro_eve"></span>
+						</li>
+					</ul>
+					
+					<div class="button_box">
+						<a href="#" class="reser">예약하기 ></a>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+	</section>
+	
 </main>

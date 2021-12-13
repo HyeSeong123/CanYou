@@ -1,42 +1,64 @@
-gsap.registerPlugin(ScrollTrigger);
-
 var windowWidth = $(window).width();
 
+
 if ( windowWidth > 1000 ){
-	gsap.to('.main_wrapper2_left_imgBox', {
-		scrollTrigger:{
-			trigger : '.main_wrapper',
-			toggleActions : 'restart none none reverse',
+	setTimeout(function(){
+		move_section2();
+		move_section3();
+	},800)
+}
+
+var t1 = gsap.timeline({
+	repeat : -1,
+	repeatDelay : 0.7
+});
+
+t1.to(".main_wrapper_arrow", {
+	opacity : 1,
+	y : 100,
+	duration : 1.3
+});
+
+function smooth_scroll(section){
+	let ele = "#" + section.id;
+	
+	let scrollPosition = $(ele).offset().top;
+	
+	window.scroll({top: scrollPosition, behavior: 'smooth'});
+	
+}
+function move_section2(){
+	let main = $('.main_wrapper');
+	let main2_img = $('.main_wrapper2_left_imgBox'); 
+	let main2_logo = $('.main_wrapper2_logoBox');
+	let main2_manual = $('.main_wrapper2_manual');
+	
+	let t1 = gsap.timeline({
+		scrollTrigger : {
+			trigger : main,
 			start : "bottom 60%",
-			markers : true
-		},
-		y : -100,
-		x : 50,
-		opacity : 1,
-		duration : 1
+			toggleActions : 'restart none none reverse',
+			end : "+=500",
+		}
 	});
 	
-	gsap.to('.main_wrapper2_logoBox', {
-		scrollTrigger:{
-			trigger : '.main_wrapper',
-			toggleActions : 'restart none none reverse',
+	t1.to(main2_img, { opacity : 1, y : -100, x:50, duration : 0.9 });
+	t1.to(main2_logo, { opacity : 1, y : -200, duration : 0.7 }, -0.1);
+	t1.to(main2_manual, { opacity : 1, y : -150, duration : 0.8 }, -0.1);
+}
+
+function move_section3(){
+	let main = $('#main_section2');
+	let main3_logo = $('.section3_logo');
+	
+	let t1 = gsap.timeline({
+		scrollTrigger : {
+			trigger : main,
 			start : "bottom 60%",
-			markers : true
-		},
-		y : -200,
-		opacity : 1,
-		duration : 0.7
+			toggleActions : 'restart none none reverse',
+			end : "+=500",
+		}
 	});
 	
-	gsap.to('.main_wrapper2_manual', {
-		scrollTrigger:{
-			trigger : '.main_wrapper',
-			toggleActions : 'restart none none reverse',
-			start : "bottom 60%",
-			markers : true
-		},
-		y : -150,
-		opacity : 1,
-		duration : 0.8
-	});
+	t1.to(main3_logo, { opacity :1, y : -70, duration : 1});
 }

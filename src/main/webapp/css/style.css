@@ -31,6 +31,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'EliceDigitalBaeum_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/EliceDigitalBaeum_Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /* 폰트 끝 */
 
 /* 헤더 시작 */
@@ -85,6 +91,9 @@ header{
 .header > .header_sns > ul{
 	width : 100%;
 }
+.header > .header_sns > ul > li {
+	padding : 0 10px;
+}
 .header_menu > ul > li:hover {
 	background-color : #5f5f5f;
 }
@@ -95,15 +104,22 @@ header{
 	font-size : 25px;
 }
 .header_sns > ul > li:first-child:hover > a{
-	color : #b8af0f;
-}
-.header_sns > ul > li:last-child:hover > a{
 	color : #d929c4;
 }
 .header_mobile {
 	display : none;
 }
-
+.main_wrapper_arrow{
+	width : 100%;
+	font-size : 60px;
+	text-align: center;
+	opacity : 0;
+}
+.main_wrapper_arrow > a{
+	display : inline-block;
+	margin-top : 10px;
+	color : black;
+}
 /* 헤더 반응형 시작 */
 .header_hamburger{
 	position : relative;
@@ -135,6 +151,7 @@ header{
 		display : flex;
 	}
 }
+
 @media (max-width : 700px){
 	.logo_pc{
 		display : none;
@@ -211,6 +228,11 @@ header{
 		font-size : 35px;
 	}
 }
+@media (max-width : 835px){
+	.main_wrapper_arrow{
+		display : none;
+	}
+}
 @media (max-width : 800px){
 	.center_title{
 		height : 100%;
@@ -218,7 +240,7 @@ header{
 		padding-top : 25px;
 	}
 	.center_title > h1 {
-		font-size : 30px;
+		font-size : 50px;
 		color : #df9f9f;
 		
 	}
@@ -239,7 +261,6 @@ header{
 .main_wrapper_2{
 	padding : 80px 0;
 	position: relative;
-	background-color : #efefef;
 }
 .wrap{
 	display : flex;
@@ -253,23 +274,22 @@ header{
 .main_wrapper_2 > .wrap > h1{
 	font-family: 'BMJUA';
 	position : relative;
-	left : 695px;
-	top : 260px;
+	left : 575px;
+	top : 200px;
 	opacity : 0;
 	z-index : 1;
 }
 .main_wrapper2_left_imgBox{
-	width : 540px;
+	width : 420px;
 	height : 100%;
 	position: relative;
 	right : 73px;
-	min-width: 500px;
 	top : 100px;
 	opacity : 0;
 }
 .main_wrapper2_manual {
     position: relative;
-    top: 400px;
+    top: 300px;
     right : 0;
     opacity: 0;
 }
@@ -337,7 +357,7 @@ header{
 		right : 0;
 		top : 30px;
 		opacity : 1;
-		padding : 0 10px;
+		width : 540px;
 	}
 }
 @media (max-width:570px){
@@ -345,14 +365,108 @@ header{
 		width : 100%;
 		min-width : 0;
 	}
+	.main_wrapper2_manual {
+		width : 100%;
+		padding : 0 10px;
+	}
 }
 @media (max-width:480px){
 	.main_wrapper_2 > .wrap > h1{
 		font-size : 55px;
 	}
 }
-/* 메인2 */
+/* 메인2 반응형 끝 */
 
-/* 메인 반응형 끝 */
+/* 메인3 시작 */
+
+.main_background {
+	height : 70vh;
+	background-image : url(/images/eyebrow3.jpg);
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+.section3_logo{
+	width : 50%;
+	text-align: center;
+	padding-top : 20px;
+	position: relative;
+	top : 70px;
+	opacity : 0;
+}
+.section3_logo h1{
+	font-family: 'BMJUA';
+	margin-bottom : 20px;
+}
+.price_infor{
+	font-family: 'EliceDigitalBaeum_Bold';
+	width: 80%;
+    margin-right : auto;
+    margin-left : auto;
+    background-color: rgba( 255, 255, 255, 0.6 );
+    border-radius: 20px;
+    padding : 45px 0;
+    font-size : 18px;
+}
+.price_infor > ul{
+	height: 90%;
+}
+.price_infor > ul > li{
+	margin-bottom : 20px;
+	
+}
+.price_infor .pro_tit{
+	font-family: 'LotteMartHappy';
+}
+.price_infor .pro_pri{
+	font-size: 26px;
+	font-weight: bold;
+}
+.price_infor > ul > li:first-child > .pro_pri{
+	text-decoration : line-through;
+	color : #cfcfcf;
+}
+.price_infor > ul > li> span {
+	width : calc(100% / 3);	
+}
+.price_infor .pro_eve{
+	text-decoration : under-through;
+	color : #eb343a;
+	font-size : 27px;
+	font-weight: bold;
+}
+.price_infor .button_box{
+	margin-top : 60px;
+	text_align : center;
+	font-family: 'EliceDigitalBaeum_Bold';
+	font-size : 20px;
+}
+.prioce_infor .button_box a{
+	
+}
+@media (max-width : 1000px){
+	.main_background {
+		background-attachment: scroll;	
+	}
+	.section3_logo {
+		width : 100%;
+	}
+	.section3_logo h1{
+		text-align : left;
+	}
+	.section3_logo > h1 { 
+		margin-left : 90px
+	}
+	.price_infor{
+		width: 100%z
+	}
+	.button_box > a{
+		display : block;
+		
+	}
+}
+/* 메인3 끝 */
+
 
 /* 메인 끝 */

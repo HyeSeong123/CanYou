@@ -22,7 +22,7 @@
 					<ul class="flex">
 						<c:forEach items="${boards}" var="board">
 							<li>
-								<a href="#">${board.boardName}</a>
+								<a href="${board.boardUrl }">${board.boardName}</a>
 							</li>
 						</c:forEach>
 					</ul>
@@ -31,13 +31,14 @@
 				<div class="header_sns height-100p flex flex-ai-c header_pc">
 					<ul class="flex">
 						<li>
-							<a href="#"><i class="far fa-comment"></i></a>
-						</li>
-						
-						<li>
 							<a href="#"><i class="fab fa-instagram"></i></a>
 						</li>
-						
+						<li>
+							<a href="#" class=""><i class="fas fa-lock"></i></a>
+						</li>
+						<li>
+							<a href="#" class=""><i class="fas fa-sign-in-alt"></i></a>
+						</li>
 					</ul>
 				</div>
 				
