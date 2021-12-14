@@ -23,6 +23,13 @@
 						<c:forEach items="${boards}" var="board">
 							<li>
 								<a href="${board.boardUrl }">${board.boardName}</a>
+								<ul>
+									<c:forEach items="${boards2}" var="board2">
+										<c:if test="${board2.parentCode eq board.boardCode }">
+											<li><a href="${board2.boardUrl}">${board2.boardName}</a></li>
+										</c:if>
+									</c:forEach>
+								</ul>
 							</li>
 						</c:forEach>
 					</ul>

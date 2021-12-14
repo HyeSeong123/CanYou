@@ -19,6 +19,23 @@ t1.to(".main_wrapper_arrow", {
 	duration : 1.3
 });
 
+
+$('.header_menu ul li').hover(function(){
+	let sldUl = $(this).children('ul');
+	
+	if(!sldUl.is(":animated")) {
+		$(this).children('ul').slideDown();
+	}
+}, function(){
+		let sldUl = $(this).children('ul');
+		if(!sldUl.is(":animated")) {
+			$(this).children('ul').slideUp();
+		}
+	}
+);
+
+
+
 function smooth_scroll(section){
 	let ele = "#" + section.id;
 	
@@ -54,7 +71,7 @@ function move_section3(){
 	let t1 = gsap.timeline({
 		scrollTrigger : {
 			trigger : main,
-			start : "bottom 60%",
+			start : "90% center",
 			toggleActions : 'restart none none reverse',
 			end : "+=500",
 		}

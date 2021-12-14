@@ -37,16 +37,27 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Eulyoo1945-SemiBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/Eulyoo1945-SemiBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /* 폰트 끝 */
 
 /* 헤더 시작 */
 body{
 	
 }
+main {
+	position : relative;
+}
 header{
 	background-color : #FDF8FF;
 	opacity: 0.6;
 	height : 60px;
+	position : relative;
+	z-index : 9;
 }
 .header_container{
 	max-width : 1280px;
@@ -75,14 +86,29 @@ header{
 .header > .header_menu > ul{
 	width : 100%;
 }
-.header > .header_menu > ul > li{
+.header > .header_menu ul > li{
 	font-family: 'twayair';
 	transition : background-color 0.3s, color 0.3s;
 	font-size : 19px;
+	position : relative;
 }
-.header > .header_menu > ul > li > a{
+.header > .header_menu ul > li > a{
 	color : black;
 	transition : color 0.3s;
+}
+.header > .header_menu > ul ul {
+	position : absolute;
+	top : 100%;
+	left : 0;
+	width : 100%;
+	height : 100%;
+	display : none;
+}
+.header > .header_menu > ul > li > ul > li {
+	background-color : #FDF8FF;
+}
+.header .header_menu > ul > li > ul > li:hover {
+	background-color : #5f5f5f;
 }
 .header > .header_sns {
 	width : 15%;
@@ -94,10 +120,10 @@ header{
 .header > .header_sns > ul > li {
 	padding : 0 10px;
 }
-.header_menu > ul > li:hover {
+.header_menu  ul > li:hover {
 	background-color : #5f5f5f;
 }
-.header_menu > ul > li:hover > a{
+.header_menu  ul > li:hover > a{
 	color : #dbedad;
 }
 .header_sns > ul > li > a{
@@ -459,14 +485,211 @@ header{
 		margin-left : 90px
 	}
 	.price_infor{
-		width: 100%z
+		width: 100%;
+		background-color: rgba( 255, 255, 255, 0.8 );
 	}
 	.button_box > a{
 		display : block;
-		
+	}
+	.section3_logo{
+		opacity: 1;
+		top : 0;
+	}
+	
+}
+@media (max-width : 640px){
+	.price_infor .pro_tit {
+		font-size: 16px; 
+	}
+	.price_infor .pro_pri {
+		font-size: 20px; 
+	}
+	.price_infor .pro_eve {
+		font-size: 22px; 
+	}
+	.pro_eve_attr{
+		display: none;
+	}
+}
+@media (max-width : 560px){
+	.section3_logo > h1 {
+		margin-left : 30px;
 	}
 }
 /* 메인3 끝 */
+/* 메인4 시작 */
+#main_section4{
+	margin-top : 30px;
+}
+.portfolio_tit {
+	font-family: 'Eulyoo1945-SemiBold';
+	text-align: center;
+}
+.portfolio_tit h1 {
+	font-size : 70px;
+}
+#gallery .insta-Bg_box{
+	display : inline-block;
+	width : 100%;
+}
+#gallery > li > a{
+	padding : 0;
+	margin : 20px 0;
+}
+#gallery > li {
+	position : relative;
+}
+#gallery > li > span{
+	display : block;
+	position : absolute;
+	left : 50%;
+	top : 50%;
+	transform : translate(-50%, -50%);
+	opacity : 0;
+	transition : all 0.5s;
+	font-size : 20px;
+	cursor: pointer;
+}
+#gallery li:hover span{
+	color : white;
+	z-index: 2;
+	opacity : 1;
+}
 
+#gallery li a::after{
+	content : "";
+	position : absolute;
+	width : 100%;
+	height : calc(100% - 40px);
+	margin : auto 0;
+	transition : all 0.4s;
+	left : 0;
+	top :20px;
+}
 
+#gallery li:hover a::after{
+	background-color: rgba( 0, 0, 0, 0.7 );
+}
+
+#gallery .insta-Bg_box img {
+	position : relative;
+	display : block;
+	height : 300px;
+	width : 100%;
+}
+@media (max-width : 768px){
+	.portfolio_tit > h1{
+		font-size: 50px;
+	}
+	#gallery .insta-Bg_box img {
+		height : 360px;
+	}	
+}
+/* 메인4 끝 */
+
+/* 인스타 팝업 시작 */
+.insta_popup{
+	display : none;
+	position : fixed;
+	left : 50%;
+	top : 50%;
+	transform : translate(-50%, -50%);
+	width : 70%;
+	height : 70%;
+	z-index : 10;
+}
+.insta_popup.active{
+	display : flex;
+}
+.insta_popup > .insta_popup_img{
+	width : 65%;
+	height : 100%;
+}
+.insta_popup > .insta_popup_titAndCon{
+	width : 35%;
+	height : 100%;
+	background-color : #404142;
+}
+.insta_popup > .insta_popup_titAndCon > div{
+	width : 100%;
+}
+.insta_popup > .insta_popup_titAndCon > .insta_popup_top {
+	height: 15%;
+	display : flex;
+}
+.insta_popup_top > .insta_popup_logo {
+	width : 20%;
+	display : flex;
+	justify-content: center;
+	align-items: center;
+}
+.insta_popup_top > .insta_popup_logo .img_box{
+	width : 70%;
+	height: 70%;
+}
+.insta_popup_top > .insta_popup_logo img{
+	border-radius: 100%;
+}
+.insta_popup_top > .insta_popup_title {
+	width : 70%;
+	display : flex;
+	align-items: center;
+}
+.insta_popup_top > .insta_popup_title a{
+	color : white;	
+}
+.insta_popup_exit{
+	width : 10%;
+	text-align : right;
+	color: white;
+}
+.insta_popup_exit span{
+	margin-top : 15px;
+	margin-right : 10px;
+	cursor: pointer;
+	font-size : 18px;
+}
+.insta_popup_middle .insta_popup_content{
+	color : white;
+	width : 85%;
+	margin-left : auto;
+	margin-right : auto;
+}
+.insta_popup_content > span{
+	padding-top: 20px;
+	display: inline-block;
+}
+.insta_popup > .insta_popup_titAndCon > .insta_popup_middle {
+	height: 75%;
+	border-top : 1px solid #8f8f8f;
+	border-bottom : 1px solid #8f8f8f;
+}
+.insta_popup > .insta_popup_titAndCon > .insta_popup_bottom {
+	height: 10%;
+}
+@media (max-width:1100px){
+	.insta_popup{
+		width : 80%;
+	}
+}
+@media (max-width:1000px){
+	.insta_popup{
+		width : 90%;
+		height : 70%;
+	}
+}
+@media (max-width:850px){
+	.insta_popup{
+		width : 100%;
+		height : 80%;
+	}
+	.insta_popup > .insta_popup_img{
+		width : 50%;
+	}
+	.insta_popup > .insta_popup_titAndCon{
+		width : 50%;
+	}
+	
+}
+/* 인스타 팝업 끝 */
 /* 메인 끝 */
