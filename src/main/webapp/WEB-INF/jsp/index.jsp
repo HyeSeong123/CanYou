@@ -7,7 +7,15 @@
 <script src="/js/instafeed.min.js"></script>
 
 <main>
-	<section class="main_wrapper">
+	
+	<div class="right_ball">
+		<a href="javascript:smooth_scroll(main_section1)"><div class="active"></div></a>
+		<a href="javascript:smooth_scroll(main_section2)"><div></div></a>
+		<a href="javascript:smooth_scroll(main_section3)"><div></div></a>
+		<a href="javascript:smooth_scroll(main_section4)"><div></div></a>
+	</div>
+	
+	<section class="main_wrapper" id="main_section1">
 		<div class="center_title">
 			<h1>EYELAC</h2>
 			<h1>BROW</h2>
@@ -121,7 +129,7 @@
 		</section>
 	</article>
 	
-	<script>
+	<script async>
 		function test(id){
 			let origin = $('.' + id);
 			let content = origin.children('span').html();
@@ -152,8 +160,8 @@
 	    });
 	    feed.run();
 		
-	    
 	</script>
+	
 </main>
 
 	

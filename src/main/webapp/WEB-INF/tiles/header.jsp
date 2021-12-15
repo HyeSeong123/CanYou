@@ -38,7 +38,10 @@
 				<div class="header_sns height-100p flex flex-ai-c header_pc">
 					<ul class="flex">
 						<li>
-							<a href="#"><i class="fab fa-instagram"></i></a>
+							<a target="_blank" href="https://www.instagram.com/eyelac_brow/"><i class="fab fa-instagram"></i></a>
+						</li>
+						<li>
+							<a target="_blank" href="https://open.kakao.com/o/s7O9Cqvd"><i class="fas fa-comment"></i></a>
 						</li>
 						<li>
 							<a href="#" class=""><i class="fas fa-lock"></i></a>
@@ -46,6 +49,7 @@
 						<li>
 							<a href="#" class=""><i class="fas fa-sign-in-alt"></i></a>
 						</li>
+						
 					</ul>
 				</div>
 				

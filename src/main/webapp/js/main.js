@@ -1,5 +1,44 @@
 var windowWidth = $(window).width();
 
+let scr = 0;
+$(window).scroll(function(){
+	scr = $(window).scrollTop();
+	
+	let scrollPosition1 = $('#main_section1').offset().top - 60;
+	let scrollPosition2 = $('#main_section2').offset().top - 150;
+	let scrollPosition3 = $('#main_section3').offset().top - 250;
+	let scrollPosition4 = $('#main_section4').offset().top - 400;
+	
+	console.log(scrollPosition1);
+	console.log(scrollPosition2);
+	console.log(scrollPosition3);
+	console.log(scrollPosition4);
+	
+	if ( scr >= 0 && scr < scrollPosition2){
+		$('.right_ball > a:nth-child(1) > div ').addClass('active');
+		$('.right_ball > a:nth-child(2) > div ').removeClass('active');
+		$('.right_ball > a:nth-child(3) > div ').removeClass('active');
+		$('.right_ball > a:nth-child(4) > div ').removeClass('active');
+	}
+	if ( scr >= scrollPosition2 && scr < scrollPosition3){
+		$('.right_ball > a:nth-child(1) > div ').removeClass('active');
+		$('.right_ball > a:nth-child(2) > div ').addClass('active');
+		$('.right_ball > a:nth-child(3) > div ').removeClass('active');
+		$('.right_ball > a:nth-child(4) > div ').removeClass('active');
+	}
+	if ( scr >= scrollPosition3 && scr < scrollPosition4){
+		$('.right_ball > a:nth-child(1) > div ').removeClass('active');
+		$('.right_ball > a:nth-child(2) > div ').removeClass('active');
+		$('.right_ball > a:nth-child(3) > div ').addClass('active');
+		$('.right_ball > a:nth-child(4) > div ').removeClass('active');
+	}
+	if ( scr >= scrollPosition4){
+		$('.right_ball > a:nth-child(1) > div ').removeClass('active');
+		$('.right_ball > a:nth-child(2) > div ').removeClass('active');
+		$('.right_ball > a:nth-child(3) > div ').removeClass('active');
+		$('.right_ball > a:nth-child(4) > div ').addClass('active');
+	}
+})
 
 if ( windowWidth > 1000 ){
 	setTimeout(function(){
@@ -22,19 +61,14 @@ t1.to(".main_wrapper_arrow", {
 
 $('.header_menu ul li').hover(function(){
 	let sldUl = $(this).children('ul');
-	
-	if(!sldUl.is(":animated")) {
-		$(this).children('ul').slideDown();
-	}
+	$(this).children('ul').stop();
+	$(this).children('ul').slideDown();
 }, function(){
 		let sldUl = $(this).children('ul');
-		if(!sldUl.is(":animated")) {
-			$(this).children('ul').slideUp();
-		}
+		$(this).children('ul').stop();
+		$(this).children('ul').slideUp();
 	}
 );
-
-
 
 function smooth_scroll(section){
 	let ele = "#" + section.id;
@@ -42,8 +76,8 @@ function smooth_scroll(section){
 	let scrollPosition = $(ele).offset().top;
 	
 	window.scroll({top: scrollPosition, behavior: 'smooth'});
-	
 }
+
 function move_section2(){
 	let main = $('.main_wrapper');
 	let main2_img = $('.main_wrapper2_left_imgBox'); 
