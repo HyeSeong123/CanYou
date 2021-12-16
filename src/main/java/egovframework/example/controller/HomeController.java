@@ -22,7 +22,7 @@ public class HomeController {
         mav.setViewName("index");
         return mav;
     }
-	@RequestMapping
+	@RequestMapping("/")
 	public ModelAndView goIndex() {
 		ModelAndView mav = new ModelAndView();
 		

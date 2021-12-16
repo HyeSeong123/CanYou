@@ -49,6 +49,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'ChosunBg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunBg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /* 폰트 끝 */
 
 /* 헤더 시작 */
@@ -64,7 +70,7 @@ main {
 	right : 100px;
 	display : flex;
 	flex-direction: column;
-	z-index:999;
+	z-index:25;
 }
 .right_ball > a > div{
 	width : 17px;
@@ -72,6 +78,8 @@ main {
 	border-radius : 100%;
 	border: 4px solid #d99ded;
 	transition : background-color 0.6s;
+	z-index : 15;
+	position : relative;
 }
 .right_ball > a:hover > div,
 .right_ball > a > div.active
@@ -453,11 +461,11 @@ header{
 	opacity : 0;
 }
 .section3_logo h1{
-	font-family: 'BMJUA';
+	font-family: 'ChosunBg';
 	margin-bottom : 20px;
 }
 .price_infor{
-	font-family: 'EliceDigitalBaeum_Bold';
+	font-family: 'ChosunBg';
 	width: 80%;
     margin-right : auto;
     margin-left : auto;
@@ -474,7 +482,7 @@ header{
 	
 }
 .price_infor .pro_tit{
-	font-family: 'LotteMartHappy';
+	font-family: 'ChosunBg';
 }
 .price_infor .pro_pri{
 	font-size: 26px;
@@ -496,7 +504,7 @@ header{
 .price_infor .button_box{
 	margin-top : 60px;
 	text_align : center;
-	font-family: 'EliceDigitalBaeum_Bold';
+	font-family: 'ChosunBg';
 	font-size : 20px;
 }
 .prioce_infor .button_box a{
