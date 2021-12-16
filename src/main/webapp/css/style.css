@@ -740,3 +740,12 @@ header{
 }
 /* 인스타 팝업 끝 */
 /* 메인 끝 */
+
+/* 푸터 시작 */
+.footer{
+	height : 80px;
+	background-color : #FDF8FF;
+	display : flex;
+	justify-content: center;
+}
+/* 푸터 끝 */
