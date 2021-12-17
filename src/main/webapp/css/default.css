@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+body{
+	position : relative;
+}
 ul, li, body {
 	list-style: none;
 	margin: 0;
@@ -22,6 +25,9 @@ ul > li > a{
 	display : block;
 	width : 100%;
 	padding : 20px 0;
+}
+ul ul {
+	display : none;
 }
 .img_box{
 	display : block;

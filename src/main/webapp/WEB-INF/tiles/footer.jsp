@@ -21,6 +21,10 @@
 				<li>통신판매번호 : 2021-대전탄방-00000호</li>
 				<li>대표전화 +82-2-548-0605</li>
 			</ul>
+			
+			<ul>
+				<li>© 2021. EyelacBrow Co. all rights reserved.</li>
+			</ul>
 		</div>
 		
 	</div>

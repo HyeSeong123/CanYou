@@ -15,7 +15,7 @@
 		
 			<div class="header height-100p flex">
 				<div class="header_logo_title height-100p flex flex-ai-c">
-					<a class="logo" href="/index.do"> <h2 class="" style="margin-bottom:0"><span>Eyelac</span> <span class="logo_pc">Brow</span></h2> </a>
+					<a class="logo" href="/index.do"> <h2 class="" style="margin-bottom:0"><span>Eyelac</span> <span class="">Brow</span></h2> </a>
 				</div>
 				
 				<div class="header_menu height-100p flex flex-ai-c header_pc">
@@ -44,7 +44,7 @@
 							<a target="_blank" href="https://open.kakao.com/o/s7O9Cqvd"><i class="fas fa-comment"></i></a>
 						</li>
 						<li>
-							<a href="#" class=""><i class="fas fa-lock"></i></a>
+							<a href="/member/login.do" class=""><i class="fas fa-lock"></i></a>
 						</li>
 						<li>
 							<a href="#" class=""><i class="fas fa-sign-in-alt"></i></a>
@@ -53,7 +53,7 @@
 					</ul>
 				</div>
 				
-				<div class="header_mobile flex-grow-1"></div>
+				<div class="header_mobile_blank"></div>
 				
 				<div class="header_hamburger header_mobile height-100p">
 					<div></div>
@@ -61,9 +61,31 @@
 					<div></div>
 				</div>
 			</div>
-			
-			<div class="header_mobile">
-			</div>
 		</section>
 	</section>
+	
+	<div class="header_mobile header_mobile_menu">
+		<div class="mobile_menu_top">
+			<div></div>
+			<div class="mobile_menu_logo">Eyelac Brow</div>
+			<div class="mobile_menu_exit"><span><i class="fas fa-times"></i></span></div>
+		</div>
+		
+		<div class="mobile_menu_middle">
+			<ul class="flex flex-column">
+				<c:forEach items="${boards}" var="board">
+					<li>
+						<a href="${board.boardUrl }">${board.boardName}</a>
+						<ul>
+							<c:forEach items="${boards2}" var="board2">
+								<c:if test="${board2.parentCode eq board.boardCode }">
+									<li><a href="${board2.boardUrl}">${board2.boardName}</a></li>
+								</c:if>
+							</c:forEach>
+						</ul>
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</div>
 </header>

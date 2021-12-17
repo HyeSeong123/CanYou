@@ -55,6 +55,18 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /* 폰트 끝 */
 
 /* 헤더 시작 */
@@ -212,8 +224,56 @@ header{
 	.header_mobile {
 		display : block;
 	}
+	.header > .header_logo_title{
+		width : 60%;
+	}
+	.header_mobile_blank{
+		width: 30%;
+	}
+	
 	.header_mobile.header_hamburger{
 		display : flex;
+	}
+	.header_mobile_menu{
+		display : none;
+		position : fixed;
+		top : 0;
+		left : 0;
+		overflow : hidden;
+		width : 100%;
+		height : 100vh;
+		background-color : black;
+	}
+	.header_mobile_menu{
+		flex-direction: column;
+	}
+	.mobile_menu_top{
+		display : flex;
+	}
+	.mobile_menu_top > div{
+		display : flex;
+	}
+	.mobile_menu_top > .mobile_menu_lobo > div:first-child{
+		width : 20%;
+	}
+	.mobile_menu_top > .mobile_menu_logo{
+		font-family: 'twayair';
+		font-size : 30px;
+		align-items: center;
+		justify-content: center;
+		color : #C6B6D5;
+		width : 70%;
+	}
+	.mobile_menu_top > .mobile_menu_exit{
+		font-size : 30px;
+		align-items: center;
+		justify-content: flex-end;
+		color : white;
+		width : 10%; 
+	}
+	.mobile_menu_top > .mobile_menu_exit > span{
+		margin-right : 15px;
+		cursor: pointer;
 	}
 }
 
@@ -246,15 +306,16 @@ header{
 	transition : height 0.3s;
 }
 .center_title > h1 {
-	font-size : 100px;
+	font-size : 120px;
 	color : #df9f9f;
 	transition : font-size 0.3s;
+	text-shadow: 3px 3px 3px #afafaf;
 }
 .center_title > h1:first-child {
 	margin-bottom : 20px;
 }
 .center_title > h3{
-	font-size : 35px;
+	font-size : 55px;
 }
 
 /* 메인 반응형 시작 */
@@ -320,12 +381,30 @@ header{
 	.center_title{
 		display : none;
 	}
+	.right_ball{
+		display : none;
+	}
 }
 
 /* 메인2 */
 .main_wrapper_2{
 	padding : 80px 0;
 	position: relative;
+}
+.main_wrapper_2_img1{
+	width: 200px;
+    height: 250px;
+    transform: rotate(180deg);
+    position: absolute;
+    left: 150px;
+    top: 5px;
+}
+.main_wrapper_2_img2{
+	width: 200px;
+    height: 250px;
+    position: absolute;
+    right : 150px;
+    bottom: 5px;
 }
 .wrap{
 	display : flex;
@@ -473,13 +552,14 @@ header{
     border-radius: 20px;
     padding : 45px 0;
     font-size : 18px;
+    border:10px solid white;
 }
 .price_infor > ul{
 	height: 90%;
 }
 .price_infor > ul > li{
 	margin-bottom : 20px;
-	
+	border-bottom : 2px solid black;
 }
 .price_infor .pro_tit{
 	font-family: 'ChosunBg';
@@ -558,7 +638,8 @@ header{
 /* 메인3 끝 */
 /* 메인4 시작 */
 #main_section4{
-	margin-top : 30px;
+	margin : 30px 0;
+	
 }
 .portfolio_tit {
 	font-family: 'Eulyoo1945-SemiBold';
@@ -729,23 +810,88 @@ header{
 	.insta_popup{
 		width : 100%;
 		height : 80%;
+		flex-direction : column;
+		justify-content: center;
 	}
 	.insta_popup > .insta_popup_img{
-		width : 50%;
+		width : 100%;
+		height: 40%;
 	}
 	.insta_popup > .insta_popup_titAndCon{
-		width : 50%;
+		width : 100%;
 	}
-	
+	.insta_popup > .insta_popup_titAndCon > .insta_popup_top{
+		height: 20%;
+	}
+	.insta_popup > .insta_popup_titAndCon > .insta_popup_middle{
+		height : 60%;
+	}
+	.insta_popup > .insta_popup_titAndCon > .insta_popup_bottom{
+		height: 20%;
+	}
 }
 /* 인스타 팝업 끝 */
 /* 메인 끝 */
 
 /* 푸터 시작 */
 .footer{
-	height : 80px;
+	height : 90px;
 	background-color : #FDF8FF;
 	display : flex;
 	justify-content: center;
+}
+.footer_logo{
+	font-family: 'twayair';
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    margin: 0 40px;
+    color : #C6B6D5;
+}
+.footer_infor {
+    display: flex;
+    align-items: center;
+    font-family: 'IBMPlexSansKR-Regular';
+}
+.footer_infor > ul {
+	margin : 0 20px;
+	position : relative;
+	height: 100%;
+	display : flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+.footer_infor > ul:not(:last-child)::after {
+	content : "";
+	position: absolute;
+	right : -20px;
+	top : 50%;
+	transform : translateY(-50%);
+	width : 1px;
+	height: 60%;
+	background-color : black;
+}
+
+@media (max-width: 1100px){
+	.footer{
+		flex-direction: column;
+		height : 250px;
+	}
+	.footer .footer_logo{
+		justify-content: center;
+		margin : 15px 0;
+	}
+	.footer .footer_infor{
+		justify-content: center;
+		flex-direction: column;
+	}
+	.footer_infor > ul:not(:last-child)::after{
+		content : "";
+		right : 0;
+		top : 0;
+		width : 0;
+		height : 0;
+	}
 }
 /* 푸터 끝 */

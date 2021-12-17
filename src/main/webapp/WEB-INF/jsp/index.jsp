@@ -63,7 +63,6 @@
 				</p>
 			</div>
 		</div>
-		
 	</section>
 	
 	<section class="main_wrapper_3" id="main_section3">
@@ -152,6 +151,15 @@
 			instaPopup.fadeOut();
 			instaPopup.removeClass('active');
 		})
+		
+		$(document).keydown(function(event) {
+			let instaPopup = $('.insta_popup');
+		    if ( event.keyCode == 27 || event.which == 27 ) {
+				instaPopup.fadeOut();
+				instaPopup.removeClass('active');    
+		    }
+		});
+		
 	    var feed = new Instafeed({
 	      target:'gallery',
 	      template:'<li class=\"col-md-3 {{id}}\"><span onclick="test(\'{{id}}\')">{{caption}}</span><a class="insta-Bg_box" href="javascript:test(\'{{id}}\');"><img id="insta_img" title="{{caption}}" src="{{image}}" /></a></li>',

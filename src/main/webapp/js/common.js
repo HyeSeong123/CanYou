@@ -7,3 +7,40 @@ function fn_pageMove(moveUrl){
 	frm.action = moveUrl;
 	frm.submit();
 }
+
+function fadeInMobileHead(){
+	let header_menu = $('.header_mobile_menu');
+	let body = $('body');
+	header_menu.addClass('active');
+	
+	if( header_menu.hasClass('active') ){
+		body.css('overflow', 'hidden');
+		body.css('touch-action', 'none');
+		
+		header_menu.fadeIn();
+		header_menu.css('display', 'flex');
+	}
+}
+
+function fadeOutMobileHead(){
+	let header_menu = $('.header_mobile_menu');
+	let body = $('body');
+	header_menu.removeClass('active');
+	body.css('overflow', 'auto');
+	body.css('touch-action', 'auto');
+	
+	header_menu.fadeOut();
+}
+
+$('.header_hamburger').click(function (){
+	fadeInMobileHead();
+});
+
+$(window).resize(function(){
+	fadeOutMobileHead();
+});
+
+$('.mobile_menu_exit span').click(function(){
+	fadeOutMobileHead();
+});
+
