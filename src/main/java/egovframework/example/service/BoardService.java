@@ -8,4 +8,6 @@ public interface BoardService {
 
 	List<Map> getBoardsByDepth(int depth);
 
+	List<Map> getBoardsChildrenCnt();
+
 }

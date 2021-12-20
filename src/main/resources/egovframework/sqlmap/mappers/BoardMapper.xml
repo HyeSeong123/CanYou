@@ -31,4 +31,11 @@
 		ORDER BY depth , menuOrder, num DESC
 	</select>
 	
+	<select id="getBoardsChildrenCnt" resultType="map">
+		SELECT DISTINCT children.parentCode
+		FROM board AS parent
+		JOIN board AS children
+		ON children.parentCode = parent.boardCode
+	</select>
+	
 </mapper>

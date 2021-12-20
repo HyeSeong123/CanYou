@@ -18,7 +18,7 @@
 </script>
 
 <main class="" style="margin-top:30px;">
-	<div class="">
+	<div class="wrap2">
 		<div class="">
 			<form action="/member/doLogin.do" method="POST">
 				<input type="hidden" name="afterLoginURI" value="${afterLoginURI}" />
@@ -28,7 +28,7 @@
 						<div class="">아이디</div>
 					</label>
 					<label style="position : relative;">
-						<input name="member_pw" id="member_pw" type="password" required />
+						<input name="member_pw" id="member_pw" type="password" required /> 
 						<div class="">패스워드 <a class="" href="javascript:changeActive();"> <i class="far fa-eye"></i></button></a></div>
 					</label>
 				</div>

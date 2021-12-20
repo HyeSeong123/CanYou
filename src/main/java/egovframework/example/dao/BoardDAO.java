@@ -12,4 +12,6 @@ public interface BoardDAO {
 
 	List<Map> getBoardsByDepth(int depth);
 
+	List<Map> getBoardsChildrenCnt();
+
 }

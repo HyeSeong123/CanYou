@@ -32,6 +32,20 @@ function fadeOutMobileHead(){
 	header_menu.fadeOut();
 }
 
+function openSubmenu(){
+	let parent = $(event.target).closest('li').children('ul');
+	
+	if( ! parent.hasClass('active') ){
+		parent.stop();
+		parent.slideDown();
+		parent.addClass('active');
+	} else if ( parent.hasClass('active') ){
+		parent.stop();
+		parent.slideUp();
+		parent.removeClass('active');
+	}
+}
+
 $('.header_hamburger').click(function (){
 	fadeInMobileHead();
 });

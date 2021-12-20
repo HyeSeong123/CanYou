@@ -1,5 +1,9 @@
 var windowWidth = $(window).width();
 
+$(window).resize(function(){
+	windowWidth = $(window).width();
+});
+
 let scr = 0;
 $(window).scroll(function(){
 	scr = $(window).scrollTop();
@@ -84,17 +88,6 @@ function smooth_scroll(section){
 	window.scroll({top: scrollPosition, behavior: 'smooth'});
 }
 
-$(window).resize(function(){
-	windowWidth = $(window).width();
-});
-
-if ( windowWidth > 1000 ){
-	setTimeout(function(){
-		move_section2();
-		move_section3();
-	},800)
-}
-
 $('.header_menu ul li').hover(function(){
 	let sldUl = $(this).children('ul');
 	$(this).children('ul').stop();
@@ -105,6 +98,15 @@ $('.header_menu ul li').hover(function(){
 		$(this).children('ul').slideUp();
 	}
 );
+
+if ( windowWidth > 1000 ){
+	setTimeout(function(){
+		move_section2();
+		move_section3();
+	},800)
+}
+
+
 
 var t1 = gsap.timeline({
 	repeat : -1,

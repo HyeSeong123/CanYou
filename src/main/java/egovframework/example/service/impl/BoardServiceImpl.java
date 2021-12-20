@@ -26,4 +26,9 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.getBoardsByDepth(depth);
 	}
 
+	@Override
+	public List<Map> getBoardsChildrenCnt() {
+		return boardDAO.getBoardsChildrenCnt();
+	}
+
 }

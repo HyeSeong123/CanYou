@@ -27,4 +27,9 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<Map> getBoardsByDepth(int depth) {
 		return query.selectList("getBoardsByDepth", depth);
 	}
+
+	@Override
+	public List<Map> getBoardsChildrenCnt() {
+		return query.selectList("getBoardsChildrenCnt");
+	}
 }

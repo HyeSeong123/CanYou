@@ -22,7 +22,15 @@
 					<ul class="flex">
 						<c:forEach items="${boards}" var="board">
 							<li>
-								<a href="${board.boardUrl }">${board.boardName}</a>
+								<c:forEach items="${boards3}" var="board3">
+									<c:if test="${board3.parentCode == board.boardCode}">
+										<a href="${board.boardUrl}">${board.boardName}</a> <span class="header_menu_downArrow"><i class="fas fa-sort-down"></i></span>	
+									</c:if>
+									
+									<c:if test="${board3.parentCode != board.boardCode}">
+										<a href="${board.boardUrl}">${board.boardName}</a>	
+									</c:if>
+								</c:forEach>
 								<ul>
 									<c:forEach items="${boards2}" var="board2">
 										<c:if test="${board2.parentCode eq board.boardCode }">
@@ -66,7 +74,7 @@
 	
 	<div class="header_mobile header_mobile_menu">
 		<div class="mobile_menu_top">
-			<div></div>
+			<div class="mobile_menu_blank"></div>
 			<div class="mobile_menu_logo">Eyelac Brow</div>
 			<div class="mobile_menu_exit"><span><i class="fas fa-times"></i></span></div>
 		</div>
@@ -75,7 +83,15 @@
 			<ul class="flex flex-column">
 				<c:forEach items="${boards}" var="board">
 					<li>
-						<a href="${board.boardUrl }">${board.boardName}</a>
+						<c:forEach items="${boards3}" var="board3">
+							<c:if test="${board3.parentCode == board.boardCode}">
+								<a href="javascript:void(0)" onclick="openSubmenu();">${board.boardName}</a> <span class="header_menu_downArrow"><i class="fas fa-sort-down"></i></span>	
+							</c:if>
+							
+							<c:if test="${board3.parentCode != board.boardCode}">
+								<a href="${board.boardUrl}">${board.boardName}</a>	
+							</c:if>
+						</c:forEach>
 						<ul>
 							<c:forEach items="${boards2}" var="board2">
 								<c:if test="${board2.parentCode eq board.boardCode }">
