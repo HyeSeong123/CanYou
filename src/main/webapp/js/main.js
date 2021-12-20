@@ -81,6 +81,20 @@ function move_section3(){
 }
 
 function smooth_scroll(section){
+	let li = $('.mobile_menu_middle ul li');
+	let children = $('.mobile_menu_middle ul li ul');
+	
+	li.removeClass('openSubMenu');
+	children.removeClass('active');
+	children.stop();
+	children.slideUp();
+	
+	$('.header_mobile_menu').removeClass('active');
+	$('.header_mobile_menu').fadeOut();
+	
+	$('body').css('overflow', 'auto');
+	$('body').css('touch-action', 'auto');
+	
 	let ele = "#" + section.id;
 	
 	let scrollPosition = $(ele).offset().top;
