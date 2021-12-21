@@ -17,29 +17,41 @@
 	}
 </script>
 
-<main class="" style="margin-top:30px;">
-	<div class="wrap2">
-		<div class="">
+<main class="" style="height:calc(100vh - 150px);">
+	<div class="login_image">
+		<div class="page_title">
+			<h1>로그인</h1>
+		</div>
+	</div>
+	<div class="login_container">
+		<div class="login_box">
 			<form action="/member/doLogin.do" method="POST">
 				<input type="hidden" name="afterLoginURI" value="${afterLoginURI}" />
-				<div class=""> 
-					<label>
-						<input name="member_id" id="member_id" type="text" required />
-						<div class="">아이디</div>
-					</label>
-					<label style="position : relative;">
-						<input name="member_pw" id="member_pw" type="password" required /> 
-						<div class="">패스워드 <a class="" href="javascript:changeActive();"> <i class="far fa-eye"></i></button></a></div>
-					</label>
+				
+				<div class="box_input">
+					<div class="box_input_input">
+						<div class="id_input">
+							<span>아이디</span>
+							<input required type="text" name="loginId" placeholder="아이디">
+						</div>
+						
+						<div class="pw_input">
+							<span>패스워드</span>
+							<input required type="password" name="loginPw" placeholder="패스워드">
+							<span class="open_password"><i class="far fa-eye"></i></span>
+						</div>
+					</div>
+					
+					<div class="login_btn">
+						<button type="submit" value="Submit">로그인</button>
+					</div>
 				</div>
 				
-				<c:if test="${param.err == true}">
-					<section class="">아이디와 비밀번호가 일치하지 않습니다</section>
-				</c:if>
+				<section class="buttonBox">
 				
-				<section class="">
 					<div class="">
-						<button type="submit" value="Submit">로그인</button>
+						<input type="checkbox" name="remember" id="remember">
+						<label for="remember">아이디 저장</label>
 					</div>
 					
 					<div class="">

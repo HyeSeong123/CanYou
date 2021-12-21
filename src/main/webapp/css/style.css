@@ -165,7 +165,12 @@ header{
 	position : relative;
 	right : 7%;
 	bottom : 5%;
+	transition : transform 0.5s;
 }
+.header .header_pc > ul > li:hover .header_menu_downArrow{
+	transform : rotate(-180deg) translateY(-5px);
+} 
+
 .header > .header_sns {
 	margin-left : 10%;
 }
@@ -253,6 +258,7 @@ header{
 		width : 100%;
 		height : 100vh;
 		background-color : #ECE5F4;
+		z-index : 99;
 	}
 	.header_mobile_menu{
 		flex-direction: column;
@@ -296,6 +302,7 @@ header{
 		font-size :23px;
 		font-family : 'LotteMartHappy';
 		transition : color 0.4s;
+		position : relative;
 	}
 	.mobile_menu_middle > ul > li:hover {
 		background-color : #DDDDFF;
@@ -316,7 +323,6 @@ header{
 		transform : rotate(180deg);
 	}
 	.header_mobile ul ul {
-		position : absolute;
 		top : 100%;
 		width : 100%;
 		height : 100%;		
@@ -330,12 +336,49 @@ header{
 	.header_mobile ul ul > li > a {
 		font-size : 18px;
 	}
+	.mobile_menu_bottom > ul {
+		width: 100%;
+		height : 100%;
+	}
+	.mobile_menu_bottom > ul > li{
+		font-size : 30px;
+		transition : background-color 0.4s;
+	}
+	.mobile_menu_bottom > ul > li > a{
+		transition : color 0.4s;
+	}
+	.mobile_menu_bottom > ul > li:hover{
+		background-color : #DDDDFF;
+	}
+	.mobile_menu_bottom > ul > li:first-child:hover > a{
+		 color: #d929c4;
+	}
+	.mobile_menu_bottom > ul > li:nth-child(2):hover > a{
+		 color: #f9e000;
+	}
 }
 
 @media (max-width : 700px){
 	.logo_pc{
 		display : none;
-	}	
+	}
+	.header_mobile ul .header_menu_downArrow{
+		right : 30%;
+	}
+}
+@media (max-width : 480px){
+	.header > .header_logo_title{
+		width : 75%;
+	}
+	.mobile_menu_top > .mobile_menu_logo{
+		font-size : 30px;
+	}
+}
+
+@media (max-height : 700px){
+	.mobile_menu_middle ul > li > a{
+		padding : 5px 0;
+	}
 }
 /* 헤더 반응형 끝 */
 
@@ -343,7 +386,7 @@ header{
 
 /* 메인 시작 */
 .main_wrapper{
-	background-image : url("/images/eyebrow1.jpg");
+	background-image : url("/images/main_section1.jpg");
 	background-position: center center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -364,7 +407,6 @@ header{
 	font-size : 120px;
 	color : #df9f9f;
 	transition : font-size 0.3s;
-	text-shadow: 3px 3px 3px #afafaf;
 }
 .center_title > h1:first-child {
 	margin-bottom : 20px;
@@ -430,6 +472,16 @@ header{
 	}
 	.center_title > h3 {
 		font-size : 25px;
+	}
+}
+@media (max-width: 900px){
+	.right_ball{
+		right : 60px;
+	}
+}
+@media (max-width: 750px){
+	.right_ball{
+		right : 30px;
 	}
 }
 @media (max-width : 600px){
@@ -540,22 +592,28 @@ header{
 		flex-direction: column;
 		align-items: center;
 	}
-	.main_wrapper_2 > .wrap > h1{
+	.main_wrapper_2 > .wrap > h1,
+	.main_wrapper_2 > .wrap > h1.activeM
+	{
 		left : 0;
-		top : 0;
-		opacity : 1;
+		top : 100px;
+		opacity : 0;
 		justify-content: center;
 	}
-	.main_wrapper2_left_imgBox{
-		right : 0;
-		top : 0;
-		opacity : 1;
+	.main_wrapper2_left_imgBox,
+	.main_wrapper2_left_imgBox.activeM
+	{
+		right : 50px;
+		top : 100px;
+		opacity : 0;
 		height: 100%;
 	}
-	.main_wrapper2_manual {
+	.main_wrapper2_manual,
+	.main_wrapper2_manual.activeM
+	{
 		right : 0;
-		top : 30px;
-		opacity : 1;
+		top : 150px;
+		opacity : 0;
 		width : 540px;
 	}
 }
@@ -633,7 +691,7 @@ header{
 .price_infor .pro_eve{
 	text-decoration : under-through;
 	color : #eb343a;
-	font-size : 27px;
+	font-size : 25px;
 	font-weight: bold;
 }
 .price_infor .button_box{
@@ -645,6 +703,12 @@ header{
 .prioce_infor .button_box a{
 	
 }
+@media (max-width : 1450px){
+	.price_infor .pro_eve_attr{
+		display : block;
+	}
+}
+
 @media (max-width : 1000px){
 	.main_background {
 		background-attachment: scroll;	
@@ -666,8 +730,8 @@ header{
 		display : block;
 	}
 	.section3_logo{
-		opacity: 1;
-		top : 0;
+		opacity: 0;
+		top : 70px;
 	}
 	
 }
@@ -687,7 +751,21 @@ header{
 }
 @media (max-width : 560px){
 	.section3_logo > h1 {
-		margin-left : 30px;
+		margin-left : 20px;
+		font-size : 30px;
+	}
+}
+@media (max-width : 410px){
+	.section3_logo > h1 {
+		margin-left : 10px;
+		font-size : 30px;
+	}
+	.price_infor{
+		padding : 0;
+	}
+	.price_infor .button_box{
+		margin-top : 20px;
+		padding-bottom : 10px;
 	}
 }
 /* 메인3 끝 */
@@ -765,7 +843,12 @@ header{
 	}
 	#gallery .insta-Bg_box img {
 		height : 360px;
-	}	
+	}
+}
+@media (max-width : 410px){
+	.portfolio_tit > h1{
+		font-size: 40px;
+	}
 }
 /* 메인4 끝 */
 
@@ -888,6 +971,270 @@ header{
 /* 인스타 팝업 끝 */
 /* 메인 끝 */
 
+/* 로그인 화면 */
+.login_image {
+    background-image: url(/images/eyelac_login.jpg);
+    width: 100%;
+    height: 55%;
+    background-position: 30%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.page_title {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page_title > h1{
+	font-size : 70px;
+	color : white;
+	font-family : 'LotteMartHappy';
+}
+.login_container{
+	height: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+}
+.login_container::after{
+	content: "";
+    width: 65%;
+    border-top: 2px solid black;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.login_container::before{
+	content: "";
+    width: 65%;
+    border-top: 2px solid black;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.login_box{
+	width: 100%;
+}
+.login_box form {
+	width : 100%;
+	display : flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.box_input {
+	width: 45%;
+    text-align: center;
+    display: flex;
+}
+.box_input > .box_input_input{
+	width: 70%;
+}
+.box_input > .box_input_input > div{
+	text-align: left;
+	display : flex;
+	position : relative;
+}
+
+.box_input .id_input{
+	margin-bottom : 20px;
+}
+
+.box_input span {
+    width: 90px;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    margin : auto 0;
+    font-family : 'twayair';
+}
+.box_input input{
+	width : calc(100% - 90px);
+	padding : 7px 0;
+	font-size : 19px;
+	font-family: 'LotteMartHappy';
+}
+
+.box_input .open_password{
+	width : 10%;
+	text-align: left;
+	margin-left : 10px;
+	position : absolute;
+	right : -8px;
+	top : 50%;
+	transform : translateY(-50%);
+}
+.box_input .login_btn{
+	margin-left: 10px;
+    width: calc(30% - 10px);
+}
+.box_input .login_btn button{
+	width : 100%;
+	border : none;
+	background-color : #dfdfdf;
+	border-radius: 7px;
+	height: 100%;
+	font-size : 19px;
+	transition : all 0.3s;
+	font-family : 'LotteMartHappy';
+}
+.box_input .login_btn:hover button{
+	background-color: #5f5f5f;
+	color : white;
+}
+.buttonBox{
+	display: flex;
+    width: 65%;
+    text-align: center;
+    margin-top : 30px;
+}
+.buttonBox > div {
+	width : calc(100% / 3);
+	font-size: 17px;
+	position : relative;
+	font-family: 'twayair';
+}
+.buttonBox > div:first-child::after{
+	content:"";
+	position : absolute;
+	height : 70%;
+	width : 1px;
+	background-color : #7f7f7f;
+	right : 0;
+	top : 50%;
+	transform : translateY(-50%);
+}
+.buttonBox > div:last-child::after{
+	content:"";
+	position : absolute;
+	height : 70%;
+	width : 1px;
+	background-color : #7f7f7f;
+	left : 0;
+	top : 50%;
+	transform : translateY(-50%);
+}
+.buttonBox button{
+	background-color : transparent;
+	border : none;
+}
+@media (max-width : 1400px){
+	.box_input .open_password{
+		right : 0;
+	}
+}
+@media (max-width : 1200px){
+	.login_container::after{
+		width : 85%;
+	}
+	.login_container::before{
+		width : 85%;
+	}
+	.box_input {
+		width : 70%;
+	}
+}
+@media (max-width : 900px){
+	.login_container::after{
+		width : 95%;
+	}
+	.login_container::before{
+		width : 95%;
+	}
+	.box_input {
+		width : 85%;
+	}
+}
+@media (max-width : 780px){
+	.login_container{
+		width : 95%;
+	}
+	.login_container::after{
+		width : 100%;
+	}
+	.login_container::before{
+		width : 100%;
+	}
+	.box_input {
+		width : 100%;
+	}
+	.buttonBox{
+		width : 100%;
+	}
+	.page_title > h1{
+		font-size : 60px;
+	}
+}
+@media (max-width : 486px){
+	.box_input{
+		flex-direction: column;
+	}
+	.box_input span {
+		width : 60px;
+		font-size : 15px;
+	}
+	.box_input > .box_input_input{
+		width : 97%;
+	}
+	.box_input input {
+	    width: calc(100% - 60px);
+	    font-size : 15px;
+	}
+	.box_input .login_btn{
+		width: 100%;
+		margin-left : 0;
+		margin-top : 20px;
+	}
+	.box_input .login_btn button{
+		padding : 10px 0;
+	}
+	.buttonBox{
+		margin-top: 15px;
+	}
+}
+@media (max-height : 800px){
+	.login_image{
+		height : 45%;
+	}
+	.login_container{
+		height : 55%;
+	}
+	.box_input .login_btn{
+		margin-top : 10px;
+	}
+}
+@media (max-height : 600px){
+	.login_image{
+		height : 45%;
+	}
+	.login_container{
+		height : 55%;
+	}
+	.login_container::before,
+	.login_container::after
+	{
+		content : "";
+		border : none;
+	}
+	.buttonBox > div:first-child::after,
+	.buttonBox > div:last-child::after
+	{
+		display : none;
+		height : 0;
+		width : 0;
+	}
+	.box_input .login_btn button{
+		padding : 5px 0;
+	}
+	
+}
+/* 로그인 화면 끝 */
 /* 푸터 시작 */
 .footer{
 	height : 90px;

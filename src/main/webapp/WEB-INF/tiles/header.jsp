@@ -82,10 +82,13 @@
 		<div class="mobile_menu_middle">
 			<ul class="flex flex-column">
 				<c:forEach items="${boards}" var="board">
-					<li>
+					<li class="flex flex-column">
 						<c:forEach items="${boards3}" var="board3">
 							<c:if test="${board3.parentCode == board.boardCode}">
-								<a href="javascript:void(0)" onclick="openSubmenu();">${board.boardName}</a> <span class="header_menu_downArrow"><i class="fas fa-sort-down"></i></span>	
+								<a href="javascript:void(0)" onclick="openSubmenu();">
+									${board.boardName}
+									<span class="header_menu_downArrow"><i class="fas fa-sort-down"></i></span>
+								</a>	
 							</c:if>
 							
 							<c:if test="${board3.parentCode != board.boardCode}">
@@ -101,6 +104,25 @@
 						</ul>
 					</li>
 				</c:forEach>
+			</ul>
+		</div>
+		
+		<div class="flex-grow-1"></div>
+		
+		<div class="mobile_menu_bottom">
+			<ul class="flex">
+				<li>
+					<a target="_blank" href="https://www.instagram.com/eyelac_brow/"><i class="fab fa-instagram"></i></a>
+				</li>
+				<li>
+					<a target="_blank" href="https://open.kakao.com/o/s7O9Cqvd"><i class="fas fa-comment"></i></a>
+				</li>
+				<li>
+					<a href="/member/login.do" class=""><i class="fas fa-lock"></i></a>
+				</li>
+				<li>
+					<a href="#" class=""><i class="fas fa-sign-in-alt"></i></a>
+				</li>
 			</ul>
 		</div>
 	</div>

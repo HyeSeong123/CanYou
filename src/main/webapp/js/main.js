@@ -1,3 +1,5 @@
+gsap.registerPlugin(ScrollTrigger);
+
 var windowWidth = $(window).width();
 
 $(window).resize(function(){
@@ -44,13 +46,26 @@ $(window).scroll(function(){
 	}
 })
 
-function move_section2(){
+function origin(){
+	let main2_img = $('.main_wrapper2_left_imgBox'); 
+	let main2_logo = $('.main_wrapper2_logoBox');
+	let main2_manual = $('.main_wrapper2_manual');
+	let main3_logo = $('.section3_logo');
+
+	main2_img.addClass('activeM');
+	main2_logo.addClass('activeM');
+	main2_manual.addClass('activeM');
+	main3_logo.addClass('activeM');
+}
+
+function move_section2(num){
+	console.log(num);
 	let main = $('.main_wrapper');
 	let main2_img = $('.main_wrapper2_left_imgBox'); 
 	let main2_logo = $('.main_wrapper2_logoBox');
 	let main2_manual = $('.main_wrapper2_manual');
 	
-	let t1 = gsap.timeline({
+	t1 = gsap.timeline({
 		scrollTrigger : {
 			trigger : main,
 			start : "bottom 60%",
@@ -58,13 +73,20 @@ function move_section2(){
 			end : "+=500",
 		}
 	});
-	
-	t1.to(main2_img, { opacity : 1, y : -100, x:50, duration : 0.9 });
-	t1.to(main2_logo, { opacity : 1, y : -200, duration : 0.7 }, -0.1);
-	t1.to(main2_manual, { opacity : 1, y : -150, duration : 0.8 }, -0.1);
+
+	if(num == 1){
+		t1.to(main2_img, { opacity : 1, y : -100, x:50, duration : 0.9 });
+		t1.to(main2_logo, { opacity : 1, y : -200, duration : 0.7 }, -0.1);
+		t1.to(main2_manual, { opacity : 1, y : -150, duration : 0.8 }, -0.1);
+	}
+	else if ( num == 2){
+		t1.to(main2_img, { opacity : 1, y : -95, x:50, duration : 0.9 });
+		t1.to(main2_logo, { opacity : 1, y : -100, duration : 0.7 }, -0.1);
+		t1.to(main2_manual, { opacity : 1, y : -105, duration : 0.7 });
+	}
 }
 
-function move_section3(){
+function move_section3(num){
 	let main = $('#main_section2');
 	let main3_logo = $('.section3_logo');
 	
@@ -77,8 +99,14 @@ function move_section3(){
 		}
 	});
 	
-	t1.to(main3_logo, { opacity :1, y : -70, duration : 1});
+	if(num==1){
+		t1.to(main3_logo, { opacity :1, y : -70, duration : 1});
+	}
+	else if ( num == 2 ){
+		t1.to(main3_logo, { opacity :1, y : -80, duration : 1});
+	}
 }
+
 
 function smooth_scroll(section){
 	let li = $('.mobile_menu_middle ul li');
@@ -114,21 +142,26 @@ $('.header_menu ul li').hover(function(){
 );
 
 if ( windowWidth > 1000 ){
-	setTimeout(function(){
-		move_section2();
-		move_section3();
-	},800)
+	move_section2(1);
+	move_section3(1);
+} else if ( windowWidth < 1000 ){
+	move_section2(2);
+	move_section3(2);
 }
 
-
-
-var t1 = gsap.timeline({
-	repeat : -1,
-	repeatDelay : 0.7
+$(window).resize(function(){
+	window.location.reload();
 });
 
-t1.to(".main_wrapper_arrow", {
-	opacity : 1,
-	y : 100,
-	duration : 1.3
-});
+if ( windowWidth > 1000 ){
+	var t1 = gsap.timeline({
+		repeat : -1,
+		repeatDelay : 0.7
+	});
+	
+	t1.to(".main_wrapper_arrow", {
+		opacity : 1,
+		y : 100,
+		duration : 1.3
+	});
+}
