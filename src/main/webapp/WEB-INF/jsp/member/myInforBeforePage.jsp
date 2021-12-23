@@ -26,7 +26,7 @@
 				<div class="login_input_box"> 
 					<label>
 						<input name="member_pw" id="member_pw" type="password" required />
-						<div class="label-text">패스워드 <a class="showPassword" href="javascript:changeActive();"> <i class="far fa-eye"></i></button></a></div>
+						<div class="label-text"> 패스워드 <a class="showPassword" href="javascript:changeActive();"> <i class="far fa-eye"></i></a></div>
 					</label>
 				</div>
 				

@@ -7,18 +7,23 @@
 
 <script>
 	function changeActive(){
-		$('#member_pw').toggleClass('active');
-		if( $('#member_pw').hasClass('active') ){
-			$('#member_pw').attr('type' , 'text');
-			
+		let loginPw = $('#loginPw')
+		
+		loginPw.toggleClass('active');
+		
+		if( loginPw.hasClass('active') ){
+			loginPw.attr('type' , 'text');
+			$('.open_password').html('<i class=\"far fa-eye-slash\"></i>');
 		} else {
-			$('#member_pw').attr('type', 'password');
+			loginPw.attr('type', 'password');
+			$('.open_password').html('<i class=\"far fa-eye\"></i>');
+			
 		}
 	}
 </script>
 
 <main class="" style="height:calc(100vh - 150px);">
-	<div class="login_image">
+	<div class="title_image">
 		<div class="page_title">
 			<h1>로그인</h1>
 		</div>
@@ -37,8 +42,8 @@
 						
 						<div class="pw_input">
 							<span>패스워드</span>
-							<input required type="password" name="loginPw" placeholder="패스워드">
-							<span class="open_password"><i class="far fa-eye"></i></span>
+							<input class="" required type="password" name="loginPw" id="loginPw" placeholder="패스워드">
+							<span class="open_password" style="cursor:pointer" onclick="changeActive();"><i class="far fa-eye"></i></span>
 						</div>
 					</div>
 					
@@ -55,7 +60,7 @@
 					</div>
 					
 					<div class="">
-						<button onclick="fn_pageMove('/member/join.do'); return false;">회원가입</button>
+						<button onclick="fn_pageMove('/member/join_policy.do'); return false;">회원가입</button>
 					</div>
 					
 					<div class="">

@@ -39,6 +39,12 @@ ul ul {
 	height: 100%;
 	display : inline-block;
 }
+input + label{
+	cursor : pointer;
+}
+label{
+	margin-bottom : 0;
+}
 .flex{
 	display : flex;
 }

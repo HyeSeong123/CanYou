@@ -130,16 +130,6 @@ function smooth_scroll(section){
 	window.scroll({top: scrollPosition, behavior: 'smooth'});
 }
 
-$('.header_menu ul li').hover(function(){
-	let sldUl = $(this).children('ul');
-	$(this).children('ul').stop();
-	$(this).children('ul').slideDown();
-}, function(){
-		let sldUl = $(this).children('ul');
-		$(this).children('ul').stop();
-		$(this).children('ul').slideUp();
-	}
-);
 
 if ( windowWidth > 1000 ){
 	move_section2(1);

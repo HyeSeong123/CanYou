@@ -67,6 +67,20 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+ font-family: 'NanumBarunGothic';
+ font-style: normal;
+ font-weight: 400;
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /* 폰트 끝 */
 
 /* 헤더 시작 */
@@ -144,6 +158,7 @@ header{
 .header > .header_menu ul > li > a{
 	color : black;
 	transition : color 0.3s;
+	padding : 16px 0;
 }
 .header > .header_menu > ul ul {
 	position : absolute;
@@ -156,6 +171,7 @@ header{
 .header > .header_menu > ul > li > ul > li {
 	background-color : #FDF8FF;
 }
+
 .header .header_menu > ul > li > ul > li:hover {
 	background-color : #5f5f5f;
 }
@@ -972,7 +988,7 @@ header{
 /* 메인 끝 */
 
 /* 로그인 화면 */
-.login_image {
+.title_image {
     background-image: url(/images/eyelac_login.jpg);
     width: 100%;
     height: 55%;
@@ -985,6 +1001,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index : -1;
 }
 .page_title > h1{
 	font-size : 70px;
@@ -1056,7 +1073,7 @@ header{
 }
 .box_input input{
 	width : calc(100% - 90px);
-	padding : 7px 0;
+	padding : 7px 8px;
 	font-size : 19px;
 	font-family: 'LotteMartHappy';
 }
@@ -1099,6 +1116,9 @@ header{
 	font-size: 17px;
 	position : relative;
 	font-family: 'twayair';
+}
+.buttonBox > div:hover > button {
+	text-decoration: underline;
 }
 .buttonBox > div:first-child::after{
 	content:"";
@@ -1198,8 +1218,13 @@ header{
 		margin-top: 15px;
 	}
 }
+@media (max-width : 400px){
+	.page_title > h1{
+		font-size : 50px;
+	}
+}
 @media (max-height : 800px){
-	.login_image{
+	.title_image{
 		height : 45%;
 	}
 	.login_container{
@@ -1210,10 +1235,11 @@ header{
 	}
 }
 @media (max-height : 600px){
-	.login_image{
+	.title_image{
 		height : 45%;
 	}
-	.login_container{
+	.login_container
+	{
 		height : 55%;
 	}
 	.login_container::before,
@@ -1235,6 +1261,136 @@ header{
 	
 }
 /* 로그인 화면 끝 */
+
+/* 회원 가입 약관 화면 시작 */
+.join_container {
+	height : 45%;
+	margin-top : 80px;
+	width: 70%;
+    margin-left : auto;
+    margin-right : auto;
+}
+.join_container .policy_title{
+	text-align : center;
+	font-family: 'NanumSquareRound';
+	font-size : 45px;
+	font-weight: 700;
+	margin-bottom : 40px;
+}
+.join_container .policy_box_tit{
+	height : 300px;
+	border : 2px solid #dfdfdf;
+	width : 70%;
+	margin : 0 auto;	
+	overflow-y: scroll;
+	overflow-x: hidden;
+	text-align : left;
+}
+.join_container .policy_box_tit > *{
+	margin-left : 35px;
+}
+.join_container .policy_box{
+	margin-bottom : 50px;
+}
+.join_container .policy_box_top{
+	margin : 20px 0 20px 30px;
+	font-size : 23px;	
+}
+.join_container .policy_box_tit h4{
+	font-size : 16px;
+	font-weight: bold;
+}
+.join_container .policy_box_tit strong{
+	font-weight: 600;
+}
+.join_container .policy_box_tit div{
+	margin-bottom : 10px;	
+}
+.join_container .policy_box_tit .policy_ul li{
+	font-size : 14px;
+	text-align : left;
+	justify-content: flex-start;
+	color : #6f6f6f;
+} 
+.join_container > div{
+	position : relative;
+}
+.join_container > div:last-child::after{
+	content : "";
+	background-color : black;
+	width : 70%;
+	height : 1px;
+	position : absolute;
+	top : -20px;
+	left : 50%;
+	transform : translateX(-50%);
+}
+.join_container > div > span{
+	font-size: 27px;
+	display : block;
+	text-align : center;
+	margin-bottom : 10px;
+	font-weight: bold;
+}
+.join_container .policy_check_box{
+	height : 35px;
+	width : 70%;
+	margin : 0 auto;
+	background-color : #efefef;
+	display : flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.join_container .policy_check_box div{
+	margin-right : 10px;
+}
+.join_container .policy_box3 .policy_box_tit{ 
+	height : 170px;
+}
+.allCheckBox{
+	width: 70%;
+    margin-left : auto;
+   	margin-right : auto;
+   	margin-bottom : 40px;
+    text-align: center;
+    font-family: 'LotteMartHappy';
+}
+.join_policy_page .buttonBox{
+	justify-content: center;
+	margin-top : 0;
+	margin-bottom : 30px;
+	margin-left : auto;
+	margin-right : auto;
+	width : 45%;
+}
+.join_policy_page .buttonBox div{
+	width : 70%;	
+}
+.join_policy_page .buttonBox button{
+	font-size : 24px;
+	width : 55%;
+	padding : 10px 0;
+	border-radius: 15px;
+	color : white;
+}
+.join_policy_page .buttonBox .btn_join button{
+	background-color : #ae73d2;
+}
+.join_policy_page .buttonBox .btn_return button{
+	background-color : #4f4f4f;
+}
+.join_policy_page .buttonBox > div:first-child::after{
+	display : none;
+	width : 0;
+	height: 0;
+}
+.join_policy_page .buttonBox > div:last-child::after{
+	display : none;
+	width : 0;
+	height: 0;
+}
+/* 회원 가입 약관 화면 끝 */
+
 /* 푸터 시작 */
 .footer{
 	height : 90px;

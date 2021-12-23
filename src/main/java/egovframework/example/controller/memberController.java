@@ -31,6 +31,16 @@ public class memberController {
 	@Resource(name="memberService")
 	private MemberService memberService;
 	
+	@RequestMapping("/member/join_policy.do")
+    public ModelAndView showJoinPolicy(ModelAndView mav, @RequestParam Map<String, Object> param) throws Exception {
+		String afterLoginURI = (String) param.get("requestURI");
+		
+		mav.addObject("afterLoginURI", afterLoginURI);
+		
+        mav.setViewName("/member/join_policy");
+        return mav;
+    }
+	
 	@RequestMapping("/member/join.do")
     public ModelAndView showJoin(ModelAndView mav, @RequestParam Map<String, Object> param) throws Exception {
 		String afterLoginURI = (String) param.get("requestURI");

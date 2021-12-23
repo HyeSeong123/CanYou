@@ -62,6 +62,17 @@ $('html').click(function(e){
 	
 })
 
+$('.header_menu ul li').hover(function(){
+	let sldUl = $(this).children('ul');
+	$(this).children('ul').stop();
+	$(this).children('ul').slideDown();
+}, function(){
+		let sldUl = $(this).children('ul');
+		$(this).children('ul').stop();
+		$(this).children('ul').slideUp();
+	}
+);
+
 $('.header_hamburger').click(function (){
 	fadeInMobileHead();
 });

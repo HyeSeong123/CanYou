@@ -55,7 +55,7 @@
 							<a href="/member/login.do" class=""><i class="fas fa-lock"></i></a>
 						</li>
 						<li>
-							<a href="#" class=""><i class="fas fa-sign-in-alt"></i></a>
+							<a href="/member/join_policy.do" class=""><i class="fas fa-sign-in-alt"></i></a>
 						</li>
 						
 					</ul>
@@ -121,7 +121,7 @@
 					<a href="/member/login.do" class=""><i class="fas fa-lock"></i></a>
 				</li>
 				<li>
-					<a href="#" class=""><i class="fas fa-sign-in-alt"></i></a>
+					<a href="#" class="/member/join_policy.do"><i class="fas fa-sign-in-alt"></i></a>
 				</li>
 			</ul>
 		</div>
