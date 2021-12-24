@@ -9,10 +9,10 @@
 <main>
 	
 	<div class="right_ball">
-		<a href="javascript:smooth_scroll(main_section1)"><div class="active"></div></a>
-		<a href="javascript:smooth_scroll(main_section2)"><div></div></a>
-		<a href="javascript:smooth_scroll(main_section3)"><div></div></a>
-		<a href="javascript:smooth_scroll(main_section4)"><div></div></a>
+		<a href="javascript:smooth_scroll('main_section1')"><div class="active"></div></a>
+		<a href="javascript:smooth_scroll('main_section2')"><div></div></a>
+		<a href="javascript:smooth_scroll('main_section3')"><div></div></a>
+		<a href="javascript:smooth_scroll('main_section4')"><div></div></a>
 	</div>
 	
 	<section class="main_wrapper" id="main_section1">
@@ -23,7 +23,7 @@
 		</div>
 		
 		<div class="main_wrapper_arrow">
-			<a href="javascript:smooth_scroll(main_section2)"><i class="fas fa-chevron-down"></i></a>
+			<a href="javascript:smooth_scroll('main_section2')"><i class="fas fa-chevron-down"></i></a>
 		</div>
 	</section>
 	

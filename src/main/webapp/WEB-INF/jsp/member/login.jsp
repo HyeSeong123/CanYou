@@ -60,7 +60,7 @@
 					</div>
 					
 					<div class="">
-						<button onclick="fn_pageMove('/member/join_policy.do'); return false;">회원가입</button>
+						<button onclick="fn_pageMove('/member/join_policy.do?returnUrl=${requestURI}'); return false;">회원가입</button>
 					</div>
 					
 					<div class="">

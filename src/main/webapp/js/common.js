@@ -1,5 +1,9 @@
 function movePage(page){
-	location.href=page;
+	if(page == $(location).attr('pathname') ){
+		page = "/index.do";
+	}
+	
+	location.href= page;
 }
 function fn_pageMove(moveUrl){
 	var frm = document.uriForm;
@@ -47,6 +51,49 @@ function openSubmenu(){
 		parent.removeClass('active');
 		$(event.target).closest('li').removeClass('openSubMenu');
 	}
+}
+
+let main_section1 = '';
+let main_section2 = '';
+let main_section3 = '';
+let main_section4 = '';
+
+let curUrl = $(location).attr('pathname');
+
+if ( curUrl.includes('index.do') ){
+	main_section1 = $('#main_section1');
+	main_section2 = $('#main_section2');
+	main_section3 = $('#main_section3');
+	main_section4 = $('#main_section4');
+}
+
+function smooth_scroll(section){
+	
+	let ele = "#" + section;
+	
+	if ( ! curUrl.includes('index.do') ){
+		movePage('/index.do' + ele);
+	}
+	
+	let li = $('.mobile_menu_middle ul li');
+	let children = $('.mobile_menu_middle ul li ul');
+	
+	li.removeClass('openSubMenu');
+	children.removeClass('active');
+	children.stop();
+	children.slideUp();
+	
+	$('.header_mobile_menu').removeClass('active');
+	$('.header_mobile_menu').fadeOut();
+	
+	$('body').css('overflow', 'auto');
+	$('body').css('touch-action', 'auto');
+	
+	
+	
+	let scrollPosition = $(ele).offset().top;
+	
+	window.scroll({top: scrollPosition, behavior: 'smooth'});
 }
 
 $('html').click(function(e){

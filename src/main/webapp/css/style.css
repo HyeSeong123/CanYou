@@ -1312,10 +1312,10 @@ header{
 	justify-content: flex-start;
 	color : #6f6f6f;
 } 
-.join_container > div{
+.join_container > form > div{
 	position : relative;
 }
-.join_container > div:last-child::after{
+.join_container > form > div:last-child::after{
 	content : "";
 	background-color : black;
 	width : 70%;
@@ -1325,7 +1325,7 @@ header{
 	left : 50%;
 	transform : translateX(-50%);
 }
-.join_container > div > span{
+.join_container > form > div > span{
 	font-size: 27px;
 	display : block;
 	text-align : center;
@@ -1389,7 +1389,142 @@ header{
 	width : 0;
 	height: 0;
 }
+.allCheckBox label .wr{
+	display : none;
+}
+@media (max-width : 1600px){
+	.join_container {
+		width : 80%;
+	}
+	.join_container .policy_box_tit {
+		width : 80%;
+	}
+	.join_container .policy_check_box{
+		width : 80%;
+	}
+	.allCheckBox{
+		width : 80%;
+	}
+}
+
+@media (max-width : 1500px){
+	.join_container .policy_box_tit {
+		width : 100%;
+	}
+	.join_container .policy_check_box{
+		width : 100%;
+	}
+	.allCheckBox{
+		width : 100%;
+	}
+}
+
+@media (max-width : 1200px){
+	.join_policy_page .buttonBox{
+		width : 80%;
+	}
+}
+
+@media (max-width : 700px){
+	.join_container {
+		width : 95%;
+	}
+	
+	.join_container .policy_box_tit {
+		width : 100%;
+	}
+	.join_container .policy_check_box{
+		width : 100%;
+	}
+	.allCheckBox{
+		width : 100%;
+	}
+	.join_policy_page .buttonBox button{
+		width : 85%;
+	}
+	.join_container > div > span{
+		font-size : 24px;
+	}
+	.allCheckBox label .wr{
+		display : block;
+	}
+}
+@media (max-width : 600px){
+	.title_image{
+		height: 350px !important;
+	}
+	.join_policy_page .buttonBox{
+		width : 100%;
+	}
+	.join_policy_page .buttonBox button{
+		width : 95%;
+	}
+}
 /* 회원 가입 약관 화면 끝 */
+
+/* 회원 가입 화면 시작 */
+.join_page .join_container .join_table{
+	width : 85%;
+	height : 100%;
+	margin-left : auto;
+	margin-right : auto;
+	margin-bottom : 30px;
+	font-family: 'LotteMartHappy';
+}
+.join_page .join_container .join_table tr{
+	height : 53px;
+}
+.join_page .join_container .join_table th{
+	border-bottom : 3px solid #ae73d2;
+	font-weight: 500;
+}
+.join_page .join_container .join_table th > span{
+	margin-left : 15px;
+}
+.join_page .join_container .join_table td{
+	border-bottom : 1px solid #5f5f5f;
+}
+.join_page .join_container .join_table td > *{
+	margin-left : 15px;
+}
+.join_page .join_container .join_table td input[type=text],
+.join_page .join_container .join_table td input[type=password]
+{
+	background-color : #faf7fa;
+	border : solid #f0edf0 2px;
+	border-radius: 5px;
+	width : 70%;
+}
+.join_page .join_container .join_table .join_address_td > div{
+	margin : 10px 15px;
+}
+.join_page .join_container .join_table .join_address{
+	display : flex;
+}
+.join_page .join_container .join_table .join_address input:first-child{
+	width : 30%;
+}
+.join_page .join_container .join_table .join_address input:last-child{
+	width : calc( 45% - 25px);
+	margin-left : 15px;
+}
+.join_page .join_container .join_table .join_address .join_address_button{
+	margin-left : 15px;
+}
+.join_page .join_container .join_table td:nth-child(3){
+	background-color : #faf7fa;
+}
+.join_page .join_container .join_table td:nth-child(3) label{
+	color : #7f7f7f;
+}
+.join_page .buttonBox{
+	display : flex;
+}
+.join_page .buttonBox::after{
+	border : none;
+	display : none;
+}
+/* 회원 가입 화면 끝 */
 
 /* 푸터 시작 */
 .footer{

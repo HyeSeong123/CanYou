@@ -46,6 +46,7 @@ public class memberController {
 		String afterLoginURI = (String) param.get("requestURI");
 		
 		mav.addObject("afterLoginURI", afterLoginURI);
+		mav.addObject("param",param);
 		
         mav.setViewName("/member/join");
         return mav;

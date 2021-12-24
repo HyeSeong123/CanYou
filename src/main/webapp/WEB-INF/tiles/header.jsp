@@ -55,7 +55,7 @@
 							<a href="/member/login.do" class=""><i class="fas fa-lock"></i></a>
 						</li>
 						<li>
-							<a href="/member/join_policy.do" class=""><i class="fas fa-sign-in-alt"></i></a>
+							<a href="/member/join_policy.do?returnUrl=${requestURI}" class=""><i class="fas fa-sign-in-alt"></i></a>
 						</li>
 						
 					</ul>
