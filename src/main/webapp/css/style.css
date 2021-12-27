@@ -1366,25 +1366,31 @@ header{
 .join_policy_page .buttonBox div{
 	width : 70%;	
 }
-.join_policy_page .buttonBox button{
+.join_policy_page .buttonBox button,
+.join_page .buttonBox button
+{
 	font-size : 24px;
 	width : 55%;
 	padding : 10px 0;
 	border-radius: 15px;
 	color : white;
 }
-.join_policy_page .buttonBox .btn_join button{
+.buttonBox .btn_join button{
 	background-color : #ae73d2;
 }
-.join_policy_page .buttonBox .btn_return button{
+.buttonBox .btn_return button{
 	background-color : #4f4f4f;
 }
-.join_policy_page .buttonBox > div:first-child::after{
+.join_policy_page .buttonBox > div:first-child::after,
+.join_page .buttonBox > div:first-child::after
+{
 	display : none;
 	width : 0;
 	height: 0;
 }
-.join_policy_page .buttonBox > div:last-child::after{
+.join_policy_page .buttonBox > div:last-child::after,
+.join_page .buttonBox > div:last-child::after
+{
 	display : none;
 	width : 0;
 	height: 0;
@@ -1459,6 +1465,11 @@ header{
 	.join_policy_page .buttonBox button{
 		width : 95%;
 	}
+	.join_policy_page .buttonBox button,
+	.join_page .buttonBox button
+	{
+		width : 75%;
+	}
 }
 /* 회원 가입 약관 화면 끝 */
 
@@ -1488,7 +1499,11 @@ header{
 	margin-left : 15px;
 }
 .join_page .join_container .join_table td input[type=text],
-.join_page .join_container .join_table td input[type=password]
+.join_page .join_container .join_table td input[type=password],
+.join_page .join_container .join_table td input[type=number],
+.join_page .join_container .join_table td input[type=email],
+.join_page .join_container .join_table td input[type=date],
+.join_page .join_container .join_table td input[type=tel]
 {
 	background-color : #faf7fa;
 	border : solid #f0edf0 2px;
@@ -1513,16 +1528,110 @@ header{
 }
 .join_page .join_container .join_table td:nth-child(3){
 	background-color : #faf7fa;
+	width : 30%;
 }
 .join_page .join_container .join_table td:nth-child(3) label{
 	color : #7f7f7f;
 }
 .join_page .buttonBox{
 	display : flex;
+	justify-content: center;
+	margin : 0 auto;
+	margin-bottom : 20px;
 }
 .join_page .buttonBox::after{
 	border : none;
 	display : none;
+}
+.join_page .buttonBox div{
+	width : 60%;
+}
+.join_page .memberGender span{
+	width : 40%;
+	display : inline-block;
+	text-align: center;
+}
+.join_page .memberGender span label{
+	margin-left : 5px;
+}
+@media(max-width : 1200px){
+	
+	.join_page .mobile_display_block{
+		display : block;
+	}
+	.join_page .join_container .join_table td{
+		text-align: center;
+	}
+	.join_page .join_container .join_table th{
+		text-align : center;
+	}
+	.join_page .join_container .join_table th > span{
+		margin-left : 0;
+	}
+	.join_page .join_container .join_table td > * {
+		margin-left : 0;
+	}
+}
+
+@media(max-width : 1050px){
+	.join_page .join_container .join_table{
+		width : 100%;
+	}
+	
+}
+
+@media(max-width : 850px){
+	.join_container {
+		width : 90%;
+	}
+}
+
+@media(max-width : 740px){
+	.join_container {
+		width : 100%;
+	}
+}
+
+@media(max-width : 720px){
+	.join_page .join_container .join_table th {
+		width : 20%;
+	}
+	.join_page .join_container .join_table .join_address_td > div{
+		justify-content: center;
+	}
+}
+@media(max-width : 500px){
+	.join_page .join_container .join_table td input[type=text],
+	.join_page .join_container .join_table td input[type=password]{
+		width : 95%;
+	}
+	.join_page .join_container .join_table .join_address{
+		flex-direction: column;
+	}
+	.join_page .join_container .join_table .join_address input:first-child,
+	.join_page .join_container .join_table .join_address input:last-child
+	{
+		width : 95%;
+		margin-left : 0;
+		margin-bottom : 10px;
+	}
+	.join_page .join_container .join_table th span{
+		font-size: 15px;
+	}
+	.join_page .join_container .join_table .join_address_td > div{
+		margin : 0;
+		text-align: center;
+	}
+	.join_page .join_container .join_table .join_address_td > div:first-child{
+		margin-top : 10px;
+	}
+	.join_page .join_container .join_table .join_address_td > div:first-child input{
+		margin-left : auto;
+		margin-right : auto;
+	}
+	.join_page .join_container .join_table .join_address_td > div:last-child{
+		margin-bottom : 10px;
+	}
 }
 /* 회원 가입 화면 끝 */
 

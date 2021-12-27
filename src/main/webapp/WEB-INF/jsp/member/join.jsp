@@ -4,7 +4,72 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+ 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ 
+<script>
+	
+	$.datepicker.setDefaults({
+		dateFormat : 'yy-mm-dd',
+		prevText : '이전 달',
+		nextText : '다음 달',
+		monthNames : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		monthNamesShort : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		dayNames : ['일','월','화','수','목','금','토'],
+		dayNamesShort : ['일','월','화','수','목','금','토'],
+		dayNamesMin : ['일','월','화','수','목','금','토'],
+		showMonthAfterYear : false,
+		changeMonth : true,
+		changeYear : true,
+		yearSuffix : '년',
+		yearRange : '1950:2021',
+		minDate : "-70Y"
+	});
+
+	$( function() {
+    	$( "#datepicker" ).datepicker();
+  	});
+  	
+	let nextStep = false;
+	function joinCheck(){
+		if ( nextStep ){
+			alert('처리중입니다.');
+		}
+		
+		let isGenderCheck = false;
+		
+		if( $('#man').prop('checked') || $('#woman').prop('checked') ){
+			isGenderCheck = true;
+		} 
+		
+		if( $('#memberName').val().trim().length <= 1 ) {
+			alert('이름을 두 글자 이상 입력해주세요.');
+			return;
+		} else if( $('#memberPhoneNumber').val().trim().length != 11) {
+			alert('휴대전화 번호 양식을 지켜주세요.(- 제외)');
+			return;
+		} else if( $('#memberId').val().trim().length < 5) {
+			alert('아이디를 6글자 이상으로 지정해주세요.');
+			return;
+		} else if( $('#memberPw').val().trim().length < 8) {
+			alert('비밀번호를 8글자 이상으로 지정해주세요.');
+			return;
+		} else if ( isGenderCheck == false ){
+			alert('성별을 체크해주세요.');
+		}
+		
+		
+		if(nextStep){
+			$('#join_policy_checkBox').submit();	
+		}
+	}
+	
+</script>
+
 <main class="join_page">
 	<div class="title_image" style="height:455px;">
 		<div class="page_title">
@@ -17,50 +82,50 @@
 			<div>회원가입</div>
 		</div>
 		
-		<form class="join_form">
+		<form class="join_form" method="POST" action="javascript:joinCheck();">
 			<table class="join_table">
 				<tbody>
 					<tr>
 						<th><span>성명</span></th>
-						<td><input type="text" name="memberName"></td>
+						<td><input type="text" name="memberName" id="memberName"></td>
 						<td></td>
 					</tr>
 					<tr>
-						<th><span>휴대폰번호</span></th>
-						<td><input type="text" name="memberName"></td>
-						<td><input type="checkbox" name="SMS_agree" id="SMS_agree"> <label for="SMS_agree">SMS 알림 문자 수신동의</label></td>
+						<th><span>휴대폰<div class="mobile_display_block"></div>번호</span></th>
+						<td><input type="tel" name="memberPhoneNumber" id="memberPhoneNumber"></td>
+						<td><input type="checkbox" name="SMS_agree" id="SMS_agree" <c:if test="${SMS_agree eq 'on'}">checked</c:if> > <label for="SMS_agree">SMS 알림 문자 수신동의</label></td>
 					</tr>
 					<tr>
 						<th><span>아이디</span></th>
-						<td><input type="text" name="memberName"></td>
-						<td><button>중복 체크</button></td>
+						<td><input type="text" name="memberId" id="memberId"></td>
+						<td><button type="button">중복 체크</button></td>
 					</tr>
 					<tr>
 						<th><span>비밀번호</span></th>
-						<td><input type="text" name="memberName"></td>
-						<td><span>영문소문자 및 숫자 (6~13 자리)</span></td>
+						<td><input type="text" name="memberPw" id="memberPw"></td>
+						<td><span>영문소문자 및 숫자<div class="mobile_display_block"></div>(6~13 자리)</span></td>
 					</tr>
 					<tr>
-						<th><span>비밀번호확인</span></th>
-						<td><input type="text" name="memberName"></td>
+						<th><span>비밀번호<div class="mobile_display_block"></div>확인</span></th>
+						<td><input type="text" name="memberPwConfirm" id="memberPwConfirm"></td>
 						<td></td>
 					</tr>
 					<tr>
-						<th><span>이메일주소</span></th>
-						<td><input type="text" name="memberName"></td>
-						<td><input type="checkbox" name="email_agree" id="email_agree"> <label for="email_agree">메일 수신동의</label></td>
+						<th><span>이메일</span></th>
+						<td><input type="email" name="memberEmail" id="memberEmail"></td>
+						<td><input type="checkbox" name="email_agree" id="email_agree" <c:if test="${email_agree eq 'on'}">checked</c:if> > <label for="email_agree">메일 수신동의</label></td>
 					</tr>
 					<tr>
 						<th><span>생년월일</span></th>
-						<td><input type="text" name="memberName"></td>
+						<td><input type="text" readonly id="datepicker" name="memberBirth"></td>
 						<td></td>
 					</tr>
 					<tr>
 						<th><span>주소</span></th>
 						<td class="join_address_td">
 							<div class="join_address">
-								<input type="text" id="sample2_postcode" placeholder="우편번호">
-								<input type="text" readonly id="sample2_address" placeholder="주소">
+								<input type="text" readonly id="postcode" name="memberPostCode" placeholder="우편번호">
+								<input type="text" readonly id="address" name="memberAddress" placeholder="주소">
 							</div>
 							<div class="join_address_button">
 								<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
@@ -70,9 +135,14 @@
 					</tr>
 					<tr>
 						<th><span>성별</span></th>
-						<td>
-							<input type="checkbox" id="man" name="man"><label for="man">남</label>
-							<input type="checkbox" id="woman" name="woman"><label for="woman">여</label>
+						<td class="memberGender">
+							<span>
+								<input type="radio" id="man" name="gender" value="man"><label for="man">남</label>
+							</span>
+							
+							<span>
+								<input type="radio" id="woman" name="gender" value="woman"><label for="woman">여</label>
+							</span>
 						</td>
 						<td></td>
 					</tr>
@@ -80,18 +150,38 @@
 			</table>
 			
 			<div class="buttonBox">
-				<button>회원가입</button>
-				<button>취소</button>
+				<div class="btn_join"><button>회원가입</button></div>
+				<div class="btn_return"><button type="button" onclick="movePage('/member/join_policy.do')">취소</button></div>
 			</div>
 		</form>
 	</div>
 </main>
+
+<script>
+	$('#memberPhoneNumber').on("change paste", function() {
+		let phoneNumber = $('#memberPhoneNumber');
+		phoneNumber.val( phoneNumber.val().replaceAll("-",""));
+		setTimeout(function(){
+			if( phoneNumber.val().length > 11 ){
+				phoneNumber.val( phoneNumber.val().substring(0,11) );
+				alert('휴대전화 번호 양식을 지켜주세요(- 제외)');
+				phoneNumber.focus();
+			}
+		},250);
+	})
+</script>
 
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 	<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 </div>
 							
 <script>
+	var windowWidth = $(window).width();
+	
+	$(window).resize(function(){
+		windowWidth = $(window).width();
+	});
+
     // 우편번호 찾기 화면을 넣을 element
     var element_layer = document.getElementById('layer');
 
@@ -124,8 +214,8 @@
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample2_postcode').value = data.zonecode;
-                document.getElementById("sample2_address").value = addr;
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("address").value = addr;
 
                 // iframe을 넣은 element를 안보이게 한다.
                 // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
@@ -147,10 +237,30 @@
     // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
     // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
     function initLayerPosition(){
-        var width = 500; //우편번호서비스가 들어갈 element의 width
-        var height = 400; //우편번호서비스가 들어갈 element의 height
-        var borderWidth = 5; //샘플에서 사용하는 border의 두께
-
+    	if ( windowWidth > 550 ){
+	        var width = 500; //우편번호서비스가 들어갈 element의 width
+	        var height = 400; //우편번호서비스가 들어갈 element의 height
+	        var borderWidth = 5; //샘플에서 사용하는 border의 두께
+    	}
+    	
+    	else if ( windowWidth < 550 && windowWidth > 420 ){
+    		var width = 400; 
+	        var height = 300; 
+	        var borderWidth = 3; 
+    	}
+    	
+    	else if ( windowWidth < 420 && windowWidth > 320 ){
+    		var width = 320;
+	        var height = 350; 
+	        var borderWidth = 1; 
+    	}
+    	
+    	else if ( windowWidth <= 320){
+    		var width = 300;
+	        var height = 350; 
+	        var borderWidth = 1; 
+    	}
+    	
         // 위에서 선언한 값들을 실제 element에 넣는다.
         element_layer.style.width = width + 'px';
         element_layer.style.height = height + 'px';

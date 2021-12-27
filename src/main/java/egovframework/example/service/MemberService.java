@@ -24,4 +24,6 @@ public interface MemberService {
 	Map<String, Object> getMemberById(Integer changeMemberId);
 
 	Map<String, Object> getMemberByMemberNameAndEmail(Map<String, Object> param);
+
+	String checkJoinMember(Map<String, Object> param);
 }

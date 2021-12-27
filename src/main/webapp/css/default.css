@@ -66,3 +66,6 @@ label{
 .height-100p{
 	height : 100%;
 }
+.mobile_display_block{
+	display: none;
+}

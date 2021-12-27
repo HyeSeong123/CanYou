@@ -39,6 +39,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 		.excludePathPatterns("/")
 		.excludePathPatterns("/index.do")
 		.excludePathPatterns("/member/join_policy.do")
+		.excludePathPatterns("/member/join_policyCheck.do")
 		.excludePathPatterns("/member/join.do")
 		.excludePathPatterns("/member/doJoin.do")
 		.excludePathPatterns("/member/doLogin.do")

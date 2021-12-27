@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import egovframework.example.dao.MemberDAO;
 import egovframework.example.dto.Member;
 import egovframework.example.service.MemberService;
+import egovframework.example.util.Util;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -70,5 +71,59 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Map<String, Object> getMemberByMemberNameAndEmail(Map<String, Object> param) {
 		return memberDAO.getMemberByMemberNameAndEmail(param);
+	}
+
+	@Override
+	public String checkJoinMember(Map<String, Object> param) {
+		
+		String memberName = (String) param.get("memberName");
+		String memberPhoneNumber = (String) param.get("memberPhoneNumber");
+		String memberId = (String) param.get("memberId");
+		String memberPw = (String) param.get("memberPw");
+		String memberPwConfirm = (String) param.get("memberPwConfirm");
+		String memberEmail = (String) param.get("memberEmail");
+		String memberBirth = (String) param.get("memberBirth");
+		String gender = (String) param.get("gender");
+		
+		memberPhoneNumber.replaceAll("-", "");
+		memberPhoneNumber.replaceAll(" ", "");
+		
+		if(memberName == null || memberName.equals("") ) {
+			return "성명을 입력해주세요.";
+		} else if(memberPhoneNumber == null || memberPhoneNumber.equals("")) {
+			return "휴대폰 번호를 입력해주세요.";
+		} else if(memberId == null || memberId.equals("")) {
+			return "아이디를 입력해주세요.";
+		} else if(memberPw == null || memberPw.equals("")) {
+			return "패스워드를 입력해주세요.";
+		} else if(memberPwConfirm == null || memberPwConfirm.equals("")) {
+			return "패스워드 확인을 입력해주세요.";
+		} else if(memberEmail == null || memberEmail.equals("")) {
+			return "이메일을 입력해주세요.";
+		} else if(memberBirth == null || memberBirth.equals("")) {
+			return "생일을 입력해주세요.";
+		} else if(gender == null || gender.equals("")) {
+			return "성별을 입력해주세요.";
+		} 
+		
+		boolean isName = memberName.matches("^[a-zA-Z가-힣]*$");
+		boolean isPhoneNumber = memberPhoneNumber.matches("\\d{11}");
+		boolean isId = memberId.matches("^[a-zA-Z가-힣]{6}$");
+		boolean isPassword = memberPw.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,16}$");
+		boolean isEmail = memberEmail.matches("^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$");
+		
+		if ( isName == false ) {
+			return  "성명에는 이름, 영어 외 문자가 들어갈 수 없습니다.";
+		} else if(isPhoneNumber == false) {
+			return  "휴대전화 번호 양식을 지켜주세요(- 제외)";
+		} else if(isId == false) {
+			return  "아이디에는 특수문자가 포함되지 않은 영어 또는 한글로 6자 이상이어야 합니다.";
+		} else if(isPassword == false) {
+			return  "비밀번호는 영문과 특수문자 숫자를 포함하며 8자 이상이어야 합니다.";
+		} else if(isEmail == false) {
+			return  "이메일 양식을 지켜주세요.";
+		}
+		
+		return "S-1, 회원가입을 축하합니다.";
 	}
 }

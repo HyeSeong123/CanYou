@@ -45,7 +45,7 @@
 			<div>약관 동의</div>
 		</div>
 		
-		<form method="POST" id="join_policy_checkBox" action="/member/join.do">
+		<form method="POST" id="join_policy_checkBox" action="/member/join_policyCheck.do">
 		<div>
 			<span>[필수] 이용약관 동의</span>
 				<div class="policy_box policy_box1">
@@ -244,7 +244,7 @@
 						<div>
 							<strong>개인정보 보호정책 안내</strong>
 							<ul class="policy_ul">
-								<li>본 정책은 준오헤어, 아일락뷰티살롱(이하 '회사'라 한다.)이 제공하는 인터넷 서비스 (영문영 eyelac.com 이하 '서비스'라 한다.)를 이용함에 있어 개인정보보호 정책 정의를 목적으로 합니다.</li>
+								<li>본 정책은 아일락뷰티살롱(이하 '회사'라 한다.)이 제공하는 인터넷 서비스 (영문영 eyelac.com 이하 '서비스'라 한다.)를 이용함에 있어 개인정보보호 정책 정의를 목적으로 합니다.</li>
 							</ul>
 						</div>
 						

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.condition.ParamsRequestCondition;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import egovframework.example.dto.Member;
@@ -36,76 +37,73 @@ public class memberController {
 		String afterLoginURI = (String) param.get("requestURI");
 		
 		mav.addObject("afterLoginURI", afterLoginURI);
+		mav.addObject("param", param);
 		
         mav.setViewName("/member/join_policy");
         return mav;
     }
 	
+	@RequestMapping("/member/join_policyCheck.do")
+    public String checkJoinPolicy(HttpServletRequest req, @RequestParam Map<String, Object> param) throws Exception {
+		
+		String policyUse = (String) param.get("policyUse");
+		String privacyPolicy = (String) param.get("privacyPolicy");
+		String marketing = (String) param.get("marketPolicy");
+		
+		if( policyUse == null || policyUse.trim().equals("on") == false ) {
+			return Util.msgAndReplace(req, "이용약관에 동의 해주셔야 회원가입이 가능합니다", "/member/join_policy.do");
+		}
+		
+		if( privacyPolicy == null || privacyPolicy.trim().equals("on") == false ) {
+			return Util.msgAndReplace(req, "개인정보 처리방침에 동의 해주셔야 회원가입이 가능합니다", "/member/join_policy.do");
+		}
+		
+		String url = "/member/join.do";
+		
+		if( marketing != null ) {
+			url= url + "?marketing=" + marketing;
+		}
+		
+		return Util.replace(req, url);
+    }
+	
 	@RequestMapping("/member/join.do")
-    public ModelAndView showJoin(ModelAndView mav, @RequestParam Map<String, Object> param) throws Exception {
+    public ModelAndView showJoin(HttpServletRequest req,  ModelAndView mav, @RequestParam Map<String, Object> param) throws Exception {
 		String afterLoginURI = (String) param.get("requestURI");
+		
+		String marketing = req.getParameter("marketing");
+		
+		if( marketing != null) {
+			if( marketing.equals("on") ) {
+				mav.addObject("SMS_agree", "on");
+				mav.addObject("email_agree", "on");
+			}
+		}
 		
 		mav.addObject("afterLoginURI", afterLoginURI);
 		mav.addObject("param",param);
 		
-        mav.setViewName("/member/join");
+		mav.setViewName("/member/join");
+		
         return mav;
     }
 	
 	@RequestMapping("/member/doJoin.do")
     public String doJoin(HttpServletRequest req, @RequestParam Map<String,Object> param) throws Exception {
-		String memberEmail = (String) param.get("member_email");
-		String memberNickname = (String) param.get("member_nickname");
-		String memberId = (String) param.get("member_id");
-		String memberPw = (String) param.get("member_pw");
-		String pwConfirm = (String) param.get("confirm_pw");
-		String memberPhNum = (String) param.get("member_phNum");
 		
-		System.out.println("memberPw= " + memberPw);
+		System.out.println("param= " + param);
 		
-		Map<String,Object> checkId = memberService.getMemberByMemberId(memberId);
-		Map<String,Object> checkNickname = memberService.getMemberByMemberNickname(memberNickname);
-		int checkMail = memberService.getMemberByMemberEmailCount(memberEmail);
+		String msg = memberService.checkJoinMember(param);
 		
-		if(checkId != null) {
-			return Util.msgAndBack(req, "중복된 아이디 입니다.");
+		if( msg.contains("S-1") == false ) {
+			return Util.msgAndBack(req, msg);
 		}
 		
-		if(checkNickname != null) {
-			return Util.msgAndBack(req, "이미 존재하는 닉네임 입니다.");
-		}
+		msg = msg.replace("S-1, ", "");
 		
-		if (checkMail >= 1) {
-			return Util.msgAndBack(req, "해당 메일로 이미 계정을 생성 하셨습니다.");
-		}
+		String redirectUrl = "/member/login.do";
 		
-		if (memberPw.contains(" ")) {
-			return Util.msgAndBack(req, "패스워드에 공백이 존재할 수 없습니다.");
-		}
-		
-		if (! memberPw.equals(pwConfirm) ) {
-			return Util.msgAndBack(req, "패스워드와 패스워드 확인란이 일치하지 않습니다.");
-		}
-		
-		if (memberPw.length() < 7) {
-			return Util.msgAndBack(req, "패스워드는 8글자 이상이어야 합니다.");
-		}
-		
-		String phMatch = "[^0-9]";
-		memberPhNum = memberPhNum.replaceAll(phMatch,"");
-		
-		if(memberPhNum.length() != 11) {
-			return Util.msgAndBack(req, "휴대전화 번호 양식에 맞춰주세요 (숫자 11개)");
-		}
-		
-		param.put("member_phNum", memberPhNum);
-		
-		memberService.doJoin(param);
-		
-		String msg = String.format("%s님의 회원가입을 환영합니다", param.get("member_nickname"));
-		String redirectUrl = "/index.do";
-		
-		return Util.msgAndReplace(req,msg, redirectUrl);
+		return Util.msgAndReplace(req, msg, redirectUrl);
     }
 	
 	@RequestMapping("/member/login.do")
