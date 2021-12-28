@@ -12,7 +12,28 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  
 <script>
-	
+	function changeActive(){
+		let eye = event.target;
+		
+		if ( eye.className == "open_password"){
+			eye = event.target.firstChild;
+		}
+		let memberPw = event.target.parentNode.previousElementSibling;
+		
+		memberPw.classList.toggle('active');
+		
+		
+		if( memberPw.classList.contains('active') ){
+			memberPw.setAttribute('type' , 'text');
+			eye.classList.remove('far' , 'fa-eye');
+			eye.classList.add('far', 'fa-eye-slash');
+		} else {
+			memberPw.setAttribute('type', 'password');
+			eye.classList.remove('far', 'fa-eye-slash');
+			eye.classList.add('class', 'far' , 'fa-eye');
+			
+		}
+	}
 	$.datepicker.setDefaults({
 		dateFormat : 'yy-mm-dd',
 		prevText : '이전 달',
@@ -36,35 +57,82 @@
   	
 	let nextStep = false;
 	function joinCheck(){
+		let frm = document.getElementById('join_form');
+		
 		if ( nextStep ){
 			alert('처리중입니다.');
 		}
 		
 		let isGenderCheck = false;
+		let man = document.getElementById("man");
+		let woman = document.getElementById("woman");
 		
-		if( $('#man').prop('checked') || $('#woman').prop('checked') ){
+		if( man.checked || woman.checked ){
 			isGenderCheck = true;
 		} 
 		
-		if( $('#memberName').val().trim().length <= 1 ) {
-			alert('이름을 두 글자 이상 입력해주세요.');
+		let memberName = document.getElementById("memberName");
+		let memberPhoneNumber = document.getElementById("memberPhoneNumber");
+		let memberId = document.getElementById("memberId");
+		let memberPw = document.getElementById("memberPw");
+		let memberPwConfirm = document.getElementById("memberPwConfirm");
+		let memberEmail = document.getElementById("memberEmail");
+		let memberBirth = document.getElementById("datepicker");
+		let memberPostcode = document.getElementById("postcode");
+		let memberAddress = document.getElementById("address");
+		
+		let nameReg = /^[가-힣]{2,13}$/;
+		let phoneNumberReg = /^\d{3}\d{4}\d{4}$/;
+		let idReg = /^[A-Za-z]{1}[A-Za-z0-9]{5,14}$/;
+		let pwReg = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+		let emailReg = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+		
+		if( ! nameReg.test(memberName.value.trim()) ) {
+			alert('이름을 두 글자 이상 13글자 이하로 입력해주세요.');
+			memberName.focus();
 			return;
-		} else if( $('#memberPhoneNumber').val().trim().length != 11) {
+		} else if( ! phoneNumberReg.test(memberPhoneNumber.value.trim()) ) {
 			alert('휴대전화 번호 양식을 지켜주세요.(- 제외)');
+			memberPhoneNumber.focus();
 			return;
-		} else if( $('#memberId').val().trim().length < 5) {
-			alert('아이디를 6글자 이상으로 지정해주세요.');
+		} else if( ! idReg.test(memberId.value.trim()) ) {
+			alert('아이디를 6글자 이상 13글자 이하 영문으로 숫자가 먼저 오지 않게 지정해주세요.');
+			memberId.focus();
 			return;
-		} else if( $('#memberPw').val().trim().length < 8) {
-			alert('비밀번호를 8글자 이상으로 지정해주세요.');
+		} else if( ! pwReg.test(memberPw.value.trim()) ) {
+			alert('비밀번호를 8글자 이상 18글자 이하 영문,특수문자,숫자로 지정해주세요.');
+			memberPw.focus();
+			return;
+		} else if ( memberPw.value != memberPwConfirm.value ){
+			alert('비밀번호와 비밀번호확인이 일치하지 않습니다');
+			memberPwConfirm.focus();
+		} else if( ! emailReg.test(memberEmail.value.trim()) ){
+			alert('이메일을 양식에 맞춰 입력해주세요.');
+			memberEmail.focus();
+			return;
+		} else if( memberBirth.value.length < 1 || memberBirth.value == null) {
+			alert('생일을 입력해주세요');
+			memberBirth.focus();
+			return;
+		} else if ( memberPostcode.value.length < 1 || memberPostcode.value == null){
+			alert('우편번호를 입력해주세요');
+			document.getElementById('btn_postSearch').click();
+			return;
+		} else if ( memberAddress.value.length < 1 || memberAddress.value == null){
+			alert('주소를 입력해주세요');
+			document.getElementById('btn_postSearch').click();
 			return;
 		} else if ( isGenderCheck == false ){
 			alert('성별을 체크해주세요.');
+			return;
 		}
 		
+		nextStep = true;
 		
 		if(nextStep){
-			$('#join_policy_checkBox').submit();	
+			frm.method = "POST";
+			frm.action="/member/doJoin.do";	
+			frm.submit();
 		}
 	}
 	
@@ -82,7 +150,7 @@
 			<div>회원가입</div>
 		</div>
 		
-		<form class="join_form" method="POST" action="javascript:joinCheck();">
+		<form class="join_form" id="join_form" method="POST" action="javascript:joinCheck();">
 			<table class="join_table">
 				<tbody>
 					<tr>
@@ -97,18 +165,24 @@
 					</tr>
 					<tr>
 						<th><span>아이디</span></th>
-						<td><input type="text" name="memberId" id="memberId"></td>
+						<td><input type="text" name="memberId" id="memberId" placeholder="영문 및 숫자 6~13 자리"></td>
 						<td><button type="button">중복 체크</button></td>
 					</tr>
 					<tr>
 						<th><span>비밀번호</span></th>
-						<td><input type="text" name="memberPw" id="memberPw"></td>
-						<td><span>영문소문자 및 숫자<div class="mobile_display_block"></div>(6~13 자리)</span></td>
+						<td>
+							<input type="password" name="memberPw" id="memberPw">
+							<span class="open_password" style="cursor:pointer" onclick="changeActive();"><i class="far fa-eye"></i></span>
+						</td>
+						<td><span>영문 및 숫자 특수문자<div class="mobile_display_block"></div>(6~17)</span></td>
 					</tr>
 					<tr>
 						<th><span>비밀번호<div class="mobile_display_block"></div>확인</span></th>
-						<td><input type="text" name="memberPwConfirm" id="memberPwConfirm"></td>
-						<td></td>
+						<td>
+							<input type="password" name="memberPwConfirm" id="memberPwConfirm">
+							<span class="open_password" style="cursor:pointer" onclick="changeActive();"><i class="far fa-eye"></i></span>
+						</td>
+						<td id="pwConfirm_txt"><span id="inputSpanMsg"></span></td>
 					</tr>
 					<tr>
 						<th><span>이메일</span></th>
@@ -128,7 +202,7 @@
 								<input type="text" readonly id="address" name="memberAddress" placeholder="주소">
 							</div>
 							<div class="join_address_button">
-								<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
+								<input type="button" id="btn_postSearch" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
 							</div>
 						</td>
 						<td></td>
@@ -169,6 +243,33 @@
 			}
 		},250);
 	})
+	
+	let pwConfirm = document.getElementById('memberPwConfirm');
+	let pw = document.getElementById('memberPw');
+	
+	pwConfirm.addEventListener('keyup', e => {
+		setTimeout(function(){
+			if ( pw.value.trim() != pwConfirm.value.trim() ){
+				let pwConfirmSpan = document.getElementById('pwConfirm_txt');
+				
+				let inputError = document.getElementById('inputSpanMsg');
+				
+				inputError.className = 'errorMsg';
+				
+				inputError.innerHTML = '비밀번호와 일치하지 않습니다.';
+				
+			} else if (pw.value.trim() == pwConfirm.value.trim() ){
+				let pwConfirmSpan = document.getElementById('pwConfirm_txt');
+				
+				let inputError = document.getElementById('inputSpanMsg');
+				
+				inputError.className = 'successMsg';
+				
+				inputError.innerHTML = '비밀번호와 일치합니다.';
+			}
+		},250);
+	})
+		
 </script>
 
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">

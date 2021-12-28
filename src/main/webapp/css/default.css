@@ -69,3 +69,15 @@ label{
 .mobile_display_block{
 	display: none;
 }
+div#ui-datepicker-div {
+   font-family: 'twayair';
+}
+.errorMsg{
+	color : red;
+}
+.successMsg{
+	color : #33cc54;
+}
+table tr td{
+	position : relative;
+}

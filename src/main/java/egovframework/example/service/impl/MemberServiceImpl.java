@@ -108,8 +108,8 @@ public class MemberServiceImpl implements MemberService {
 		
 		boolean isName = memberName.matches("^[a-zA-Z가-힣]*$");
 		boolean isPhoneNumber = memberPhoneNumber.matches("\\d{11}");
-		boolean isId = memberId.matches("^[a-zA-Z가-힣]{6}$");
-		boolean isPassword = memberPw.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,16}$");
+		boolean isId = memberId.matches("^[a-zA-Z]{1}[a-zA-Z0-9_]{5,13}$");
+		boolean isPassword = memberPw.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,19}$");
 		boolean isEmail = memberEmail.matches("^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$");
 		
 		if ( isName == false ) {
@@ -117,9 +117,9 @@ public class MemberServiceImpl implements MemberService {
 		} else if(isPhoneNumber == false) {
 			return  "휴대전화 번호 양식을 지켜주세요(- 제외)";
 		} else if(isId == false) {
-			return  "아이디에는 특수문자가 포함되지 않은 영어 또는 한글로 6자 이상이어야 합니다.";
+			return  "아이디에는 특수문자가 포함되지 않은 영어 및 숫자로 6자 이상이어야 합니다.(숫자로 시작 불가능)";
 		} else if(isPassword == false) {
-			return  "비밀번호는 영문과 특수문자 숫자를 포함하며 8자 이상이어야 합니다.";
+			return  "비밀번호는 영문과 특수문자 숫자를 포함하며 8자 이상 18자 이하여야 합니다.";
 		} else if(isEmail == false) {
 			return  "이메일 양식을 지켜주세요.";
 		}

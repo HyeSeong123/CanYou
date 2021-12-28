@@ -420,15 +420,15 @@ header{
 	transition : height 0.3s;
 }
 .center_title > h1 {
-	font-size : 120px;
-	color : #df9f9f;
+	font-size : 105px;
+	color : #C6B6D5;
 	transition : font-size 0.3s;
 }
 .center_title > h1:first-child {
 	margin-bottom : 20px;
 }
 .center_title > h3{
-	font-size : 55px;
+	font-size : 50px;
 }
 
 /* 메인 반응형 시작 */
@@ -1074,7 +1074,7 @@ header{
 .box_input input{
 	width : calc(100% - 90px);
 	padding : 7px 8px;
-	font-size : 19px;
+	font-size : 16px;
 	font-family: 'LotteMartHappy';
 }
 
@@ -1554,6 +1554,12 @@ header{
 .join_page .memberGender span label{
 	margin-left : 5px;
 }
+.join_page .open_password {
+    position: absolute;
+    right: 31%;
+    top: 50%;
+    transform: translateY(-50%);
+}
 @media(max-width : 1200px){
 	
 	.join_page .mobile_display_block{
@@ -1570,6 +1576,9 @@ header{
 	}
 	.join_page .join_container .join_table td > * {
 		margin-left : 0;
+	}
+	.join_page .open_password {
+	    right: 18%;
 	}
 }
 
@@ -1602,7 +1611,12 @@ header{
 }
 @media(max-width : 500px){
 	.join_page .join_container .join_table td input[type=text],
-	.join_page .join_container .join_table td input[type=password]{
+	.join_page .join_container .join_table td input[type=password],
+	.join_page .join_container .join_table td input[type=number],
+	.join_page .join_container .join_table td input[type=email],
+	.join_page .join_container .join_table td input[type=date],
+	.join_page .join_container .join_table td input[type=tel]
+	{
 		width : 95%;
 	}
 	.join_page .join_container .join_table .join_address{
@@ -1631,6 +1645,9 @@ header{
 	}
 	.join_page .join_container .join_table .join_address_td > div:last-child{
 		margin-bottom : 10px;
+	}
+		.join_page .open_password {
+	    right: 8%;
 	}
 }
 /* 회원 가입 화면 끝 */
