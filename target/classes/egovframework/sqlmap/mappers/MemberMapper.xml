@@ -15,7 +15,7 @@
 		DATE_FORMAT(member_birth, '%Y-%m-%d') AS member_birth,
 		member_level
 		FROM `member`
-		WHERE member_id = #{member_id}
+		WHERE member_id = #{memberId}
 	</select>
 
 	<select id="getMemberByMemberNames" resultType="egovMap">
@@ -94,15 +94,18 @@
 		<set>
 			regDate = NOW(),
 			updateDate = NOW(),
-			member_name = #{member_name},
-			member_id = #{member_id},
-			member_pw = #{member_pw},
-			member_birth = #{member_birth},
-			member_nickname = #{member_nickname},
-			member_email = #{member_email},
-			member_phNum = #{member_phNum},
+			member_name = #{memberName},
+			member_id = #{memberId},
+			member_pw = #{memberPw},
+			member_birth = #{memberBirth},
+			member_postcode = #{memberPostCode},
+			member_address = #{memberAddress},
+			member_email = #{memberEmail},
+			member_phNum = #{memberPhoneNumber},
+			mail_agree = #{smsAgree},
+			email_agree = #{emailAgree},
 			<if test="member_level != null">
-				member_level = #{member_level},
+				member_level = #{memberLevel},
 			</if>
 		</set>
 	</insert>
@@ -113,6 +116,7 @@
 		updateDate,
 		member_name,
 		member_id,
+		member_pw,
 		DATE_FORMAT(member_birth, '%Y-%m-%d') AS member_birth,
 		member_birth,
 		member_nickname,
@@ -120,7 +124,7 @@
 		member_phNum,
 		member_level
 		FROM `member`
-		WHERE member_id = #{member_id}
+		WHERE member_id = #{memberId}
 	</select>
 	
 	<select id="getMemberById" resultType="egovMap" parameterType="int">

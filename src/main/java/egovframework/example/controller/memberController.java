@@ -11,10 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.condition.ParamsRequestCondition;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import egovframework.example.dto.Member;
@@ -75,12 +77,11 @@ public class memberController {
 		
 		if( marketing != null) {
 			if( marketing.equals("on") ) {
-				mav.addObject("SMS_agree", "on");
-				mav.addObject("email_agree", "on");
+				mav.addObject("SMSAgree", "on");
+				mav.addObject("emailAgree", "on");
 			}
 		}
 		
-		mav.addObject("afterLoginURI", afterLoginURI);
 		mav.addObject("param",param);
 		
 		mav.setViewName("/member/join");
@@ -88,8 +89,47 @@ public class memberController {
         return mav;
     }
 	
+	@RequestMapping("/member/memberIdDupliCheck.do")
+    public ModelAndView doMemberIdDupliCheck(HttpServletRequest req, @RequestParam("memberId") String memberId) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		Map<String, Object> member = memberService.getMemberByMemberId(memberId);
+		
+		boolean isId = memberId.matches("^[a-zA-Z]{1}[a-zA-Z0-9_]{5,13}$");
+		
+		if ( isId == false ) {
+			mav.addObject("resultCode", "F-1 아이디를 6글자 이상 13글자 이하 영문으로 숫자가 먼저 오지 않게 지정해주세요.");
+			mav.setView(jsonView);
+			return mav;
+		}
+		
+		if ( member != null ) {
+			mav.addObject("resultCode", "F-2 이미 존재하는 아이디 입니다.");
+			mav.setView(jsonView);
+			return mav;
+		} 
+		
+		mav.addObject("resultCode", "S-1 사용가능한 아이디 입니다.");
+		
+		mav.setView(jsonView);
+		return mav; 
+	}
 	@RequestMapping("/member/doJoin.do")
     public String doJoin(HttpServletRequest req, @RequestParam Map<String,Object> param) throws Exception {
+		
+		String smsAgree = (String) param.get("SMSAgree");
+		String emailAgree = (String) param.get("emailAgree");
+		
+		if(smsAgree == null) {
+			smsAgree = "N";
+			param.put("smsAgree", smsAgree);
+		}
+		
+		if(emailAgree == null) {
+			emailAgree = "N";
+			param.put("emailAgree", emailAgree);
+		}
 		
 		System.out.println("param= " + param);
 		
@@ -98,6 +138,8 @@ public class memberController {
 		if( msg.contains("S-1") == false ) {
 			return Util.msgAndBack(req, msg);
 		}
+		
+		memberService.doJoin(param);
 		
 		msg = msg.replace("S-1, ", "");
 		
@@ -128,10 +170,11 @@ public class memberController {
     }
 	
 	@RequestMapping("/member/doLogin.do")
-    public String doLogin(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
+    public String doLogin(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param) throws Exception {
         
-		String memberId = (String) param.get("member_id");
-		String memberPw = (String) param.get("member_pw");
+		String memberId = (String) param.get("memberId");
+		String memberPw = (String) param.get("memberPw");
+		String afterLoginURI = (String) param.get("afterLoginURI");
 		
 		Member member = memberService.doLoginCheck(param);
 		
@@ -157,13 +200,13 @@ public class memberController {
 			return Util.msgAndBack(req, "패스워드가 일치하지 않습니다."); 
 		}
 		
-        String msg = String.format("%s님의 로그인을 환영합니다.", member.getMember_nickname() );
+        String msg = String.format("%s님의 로그인을 환영합니다.", member.getMember_name() );
         
         if(afterLoginURI.contains("member")) {
         	afterLoginURI = null;
         }
         
-        if(afterLoginURI == null) {
+        if(afterLoginURI == null || afterLoginURI == "") {
         	afterLoginURI = "/index.do";
         }
         

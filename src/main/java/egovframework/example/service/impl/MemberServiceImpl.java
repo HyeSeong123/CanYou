@@ -42,13 +42,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void doJoin(Map<String, Object> param) {
 
-		String memberPw = (String) param.get("member_pw");
+		String memberPw = (String) param.get("memberPw");
 
 		BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
 
 		String securityPassword = pwEncoder.encode(memberPw);
 
-		param.put("member_pw", securityPassword);
+		param.put("memberPw", securityPassword);
 
 		memberDAO.doJoin(param);
 	}
@@ -122,6 +122,12 @@ public class MemberServiceImpl implements MemberService {
 			return  "비밀번호는 영문과 특수문자 숫자를 포함하며 8자 이상 18자 이하여야 합니다.";
 		} else if(isEmail == false) {
 			return  "이메일 양식을 지켜주세요.";
+		}
+		
+		Map<String, Object> member = memberDAO.getMemberByMemberId(memberId);
+		
+		if ( member != null ) {
+			return "이미 사용중인 아이디 입니다.";
 		}
 		
 		return "S-1, 회원가입을 축하합니다.";

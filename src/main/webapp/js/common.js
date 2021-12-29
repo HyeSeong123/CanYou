@@ -121,6 +121,7 @@ $('.header_menu ul li').hover(function(){
 );
 
 $('.header_hamburger').click(function (){
+	document.querySelector('.header_mobile_menu').style.height = window.innerHeight + "px";
 	fadeInMobileHead();
 });
 

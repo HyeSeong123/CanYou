@@ -272,7 +272,6 @@ header{
 		left : 0;
 		overflow : hidden;
 		width : 100%;
-		height : 100vh;
 		background-color : #ECE5F4;
 		z-index : 99;
 	}
@@ -393,7 +392,7 @@ header{
 
 @media (max-height : 700px){
 	.mobile_menu_middle ul > li > a{
-		padding : 5px 0;
+		padding : 12px 0;
 	}
 }
 /* 헤더 반응형 끝 */
@@ -421,7 +420,7 @@ header{
 }
 .center_title > h1 {
 	font-size : 105px;
-	color : #C6B6D5;
+	color : #df9f9f;
 	transition : font-size 0.3s;
 }
 .center_title > h1:first-child {
@@ -988,6 +987,9 @@ header{
 /* 메인 끝 */
 
 /* 로그인 화면 */
+.main{
+	height:calc(100vh - 150px);
+}
 .title_image {
     background-image: url(/images/eyelac_login.jpg);
     width: 100%;
@@ -1008,7 +1010,9 @@ header{
 	color : white;
 	font-family : 'LotteMartHappy';
 }
-.login_container{
+.login_container,
+.findId_container
+{
 	height: 45%;
     display: flex;
     justify-content: center;
@@ -1017,7 +1021,9 @@ header{
     margin: 0 auto;
     position: relative;
 }
-.login_container::after{
+.login_container::after,
+.findId_container::after
+{
 	content: "";
     width: 65%;
     border-top: 2px solid black;
@@ -1026,7 +1032,9 @@ header{
     left: 50%;
     transform: translateX(-50%);
 }
-.login_container::before{
+.login_container::before,
+.findId_container::before
+{
 	content: "";
     width: 65%;
     border-top: 2px solid black;
@@ -1150,10 +1158,14 @@ header{
 	}
 }
 @media (max-width : 1200px){
-	.login_container::after{
+	.login_container::after,
+	.findId_container::after
+	{
 		width : 85%;
 	}
-	.login_container::before{
+	.login_container::before,
+	.findId_container::before
+	{
 		width : 85%;
 	}
 	.box_input {
@@ -1161,10 +1173,14 @@ header{
 	}
 }
 @media (max-width : 900px){
-	.login_container::after{
+	.login_container::after,
+	.findId_container::after
+	{
 		width : 95%;
 	}
-	.login_container::before{
+	.login_container::before,
+	.findId_container::before
+	{
 		width : 95%;
 	}
 	.box_input {
@@ -1172,13 +1188,14 @@ header{
 	}
 }
 @media (max-width : 780px){
-	.login_container{
-		width : 95%;
-	}
-	.login_container::after{
+	.login_container::after,
+	.findId_container::after
+	{
 		width : 100%;
 	}
-	.login_container::before{
+	.login_container::before,
+	.findId_container::before
+	{
 		width : 100%;
 	}
 	.box_input {
@@ -1192,6 +1209,9 @@ header{
 	}
 }
 @media (max-width : 486px){
+	.main{
+		height:calc(100vh + 100px);
+	}
 	.box_input{
 		flex-direction: column;
 	}
@@ -1199,6 +1219,7 @@ header{
 		width : 60px;
 		font-size : 15px;
 	}
+
 	.box_input > .box_input_input{
 		width : 97%;
 	}
@@ -1216,22 +1237,59 @@ header{
 	}
 	.buttonBox{
 		margin-top: 15px;
+		flex-direction: column;
+	}
+	.buttonBox > div{
+		width : 100%;
+		padding : 10px 0;
+	}
+
+	.buttonBox > div:first-child::after,
+	.buttonBox > div:last-child::after
+	{
+		display : none;
+		height : 0;
+		width : 0;
 	}
 }
+
 @media (max-width : 400px){
 	.page_title > h1{
 		font-size : 50px;
+	}
+}
+@media (max-width:450px) and (max-height : 900px) and (min-height : 800px){
+	.login_container{
+		top : 10%;
+	}
+	.login_container::after,
+	.findId_container::after
+	{
+		top : 6%;
+	}
+	.login_container,
+	.findId_container{
+		width : 85%;
 	}
 }
 @media (max-height : 800px){
 	.title_image{
 		height : 45%;
 	}
-	.login_container{
+	.login_container,
+	.findId_container
+	{
 		height : 55%;
 	}
 	.box_input .login_btn{
 		margin-top : 10px;
+	}
+}
+@media (max-height : 700px){
+	.login_container::after,
+	.findId_container::after
+	{
+		top : 6%;
 	}
 }
 @media (max-height : 600px){
@@ -1242,23 +1300,13 @@ header{
 	{
 		height : 55%;
 	}
-	.login_container::before,
-	.login_container::after
-	{
-		content : "";
-		border : none;
-	}
-	.buttonBox > div:first-child::after,
-	.buttonBox > div:last-child::after
-	{
-		display : none;
-		height : 0;
-		width : 0;
-	}
+	
 	.box_input .login_btn button{
 		padding : 5px 0;
 	}
-	
+	.main {
+		height : calc(100vh + 160px);
+	}
 }
 /* 로그인 화면 끝 */
 
@@ -1459,8 +1507,18 @@ header{
 	.title_image{
 		height: 350px !important;
 	}
-	.join_policy_page .buttonBox{
+	.join_policy_page .buttonBox,
+	.join_page .buttonBox,
+	.findId_page .buttonBox
+	{
 		width : 100%;
+		align-items: center;
+	}
+	.join_policy_page .buttonBox div,
+	.join_page .buttonBox div,
+	.findId_page .buttonBox div
+	{
+		width : 90% !important;
 	}
 	.join_policy_page .buttonBox button{
 		width : 95%;
@@ -1560,6 +1618,17 @@ header{
     top: 50%;
     transform: translateY(-50%);
 }
+.dup_success_msg,
+.dup_error_msg
+{
+	display : none;
+	padding : 10px 0;
+}
+.dup_success_msg.active,
+.dup_error_msg.active
+{
+	display : block;
+}
 @media(max-width : 1200px){
 	
 	.join_page .mobile_display_block{
@@ -1651,6 +1720,34 @@ header{
 	}
 }
 /* 회원 가입 화면 끝 */
+
+/* 아이디 찾기 화면 시작*/
+.findId_box{
+	width: 100%;
+}
+.findId_box form {
+	width : 100%;
+	display : flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.findId_box .buttonBox{
+	justify-content: center;
+}
+.box_input .name_input{
+	margin-bottom : 20px;
+}
+.box_input .id_output{
+	margin-bottom : 20px;
+	font-size : 20px;
+	font-family: 'twayair';
+	display : none;
+}
+.box_input .id_output.active{
+	display : block;
+}
+/* 아이디 찾기 화면 시작*/
 
 /* 푸터 시작 */
 .footer{

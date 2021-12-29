@@ -41,6 +41,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 		.excludePathPatterns("/member/join_policy.do")
 		.excludePathPatterns("/member/join_policyCheck.do")
 		.excludePathPatterns("/member/join.do")
+		.excludePathPatterns("/member/memberIdDupliCheck.do")
 		.excludePathPatterns("/member/doJoin.do")
 		.excludePathPatterns("/member/doLogin.do")
 		.excludePathPatterns("/member/login.do")
@@ -55,6 +56,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 		registry.addInterceptor(needToLogoutInterceptor)
 		.addPathPatterns("/member/login.do")
 		.addPathPatterns("/member/doLogin.do")
+		.addPathPatterns("/member/join_policy.do")
 		.addPathPatterns("/member/join.do")
 		.addPathPatterns("/member/doJoin.do")
 		.addPathPatterns("/member/find.do");

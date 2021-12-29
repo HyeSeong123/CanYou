@@ -56,11 +56,13 @@
   	});
   	
 	let nextStep = false;
+	let dup_check = false;
 	function joinCheck(){
 		let frm = document.getElementById('join_form');
 		
 		if ( nextStep ){
 			alert('처리중입니다.');
+			return;
 		}
 		
 		let isGenderCheck = false;
@@ -127,6 +129,10 @@
 			return;
 		}
 		
+		if ( dup_check == false ){
+			alert('아이디 중복체크를 해주세요');
+			return;
+		}
 		nextStep = true;
 		
 		if(nextStep){
@@ -136,6 +142,37 @@
 		}
 	}
 	
+	function btn_duplicateCheck(){
+		let memberId = $('#memberId').val();
+		let dup_error_msg = $('.dup_error_msg');
+		let dup_success_msg = $('.dup_success_msg');
+		
+		$.ajax({
+			type : "POST",
+			data : { "memberId" : memberId },
+			url : "/member/memberIdDupliCheck.do?ajax=Y",
+			dataType : "json",
+			success : function (result){
+				let resultLength = result.resultCode.length;
+				
+				if ( result.resultCode.includes("F-") ){
+					dup_success_msg.text('');
+					dup_error_msg.text(result.resultCode.substr(4,resultLength-4));
+					dup_success_msg.removeClass('active');
+					dup_error_msg.addClass('active');
+					$('#memberId').focus();
+				} else if ( result.resultCode.includes("S-") ){
+					dup_error_msg.text('');
+					dup_success_msg.text(result.resultCode.substr(4,resultLength-4));
+					dup_error_msg.removeClass('active');
+					dup_success_msg.addClass('active');
+					dup_check = true;
+				}
+				
+			}
+		});
+		return dup_check;
+	}
 </script>
 
 <main class="join_page">
@@ -161,12 +198,16 @@
 					<tr>
 						<th><span>휴대폰<div class="mobile_display_block"></div>번호</span></th>
 						<td><input type="tel" name="memberPhoneNumber" id="memberPhoneNumber"></td>
-						<td><input type="checkbox" name="SMS_agree" id="SMS_agree" <c:if test="${SMS_agree eq 'on'}">checked</c:if> > <label for="SMS_agree">SMS 알림 문자 수신동의</label></td>
+						<td><input type="checkbox" name="SMSAgree" id="SMS_agree" <c:if test="${SMS_agree eq 'on'}">checked</c:if> value="Y"> <label for="SMS_agree">SMS 알림 문자 수신동의</label></td>
 					</tr>
 					<tr>
 						<th><span>아이디</span></th>
-						<td><input type="text" name="memberId" id="memberId" placeholder="영문 및 숫자 6~13 자리"></td>
-						<td><button type="button">중복 체크</button></td>
+						<td>
+							<input type="text" name="memberId" id="memberId" placeholder="영문 및 숫자 6~13 자리">
+							<div class="dup_error_msg errorMsg"></div>
+							<div class="dup_success_msg successMsg"></div>
+						</td>
+						<td><button type="button" onclick="btn_duplicateCheck()">중복 체크</button></td>
 					</tr>
 					<tr>
 						<th><span>비밀번호</span></th>
@@ -187,7 +228,7 @@
 					<tr>
 						<th><span>이메일</span></th>
 						<td><input type="email" name="memberEmail" id="memberEmail"></td>
-						<td><input type="checkbox" name="email_agree" id="email_agree" <c:if test="${email_agree eq 'on'}">checked</c:if> > <label for="email_agree">메일 수신동의</label></td>
+						<td><input type="checkbox" name="emailAgree" id="email_agree" <c:if test="${email_agree eq 'on'}">checked</c:if> value="Y"> <label for="email_agree">메일 수신동의</label></td>
 					</tr>
 					<tr>
 						<th><span>생년월일</span></th>

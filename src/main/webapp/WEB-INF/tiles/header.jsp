@@ -51,13 +51,23 @@
 						<li>
 							<a target="_blank" href="https://open.kakao.com/o/s7O9Cqvd"><i class="fas fa-comment"></i></a>
 						</li>
-						<li>
-							<a href="/member/login.do" class=""><i class="fas fa-lock"></i></a>
-						</li>
-						<li>
-							<a href="/member/join_policy.do?returnUrl=${requestURI}" class=""><i class="fas fa-sign-in-alt"></i></a>
-						</li>
+						<c:if test="${loginedMember == null}">
+							<li>
+								<a href="/member/login.do?afterLoginURI=${requestURI}" class=""><i class="fas fa-lock"></i></a>
+							</li>
+							<li>
+								<a href="/member/join_policy.do?returnUrl=${requestURI}" class=""><i class="fas fa-sign-in-alt"></i></a>
+							</li>
+						</c:if>
 						
+						<c:if test="${loginedMember != null}">
+							<li>
+								<a href="/member/logout.do?afterLoginURI=${requestURI}" class=""><i class="fas fa-lock-open"></i></a>
+							</li>
+							<li>
+								<a href="/member/myInfor.do?" class=""><i class="fas fa-user"></i></a>
+							</li>
+						</c:if>
 					</ul>
 				</div>
 				
@@ -117,12 +127,23 @@
 				<li>
 					<a target="_blank" href="https://open.kakao.com/o/s7O9Cqvd"><i class="fas fa-comment"></i></a>
 				</li>
-				<li>
-					<a href="/member/login.do" class=""><i class="fas fa-lock"></i></a>
-				</li>
-				<li>
-					<a href="/member/join_policy.do?returnUrl=${requestURI}" class=""><i class="fas fa-sign-in-alt"></i></a>
-				</li>
+				<c:if test="${loginedMember == null}">
+					<li>
+						<a href="/member/login.do?afterLoginURI=${requestURI}" class=""><i class="fas fa-lock"></i></a>
+					</li>
+					<li>
+						<a href="/member/join_policy.do?returnUrl=${requestURI}" class=""><i class="fas fa-sign-in-alt"></i></a>
+					</li>
+				</c:if>
+				
+				<c:if test="${loginedMember != null}">
+					<li>
+						<a href="/member/logout.do?afterLoginURI=${requestURI}" class=""><i class="fas fa-lock-open"></i></a>
+					</li>
+					<li>
+						<a href="/member/myInfor.do?" class=""><i class="fas fa-user"></i></a>
+					</li>
+				</c:if>
 			</ul>
 		</div>
 	</div>

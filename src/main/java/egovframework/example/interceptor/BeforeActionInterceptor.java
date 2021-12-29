@@ -37,14 +37,12 @@ public class BeforeActionInterceptor extends HandlerInterceptorAdapter{
 		boolean isAjax = requestURI.endsWith("Ajax");
 		Map<String, Object> param = Util.getParamMap(req);
 		Enumeration<String> parameterNames = req.getParameterNames();
-
+		
 		if (isAjax == false) {
 			if (param.containsKey("ajax") && param.get("ajax").equals("Y")) {
 				isAjax = true;
 			}
 		}
-		
-		System.out.println("ajax= " + isAjax);
 		
 		while (parameterNames.hasMoreElements()) {
 			String paramName = parameterNames.nextElement();

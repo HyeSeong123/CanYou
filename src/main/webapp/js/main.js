@@ -1,9 +1,12 @@
 gsap.registerPlugin(ScrollTrigger);
 
-var windowWidth = $(window).width();
-
+let windowWidth = $(window).width();
+let currentWidth = 0;
 $(window).resize(function(){
 	windowWidth = $(window).width();
+	setTimeout(function(){
+		currentWidth = windowWidth;
+	},1000);
 });
 
 let scr = 0;
@@ -117,7 +120,11 @@ if ( windowWidth > 1000 ){
 }
 
 $(window).resize(function(){
-	window.location.reload();
+	let reloadPage = windowWidth - currentWidth; 
+	
+	if ( reloadPage > 400 ){
+		window.location.reload();
+	}
 });
 
 if ( windowWidth > 1000 ){

@@ -7,22 +7,47 @@
 
 <script>
 	function changeActive(){
-		let loginPw = $('#loginPw')
+		let memberPw = $('#memberPw')
 		
-		loginPw.toggleClass('active');
+		memberPw.toggleClass('active');
 		
-		if( loginPw.hasClass('active') ){
-			loginPw.attr('type' , 'text');
+		if( memberPw.hasClass('active') ){
+			memberPw.attr('type' , 'text');
 			$('.open_password').html('<i class=\"far fa-eye-slash\"></i>');
 		} else {
-			loginPw.attr('type', 'password');
+			memberPw.attr('type', 'password');
 			$('.open_password').html('<i class=\"far fa-eye\"></i>');
 			
 		}
 	}
+	let nextStep = false;
+	function checkLoginForm(){
+		let frm = document.getElementById('loginForm');
+		
+		if (nextStep) {
+			alert('처리중입니다.');
+			return;
+		}
+		
+		if(frm.memberId.value.length < 1){
+			alert('아이디를 입력해주세요.');
+			return;
+		} else if(frm.memberPw.value.length < 1){
+			alert('패스워드를 입력해주세요.');
+			return;
+		}
+		
+		nextStep = true;
+		
+		if ( nextStep ){
+			frm.action = "/member/doLogin.do";
+			frm.method = "POST";
+			frm.submit();
+		}
+	}
 </script>
 
-<main class="" style="height:calc(100vh - 150px);">
+<main class="main">
 	<div class="title_image">
 		<div class="page_title">
 			<h1>로그인</h1>
@@ -30,19 +55,19 @@
 	</div>
 	<div class="login_container">
 		<div class="login_box">
-			<form action="/member/doLogin.do" method="POST">
+			<form action="/member/doLogin.do" method="POST" id="loginForm">
 				<input type="hidden" name="afterLoginURI" value="${afterLoginURI}" />
 				
 				<div class="box_input">
 					<div class="box_input_input">
 						<div class="id_input">
 							<span>아이디</span>
-							<input required type="text" name="loginId" placeholder="아이디">
+							<input required type="text" name="memberId" placeholder="아이디">
 						</div>
 						
 						<div class="pw_input">
 							<span>패스워드</span>
-							<input class="" required type="password" name="loginPw" id="loginPw" placeholder="패스워드">
+							<input class="" required type="password" name="memberPw" id="memberPw" placeholder="패스워드">
 							<span class="open_password" style="cursor:pointer" onclick="changeActive();"><i class="far fa-eye"></i></span>
 						</div>
 					</div>
@@ -64,7 +89,7 @@
 					</div>
 					
 					<div class="">
-						<button onclick="movePage('/member/memberFindId.do'); return false;">ID/PW 찾기</button>
+						<button onclick="movePage('/member/memberFindId.do?afterLoginURI=${param.afterLoginURI}'); return false;">ID/PW 찾기</button>
 					</div>
 				</section>
 			</form>
