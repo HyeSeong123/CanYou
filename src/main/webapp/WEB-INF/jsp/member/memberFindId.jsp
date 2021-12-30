@@ -10,13 +10,6 @@
 	function chekcFindLoginId(){
 		let frm = document.getElementById('findIdForm');
 		
-		if ( nextStep ){
-			if (nextStep) {
-				alert('처리중입니다.');
-				return;
-			}
-		}
-		
 		if(frm.memberName.value.length < 1){
 			alert('아이디를 입력해주세요.');
 			return;
@@ -26,6 +19,45 @@
 		}
 		
 		nextStep = true;
+		
+		if( nextStep ){
+			let memberName = frm.memberName.value;
+			let memberEmail = String(frm.memberEmail.value);
+			
+			var xhr = new XMLHttpRequest();
+			
+			xhr.open('POST', '/member/doFindId.do?ajax=true',true);
+			
+			xhr.responseType = 'json';
+			
+			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			
+			xhr.send("memberName=" + memberName + "&memberEmail=" + memberEmail);
+			
+			xhr.onload = () => {
+				if (xhr.status == 200){
+					let result = xhr.response;
+					let idOutput = document.querySelector('.id_output');
+					
+					let resultLength = result.resultCode.length;
+					
+					if ( result.resultCode.includes("F-") ){
+						idOutput.innerHTML = '';
+						idOutput.innerHTML = result.resultCode.substr(4,resultLength-4);
+						idOutput.classList.remove('successMsg');
+						idOutput.classList.add('active', 'errorMsg');
+					} else if ( result.resultCode.includes("S-") ){
+						idOutput.innerHTML = '';
+						idOutput.innerHTML = result.resultCode.substr(4,resultLength-4);
+						idOutput.classList.remove('errorMsg');
+						idOutput.classList.add('active', 'successMsg');
+					}
+					
+				} else{
+					console.log("통신 실패");
+				}
+			}
+		}
 	}
 </script>
 
@@ -40,10 +72,10 @@
 			<form action="javascript:chekcFindLoginId();" method="POST" id="findIdForm">
 				<input type="hidden" name="afterLoginURI" value="${afterLoginURI}" />
 				
+				<div class="id_output"></div>
+				
 				<div class="box_input">
 					<div class="box_input_input">
-						<div class="id_output"></div>
-						
 						<div class="name_input">
 							<span>성명</span>
 							<input required type="text" name="memberName" id="memberName" placeholder="성명">
@@ -66,11 +98,10 @@
 					</div>
 					
 					<div class="">
-						<button onclick="movePage('/member/memberFindId.do'); return false;">패스워드 찾기</button>
+						<button onclick="movePage('/member/memberFindPw.do'); return false;">패스워드 찾기</button>
 					</div>
 				</section>
 			</form>
 		</div>
-		
 	</div>
 </main>

@@ -132,4 +132,9 @@ public class MemberServiceImpl implements MemberService {
 		
 		return "S-1, 회원가입을 축하합니다.";
 	}
+
+	@Override
+	public Map<String, Object> getMemberByIdAndEmailAndBirth(Map<String, Object> param) {
+		return memberDAO.getMemberByIdAndEmailAndBirth(param);
+	}
 }

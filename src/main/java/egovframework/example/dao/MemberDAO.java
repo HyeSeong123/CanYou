@@ -26,4 +26,6 @@ public interface MemberDAO {
 	Map<String, Object> getMemberById(Integer changeMemberId);
 
 	Map<String, Object> getMemberByMemberNameAndEmail(Map<String, Object> param);
+
+	Map<String, Object> getMemberByIdAndEmailAndBirth(Map<String, Object> param);
 }

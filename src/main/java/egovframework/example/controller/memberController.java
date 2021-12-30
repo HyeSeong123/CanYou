@@ -235,48 +235,46 @@ public class memberController {
 		return mav; 
     }
 	@RequestMapping("/member/doFindId.do")
-	public String doFindId(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param) {
-		
-		Map<String, Object> member = memberService.getMemberByMemberNameAndEmail(param);
-		
-		if(member== null) {
-			Util.msgAndBack(req, "입력하신 정보와 일치하는 계정이 없습니다.");
-		}
-		
-		String memberName = (String) member.get("memberName");
-		String memberEmail = (String) member.get("memberEmail");
-		
-		return Util.replace(req, "/member/resultFindId.do?memberName=" + memberName + "&memberEmail=" + memberEmail);
-	}
-	
-	@RequestMapping("/member/resultFindId.do")
-    public ModelAndView resuldFindId(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String memberName, String memberEmail) throws Exception {
+	public ModelAndView doFindId(HttpServletRequest req, HttpSession session, @RequestParam Map<String, Object> param) {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		param.put("member_name", memberName);
-		param.put("member_email", memberEmail);
+		System.out.println("param= " + param);
 		
 		Map<String, Object> member = memberService.getMemberByMemberNameAndEmail(param);
 		
-		if(member != null) {
-			String mName = (String) member.get("memberName");
-			String mEmail = (String) member.get("memberEmail");
-			String mId = (String) member.get("memberId");
+		if(member == null) {
+			mav.addObject("resultCode", "F-1 입력하신 정보와 일치하는 아이디가 없습니다.");
 			
-			mav.addObject("memberName", mName);
-			mav.addObject("memberEmail", mEmail);
-			mav.addObject("memberId", mId);
+			mav.setView(jsonView);
+			
+			return mav;
 		}
 		
-		else if ( member == null ) {
-			mav.addObject("error", true);
+		String memberId = (String) member.get("memberId");
+		mav.addObject("resultCode" , "S-1 회원님의 아이디는 " + memberId + " 입니다.");
+		
+		mav.setView(jsonView);
+		return mav;
+	}
+	
+	@RequestMapping("/member/doFindPw.do")
+	public ModelAndView doFindPw(HttpServletRequest req, HttpSession session, @RequestParam Map<String, Object> param) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		Map<String, Object> member = memberService.getMemberByIdAndEmailAndBirth(param);
+		
+		if(member == null) {
+			mav.addObject("resultCode", "F-1 입력하신 정보와 일치하는 계정이 없습니다.");
 		}
 		
-		mav.setViewName("/member/resultFindId");
+		System.out.println("param= " + param);
+		System.out.println("member= " + member);
 		
-		return mav; 
-    }
+		mav.setView(jsonView);
+		return mav;
+	}
 	
 	@RequestMapping("/member/myInforBeforePage.do")
     public ModelAndView showMyInforBeforePage(HttpServletRequest req, HttpSession session, @RequestParam Map<String,Object> param, String afterLoginURI) throws Exception {
