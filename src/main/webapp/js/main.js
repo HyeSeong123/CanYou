@@ -50,23 +50,33 @@ $(window).scroll(function(){
 })
 
 function origin(){
-	let main2_img = $('.main_wrapper2_left_imgBox'); 
-	let main2_logo = $('.main_wrapper2_logoBox');
-	let main2_manual = $('.main_wrapper2_manual');
-	let main3_logo = $('.section3_logo');
-
-	main2_img.addClass('activeM');
-	main2_logo.addClass('activeM');
-	main2_manual.addClass('activeM');
-	main3_logo.addClass('activeM');
+//	let main2_img = $('.main_wrapper2_left_imgBox'); 
+//	let main2_logo = $('.main_wrapper2_logoBox');
+//	let main2_manual = $('.main_wrapper2_manual');
+//	let main3_logo = $('.section3_logo');
+	
+	let main2_img = document.querySelector('.main_wrapper2_left_imgBox');
+	let main2_logo = document.querySelector('.main_wrapper2_logoBox');
+	let main2_manual = document.querySelector('.main_wrapper2_manual');
+	let main3_logo = document.querySelector('.section3_logo');
+	
+	main2_img.classList.add('activeM');
+	main2_logo.classList.add('activeM');
+	main2_manual.classList.add('activeM');
+	main3_logo.classList.add('activeM');
 }
 
 function move_section2(num){
 	console.log(num);
-	let main = $('.main_wrapper');
-	let main2_img = $('.main_wrapper2_left_imgBox'); 
-	let main2_logo = $('.main_wrapper2_logoBox');
-	let main2_manual = $('.main_wrapper2_manual');
+//	let main = $('.main_wrapper');
+//	let main2_img = $('.main_wrapper2_left_imgBox'); 
+//	let main2_logo = $('.main_wrapper2_logoBox');
+//	let main2_manual = $('.main_wrapper2_manual');
+	
+	let main = document.querySelector('.main_wrapper');
+	let main2_img = document.querySelector('.main_wrapper2_left_imgBox'); 
+	let main2_logo = document.querySelector('.main_wrapper2_logoBox');
+	let main2_manual = document.querySelector('.main_wrapper2_manual');
 	
 	t1 = gsap.timeline({
 		scrollTrigger : {
@@ -90,8 +100,8 @@ function move_section2(num){
 }
 
 function move_section3(num){
-	let main = $('#main_section2');
-	let main3_logo = $('.section3_logo');
+	let main = document.querySelector('#main_section2');
+	let main3_logo = document.querySelector('.section3_logo');
 	
 	let t1 = gsap.timeline({
 		scrollTrigger : {

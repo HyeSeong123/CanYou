@@ -33,6 +33,7 @@
 	<tiles:insertAttribute name="footer" ></tiles:insertAttribute>
 	<script src="/js/common.js"></script>
 	<script src="/js/member.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/hi098123/prism-for-tistory/prism.js">
 			
 </body>
 </html>
